@@ -1,0 +1,308 @@
+.blur{
+    -webkit-filter: blur(3px); 
+	-moz-filter: blur(3px); 
+	-o-filter: blur(3px); 
+	-ms-filter: blur(3px); 
+	filter: blur(3px);
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.loginbox * {
+    box-sizing: content-box;
+}
+
+.logincontainer{
+    position: fixed;
+    width: 1000px;
+    height: 600px;
+    margin: 4% 0;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    background: #F42929;
+    border-radius: 10px;
+    z-index: 999;
+    box-shadow: 2px 2px 20px #00000066;
+}
+
+.logincontainer p{
+    font-size: 12px !important;
+}
+
+.logincontainer label{
+    width: 100%;
+}
+
+
+.textbox{
+    padding: 100px 0px 100px 70px;
+    font-family: 'Open Sans';
+    color: #fff;
+    background: #F42929;
+    border-radius: 10px;
+}
+
+.textbox h1{
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.textboxwrapper {
+    margin-top: 20px;
+}
+
+.loginbox input{
+    width: 200px;
+    height: 10px;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+.loginbox label{
+    font-size: 12px;
+    display: block;
+}
+
+.loginbox select{
+    display: inline;
+    width: 140px;
+}
+
+.loginbox{
+    width: 320px;
+    height: 530px;
+    margin: 35px 100px;
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    position: relative;
+    font-size: 20px;
+    overflow: hidden;
+    box-shadow: 2px 2px 20px #00000066;
+}
+
+.loginbox h3{
+    font-size: 25px !important;
+    width: 100%
+}
+
+.subtitle{
+    font-size: 25px;
+}
+
+.featurestext {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.formbox{
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.btnbox{
+    display: flex;
+    justify-content: center;
+}
+
+.loginbutton{
+    color: #fff;
+    background-color: #F42929;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    width: 100px;
+    height: 36px;
+}
+
+.loginbutton:active{
+    background-color: #bb2020;
+}
+
+.btndisabled {
+    background-color: #ac2121;
+}
+
+#otp {
+    padding-left: 15px;
+    letter-spacing: 42px;
+    border: 0;
+    background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+    background-position: bottom;
+    background-size: 50px 1px;
+    background-repeat: repeat-x;
+    background-position-x: 35px;
+    width: 220px;
+    min-width: 220px;
+    outline: none;
+}
+  
+#divInner{
+    left: 0;
+    position: sticky;
+}
+  
+#divOuter{
+    width: 190px; 
+    overflow: hidden;
+}
+
+.radiobtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.radiobtn input{
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+
+.radiobtn label, .checkboxes label{
+    margin: 0 5px;
+}
+
+.checkboxes{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkboxes input{
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+
+.checkboxes label{
+    display: inline;
+}
+
+.selection{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.progstep{
+    width: 320px;
+    height: 5px;
+    background-color: #d7d7d7;
+    position: fixed;
+}
+
+.progressbar {
+    background-color: #F42929;
+    width: 0px;
+    height: 5px;
+    transition: 0.6s;
+}
+
+.arrow {
+    border: solid #F42929;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 4px;
+}
+  
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    cursor: pointer;
+}
+
+#back{
+    position: fixed;
+    width: 275px;
+    margin-top: 20px;
+    z-index: 999;
+}
+
+.loginpageone {
+    position: relative;
+    left: 300px;
+}
+
+.loginpagetwo {
+    position: relative;
+    left: 10px;
+}
+
+.loginpagethree {
+    position: relative;
+    left: -290px;
+}
+
+.nodisp{
+    display: none;
+}
+
+.success{
+    display: flex;
+}
+
+.btnbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btnbox button{
+    width: 200px;
+    height: 36px;
+    margin: 5px
+}
+
+.msgs{
+    font-size: 12px !important;
+    color: #F42929;
+    text-align: center;
+}
+
+.tnc{
+    font-size:11px !important
+}
+
+@media(max-width: 500px) {
+    .textbox{
+        display: none;
+    }
+    .logincontainer{
+        justify-content: center;
+        background-color: #ffffff00;
+        box-shadow: none;
+        height: 100vh;
+    }
+    .loginbox{
+        margin: 15vh 10vw;
+    }
+}
+
+@media(max-width: 400px) {
+    .loginbox{
+        transform: scale(1);
+        width: 300px;
+    }
+    .progstep{
+        width: 300px;
+    }
+}

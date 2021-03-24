@@ -1,0 +1,312 @@
+.feed{
+    background-color: #F42929;
+    padding: 20vh 5vw 10px;
+}
+
+.feed h1{
+    color: white;
+    font-size: 30px !important;
+}
+
+.togglenotifs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(221, 221, 221);
+    height: 40px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.togglenotifs div{
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 39px;
+    width: 50%;
+}
+
+.activenotif{
+    background-color: white;
+    height: 39px;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.bloodrequest,.orgupdates, .recentmembers{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0px
+}
+
+.lookingfor{
+    font-size: 13px !important
+}
+
+.bold{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.reqmsg{
+    padding: 5px 0;
+    font-size: 16px;
+}
+
+.minimap >div>div{
+    height: 200px !important
+}
+
+.minimap button, .minimap .gmnoprint, .minimap .gm-spvc{
+    display: none !important
+}
+
+.helperbtns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.helperbtns>div{
+    width: 48%;
+    color: white;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px
+}
+
+.contactpatient>a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F42929;
+    color: white;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.contactpatient-1{
+    font-size: 13px !important;
+}
+
+.contactpatient-2{
+    font-size: 10px !important;
+}
+
+.share{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #6dc370;
+}
+
+.recentmembers>h3{
+    width: 80%
+}
+
+.newuser{
+    background-color: #ffcdcd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userdetails h2{
+    font-size: 16px !important;
+    margin: 0;
+}
+
+.userdetails p{
+    font-size: 14px !important;
+    margin: 0;
+}
+
+.userbg{
+    background-color: #F42929;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px
+}
+
+.donorcount, .orgupdate-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.donorcount>h3{
+    font-size: 16px !important;
+    width: 75%
+}
+
+.orgupdate{
+    background-color: rgb(221, 221, 221);
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.orgupdate-1{
+    font-size: 16px !important;
+}
+
+.readbtn{
+    font-size: 10px !important;
+    border: none;
+    outline:none;
+    width: 60px;
+    border-radius: 5px;
+    height: 25px;
+    color: white;
+    background-color: #F42929;
+}
+
+.requests{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bloodrequest{
+    position: relative;
+    max-width: 30%;
+    flex: 30%;
+    margin: 0 20px 20px;
+}
+
+.bloodrequest p{
+    font-size: 16px;
+}
+
+.bloodrequest .bold{
+    font-size: 16px
+}
+
+.sharepopup{
+    position: absolute;
+    top: 30%;
+    background-color: #f4433691;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 300px;
+    margin-left: -150px;
+    left: 50%;
+    height: 150px;
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+}
+
+.sharepopup-2{
+    height:100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sharepopup-2>div{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.sharepopup-2>h1{
+    font-size: 22px !important;
+}
+
+.cross{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 10px 10px 0 0;
+    color: white;
+}
+
+.pagination{
+    margin: 10px auto 0;
+}
+
+.pagination>li{
+    padding: 0 10px;
+}
+
+.active > a{
+    color: #F42929 !important;
+    outline: none
+}
+
+.notifwrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.notifwrapper>div{
+    width: 45%;
+    max-width: 45%;
+}
+
+.orgupdates{
+    margin-right: 5%;
+}
+
+.recentmembers{
+    margin-left: 5%;
+    height: 70vh;
+    max-height: 70vh
+}
+
+.pages{
+    margin: 0 auto;
+}
+
+@media(max-width: 500px){
+    .requests{
+        display: unset;
+        flex-wrap: unset;
+    }
+    
+    .bloodrequest{
+        position: relative;
+        max-width: 100%;
+        flex: 30%;
+        margin: 20px 0;
+    }
+    .notifwrapper{
+        display: unset;
+        flex-wrap: unset;
+    }
+    
+    .notifwrapper>div{
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .orgupdates{
+        margin-right: 0;
+    }
+    
+    .recentmembers{
+        margin-left: 0;
+        height: auto;
+    }
+    
+}

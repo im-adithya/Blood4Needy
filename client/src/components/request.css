@@ -1,0 +1,221 @@
+.request{
+    width: 100vw;
+    margin: 5vh 15px;
+    padding: 5vh 30px 0;
+    background-color: #F42929;
+    font-size: 20px !important;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.request>h3{
+    display: none;
+}
+
+.request input{
+    font-size: 16px !important;
+}
+
+.request textarea{
+    font-size: 16px !important;
+}
+
+.requestform{
+    padding: 20px 20px 50px;
+}
+
+.requestpageheader{
+    width: 100%;
+    height: 60vh;
+    background-color: #F42929;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.requestheader{
+    font-size: 20px;
+    background-color: #f7f7f7;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.request input{
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+}
+
+.request textarea{
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+}
+
+.request select{
+    width: 50%;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 16px;
+}
+
+.request label,.donorwrapper label{
+    display: block;
+    margin: 15px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.request p{
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    padding: 5px 0;
+}
+
+.request button{
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    width: 70%
+}
+
+.units{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 52%;
+}
+
+.units > div{
+    border: 1px solid gray;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+}
+
+.activeunits{
+    border: none !important;
+    background-color: #F42929;
+    color: white
+}
+
+.formwrapper{
+    background-color: white;
+    padding: 20px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.mapwrap{
+    height: 70vh
+}
+
+.requestfaqwrapper{
+    width: 70%;
+    margin: 10vh 0;
+}
+
+.requestfaq button{
+    border-bottom: none;
+    font-size: 16px;
+    width: 100%;
+    background-color: #fae5e5;
+}
+
+.requestfaqhidden {
+    padding: 20px;
+    width: 100%;
+}
+
+.requestfaqhidden p{
+    font-size: 14px;
+}
+
+.requestpage{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #fae5e5;
+}
+
+
+@media(max-width: 500px){
+    .requestform{
+        padding: 40px 20px;
+    }
+    .requestfaq,.requestpageheader,.requestfaqwrapper{
+        display: none;
+    }
+    .requestheader{
+        font-size: 15px;
+    }
+    .request p{
+        font-size: 11px !important;
+    }
+    .request>h3{
+        display: block;
+        color: white;
+        margin: 30px 0 0 20px;
+    }
+
+    .request{
+        width: 100vw;
+        margin-bottom: 70px;
+        padding: 15vh 0 50px 0;
+        margin: 0 auto;
+        border-radius: 0px;
+    }
+
+    .request input{
+        font-size: 14px !important;
+        height: 30px;
+    }
+    
+    .request textarea{
+        font-size: 14px !important;
+    }
+
+    .request label,.donorwrapper label{
+        display: block;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+    
+    .request select{
+        width: 50%;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .units{
+        width: 85%;
+    }
+    .dateclass.placeholderclass::before {
+        width: 100%;
+        content: attr(placeholder);
+        font-size: 14px;
+    }
+    .mapwrap{
+        height: 67vh
+    }
+}
+
+@media(max-width: 360px){
+    .request label,.donorwrapper label{
+        font-size: 14px;
+    }
+    .mapwrap{
+        height: 72vh;
+    }
+}
