@@ -8,21 +8,51 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/total/:bloodgroup').get((req, res) => {
-    BloodPack.count({
+    BloodPack.countDocuments({
         bloodgroup: req.params.bloodgroup
     })
         .then(count => res.json(count))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:bloodgroup&:userid&:lat&:lng').get((req, res) => {
-    BloodPack.find({
-        bloodgroup: req.params.bloodgroup,
-        "user._id": { $ne: req.params.userid },
-        location: {$near: {$maxDistance: 10000, $geometry: {type: "Point", coordinates: [parseFloat(req.params.lng),parseFloat(req.params.lat)]}}}
-    })
-        .then(bloodpacks => res.json(bloodpacks))
-        .catch(err => res.status(400).json('Error: ' + err));
+router.route('/:bloodgroup&:userid&:gender').get((req, res) => {
+    if (req.params.gender === "male") {
+        BloodPack.find({
+            bloodgroup: req.params.bloodgroup,
+            "user._id": { $ne: req.params.userid },
+            "user.gender": "male",
+        })
+            .then(bloodpacks => res.json(bloodpacks))
+            .catch(err => res.status(400).json('Error: ' + err));
+    } else {
+        BloodPack.find({
+            bloodgroup: req.params.bloodgroup,
+            "user._id": { $ne: req.params.userid },
+        })
+            .then(bloodpacks => res.json(bloodpacks))
+            .catch(err => res.status(400).json('Error: ' + err));
+    }
+});
+
+router.route('/:bloodgroup&:userid&:lat&:lng&:gender').get((req, res) => {
+    if (req.params.gender === "male") {
+        BloodPack.find({
+            bloodgroup: req.params.bloodgroup,
+            "user._id": { $ne: req.params.userid },
+            "user.gender": "male",
+            location: { $near: { $maxDistance: 10000, $geometry: { type: "Point", coordinates: [parseFloat(req.params.lng), parseFloat(req.params.lat)] } } }
+        })
+            .then(bloodpacks => res.json(bloodpacks))
+            .catch(err => res.status(400).json('Error: ' + err));
+    } else {
+        BloodPack.find({
+            bloodgroup: req.params.bloodgroup,
+            "user._id": { $ne: req.params.userid },
+            location: { $near: { $maxDistance: 10000, $geometry: { type: "Point", coordinates: [parseFloat(req.params.lng), parseFloat(req.params.lat)] } } }
+        })
+            .then(bloodpacks => res.json(bloodpacks))
+            .catch(err => res.status(400).json('Error: ' + err));
+    }
 });
 
 router.route('/add').post((req, res) => {
@@ -30,8 +60,8 @@ router.route('/add').post((req, res) => {
     const name = req.body.user.name;
     const bloodgroup = req.body.user.bloodgroup;
     const location = {
-        type : "Point",
-        coordinates : [req.body.user.pos.lng, req.body.user.pos.lat]
+        type: "Point",
+        coordinates: [req.body.user.pos.lng, req.body.user.pos.lat]
     }
 
     const newBloodPack = new BloodPack({
@@ -59,8 +89,8 @@ router.route('/update/:id').post((req, res) => {
             bloodpack.name = req.body.name;
             bloodpack.bloodgroup = req.body.bloodgroup;
             bloodpack.location = {
-                type : "Point",
-                coordinates : [req.body.user.pos.location.lng, req.body.user.pos.location.lat]
+                type: "Point",
+                coordinates: [req.body.user.pos.location.lng, req.body.user.pos.location.lat]
             }
 
             bloodpack.save()

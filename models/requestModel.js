@@ -14,9 +14,9 @@ const requestSchema = new Schema({
     hospitalname: { type: String, required: true },
     hospitaladdress: { type: String, required: true },
     pos: { type: Object, required: true },
-    contactname: { type: String, required: true },
+    /*contactname: { type: String, required: true },
     contactphone: { type: String, required: true },
-    contactemail: { type: String },
+    contactemail: { type: String },*/
     message: { type: String }
 }, {
     timestamps: true,

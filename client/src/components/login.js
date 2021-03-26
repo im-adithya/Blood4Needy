@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Autocomplete from 'react-google-autocomplete';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { LoginBG } from "./home"
@@ -33,6 +34,7 @@ class LoginBox extends Component {
     this.onChangeGender = this.onChangeGender.bind(this);
     this.onChangeBG = this.onChangeBG.bind(this);
     this.onChangeAddress = this.onChangeAddress.bind(this);
+    this.setCurrentLocation = this.setCurrentLocation.bind(this);
     this.onChangeOTP = this.onChangeOTP.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.onSubmitforOTP = this.onSubmitforOTP.bind(this);
@@ -102,6 +104,19 @@ class LoginBox extends Component {
     this.setState({
       address: e.target.value
     })
+  }
+
+  setCurrentLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.setState({
+          pos: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        });
+      });
+    }
   }
 
   onChangeOTP(e) {
@@ -227,7 +242,7 @@ class LoginBox extends Component {
     }
 
     if (typeof (this.state.pos) !== 'object') {
-      this.setState({ warningthree: 'Please select a city from dropdown' })
+      this.setState({ warningthree: 'Please allow access to your location' })
       return
     }
 
@@ -246,7 +261,7 @@ class LoginBox extends Component {
       })
       .catch(err => {
         this.setState({ warningthree: 'Please complete all fields' })
-        console.log(err)
+        console.log(err, this.state)
       });
   }
 
@@ -295,7 +310,7 @@ class LoginBox extends Component {
           <h3>Login or Signup</h3>
           <div>
             <label htmlFor="phone">10-Digit Mobile Number</label>
-            <input type="tel" value='+91' style={{ width: '20px' }} disabled />
+            <input type="tel" value='+91' style={{ width: '25px' }} disabled />
             <input
               type="tel"
               placeholder="Mobile Number"
@@ -315,7 +330,7 @@ class LoginBox extends Component {
         <form id="form2" className={formClass.join(' ')} onSubmit={this.onSubmitOTP} autoComplete="off">
           <h3>Login or Signup</h3>
           <div>
-            <input type="tel" value='+91' style={{ width: '20px' }} disabled />
+            <input type="tel" value='+91' style={{ width: '25px' }} disabled />
             <input
               type="tel"
               id="phnlock"
@@ -332,7 +347,7 @@ class LoginBox extends Component {
             </div>
           </div><br />
           <p style={{ fontSize: '12px', textAlign: 'center', marginBottom: '10px' }}>If not received,
-            <p style={{ display: 'inline', fontWeight: 'bold', cursor: 'pointer' }} onClick={this.onRetryOTP}> click here</p></p>
+            <span style={{ display: 'inline', fontWeight: 'bold', cursor: 'pointer' }} onClick={this.onRetryOTP}> click here</span></p>
           <p className="msgs">{this.state.warningtwo}</p>
           <div className="btnbox">
             <button type="submit" id="next2" className="loginbutton">Submit</button>
@@ -352,11 +367,15 @@ class LoginBox extends Component {
             <Autocomplete
               id="address" name="address" onChange={this.onChangeAddress}
               apiKey={'AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us'}
-              onPlaceSelected={(place) => this.setState({ address: place.formatted_address, pos: place.geometry.location })}
+              onPlaceSelected={(place) => this.setState({ address: place.formatted_address })}
               types={['(cities)']}
               componentRestrictions={{ country: "in" }}
               required
             />
+            <div className="currloc">
+              <label htmlFor="address">Set Current Location <span className="colorize">(Required)</span></label>
+              <div onClick={this.setCurrentLocation} className="clickable"><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: 'white' }} /></div>
+            </div>
           </div>
           <label htmlFor="name" style={{ fontSize: '12px', marginBottom: '0.5rem' }}>Gender</label>
           <div className="radiobtn">
@@ -385,8 +404,7 @@ class LoginBox extends Component {
             <input type="checkbox" id="tnc" name="tnc" value="tnc" required />
             <label htmlFor="tnc" className="tnc"> I agree to the Terms and Conditions</label><br />
           </div>
-          <p className="msgs">{this.state.warningthree}</p>
-          <p className="msgs">{this.state.tnc}</p>
+          <p className="msgs" style={{display: this.state.warningthree==="" ? 'none' : 'block'}}>{this.state.warningthree}</p>
           <div className="btnbox">
             <button type="submit" id="next3" className="loginbutton">Submit</button>
           </div>
@@ -396,11 +414,11 @@ class LoginBox extends Component {
           <h3>{this.state.existinguser ? 'Login successful!' : 'Congratulations!'}</h3>
           <p style={{ fontSize: '15px' }}>{this.state.existinguser ? '' : 'Your account has been created.'}</p><br />
           <div className="btnbox">
-            <button type="button" id="actlog" className="loginbutton"><Link to="/feed" style={{ fontSize: '12px', color: 'white'}}>Activity Log</Link></button>
+            <button type="button" id="actlog" className="loginbutton"><Link to="/feed" style={{ fontSize: '12px', color: 'white' }}>Activity Log</Link></button>
             <button type="button" id="reqblood" className="loginbutton"
-              style={{ backgroundColor: 'white', color: 'black', border: '1px solid black' }}><Link to="/request" style={{ fontSize: '12px', color: 'black'}}>Request Blood</Link></button>
+              style={{ backgroundColor: 'white', color: 'black', border: '1px solid black' }}><Link to="/request" style={{ fontSize: '12px', color: 'black' }}>Request Blood</Link></button>
           </div><br />
-          <p style={{ fontSize: '12px', cursor: 'pointer' }} id="skip" onClick={this.handleSkip}><Link to="/" style={{ fontSize: '12px', color: 'black'}}>Skip</Link></p>
+          <p style={{ fontSize: '12px', cursor: 'pointer' }} id="skip" onClick={this.handleSkip}><Link to="/" style={{ fontSize: '12px', color: 'black' }}>Skip</Link></p>
         </div>
       </div>
     )

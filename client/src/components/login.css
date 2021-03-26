@@ -12,6 +12,7 @@
 
 .loginbox * {
     box-sizing: content-box;
+    font-size: 15px;
 }
 
 .logincontainer{
@@ -36,6 +37,8 @@
 
 .logincontainer label{
     width: 100%;
+    margin-top: 2px;
+    margin-bottom: 0 !important;
 }
 
 
@@ -64,8 +67,9 @@
 }
 
 .loginbox label{
-    font-size: 12px;
+    font-size: 14px;
     display: block;
+    font-weight: bold;
 }
 
 .loginbox select{
@@ -75,8 +79,8 @@
 
 .loginbox{
     width: 320px;
-    height: 530px;
-    margin: 35px 100px;
+    height: 540px;
+    margin: 30px 100px;
     display: flex;
     justify-content: center;
     background: #fff;
@@ -282,6 +286,29 @@
     font-size:11px !important
 }
 
+.currloc{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.currloc .colorize{
+    font-size: 10px;
+}
+
+.currloc div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #F42929;
+    width: 15%;
+    height: 30px;
+}
+
 @media(max-width: 500px) {
     .textbox{
         display: none;
@@ -293,16 +320,14 @@
         height: 100vh;
     }
     .loginbox{
-        margin: 15vh 10vw;
-    }
-}
-
-@media(max-width: 400px) {
-    .loginbox{
-        transform: scale(1);
-        width: 300px;
+        width: 85vw;
+        height: 550px;
+        margin: auto 7.5vw;
     }
     .progstep{
-        width: 300px;
+        width: 85vw !important;
+    }
+    .progressbar{
+        width: 85vw !important;
     }
 }

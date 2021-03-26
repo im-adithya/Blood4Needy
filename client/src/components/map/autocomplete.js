@@ -15,7 +15,8 @@ class AutoComplete extends Component {
     componentDidMount({ map, mapApi } = this.props) {
         const options = {
             // restrict your search to a specific type of result
-            types: ['address'],
+            libraries: ['places'],
+            type: ['hospitals'],
             // restrict your search to a specific country, or an array of countries
             componentRestrictions: { country: ['in'] },
         };
@@ -39,7 +40,7 @@ class AutoComplete extends Component {
             map.fitBounds(place.geometry.viewport);
         } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(17);
+            map.setZoom(16);
         }
 
         addplace(place);
@@ -55,7 +56,7 @@ class AutoComplete extends Component {
         return (
             <Wrapper>
                 
-                <label htmlFor="hospital" style={{textAlign: 'left'}} autocomplete="chrome-off">Hospital Address</label>
+                <label htmlFor="hospital" style={{textAlign: 'left'}} autoComplete="chrome-off">Hospital Address</label>
                 <input
                     className="search-input"
                     ref={(ref) => {

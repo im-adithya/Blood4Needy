@@ -35,7 +35,7 @@ class App extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // When this component mounts, begin listening for scroll changes
     window.addEventListener('scroll', this.handleScroll);
   }

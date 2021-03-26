@@ -262,7 +262,7 @@ class RequestForm extends Component {
                     </div>
                     <div className="formwrapper">
                         <label htmlFor="patientname">Patient's Full Name</label>
-                        <input type="text" name="patientname" id="patientname" onChange={this.onChangePatientName} autocomplete="chrome-off" placeholder="Enter Name Here" required />
+                        <input type="text" name="patientname" id="patientname" onChange={this.onChangePatientName} autoComplete="chrome-off" placeholder="Enter Name Here" required />
                         <label htmlFor="patientphone">Patient's Contact Number</label>
                         <input type="tel" value='+91' style={{ width: '15%', textAlign: 'center' }} disabled />
                         <input
@@ -273,25 +273,27 @@ class RequestForm extends Component {
                             id="patientphone"
                             onInput={this.handleInput}
                             onChange={this.onChangePatientPhone}
-                            autocomplete="chrome-off"
+                            autoComplete="chrome-off"
                             required />
                         <label htmlFor="doctorname">Doctor's Name <span className="colorize">(Optional)</span></label>
-                        <input type="text" name="doctorname" id="doctorname" onChange={this.onChangeDoctorName} autocomplete="chrome-off" placeholder="Doctor Name" />
+                        <input type="text" name="doctorname" id="doctorname" onChange={this.onChangeDoctorName} autoComplete="chrome-off" placeholder="Doctor Name" />
                         <label htmlFor="reason">Reason/Purpose Details <span className="colorize">(Optional)</span></label>
                         <textarea type="text" name="reason" id="reason" rows="2" onChange={this.onChangeReason} placeholder="Why you need blood?" /><br />
                     </div>
                     <div className="formwrapper mapwrap">
                         <label htmlFor="hospitalname">Hospital</label>
+                        <hr />
                         <div className="info-wrapper">
-                            <input type="text" name="hospitalname" id="hospitalname" onChange={this.onChangeHospitalName} placeholder="Enter Hospital Name" autocomplete="chrome-off" required />
+                            <label htmlFor="hospitalname">Hospital Name</label>
+                            <input type="text" name="hospitalname" id="hospitalname" onChange={this.onChangeHospitalName} placeholder="Enter Hospital Name" autoComplete="chrome-off" required />
                         </div>
-                        <div className="main-wrapper">
+                        <div className="main-wrapper" style={{ height: '50%' }}>
                             <MyGoogleMap addressUpdate={this.onChangeHospitalAddress} locUpdate={this.onChangePosition} />
                         </div>
                     </div>
                     <div className="formwrapper">
-                        <label htmlFor="contactname">Contact Person's Name</label>
-                        <input type="text" name="contactname" id="contactname" onChange={this.onChangeContactName} autocomplete="chrome-off" placeholder="Enter Name Here" required /><br />
+                        {/*<label htmlFor="contactname">Contact Person's Name</label>
+                        <input type="text" name="contactname" id="contactname" onChange={this.onChangeContactName} autoComplete="chrome-off" placeholder="Enter Name Here" required /><br />
                         <label htmlFor="contactphone">Contact Person's Number</label>
                         <input type="tel" value='+91' style={{ width: '15%', textAlign: 'center' }} disabled />
                         <input
@@ -302,12 +304,12 @@ class RequestForm extends Component {
                             id="contactphone"
                             onInput={this.handleInput}
                             onChange={this.onChangeContactPhone}
-                            autocomplete="chrome-off"
+                            autoComplete="chrome-off"
                             required />
                         <label htmlFor="contactemail">Contact Person's Email <span className="colorize">(Optional)</span></label>
-                        <input type="text" name="contactemail" id="contactemail" onChange={this.onChangeContactEmail} placeholder="Enter Email Here" autocomplete="chrome-off" /><br />
-                        <label htmlFor="msgdonors">Message for Donors <span className="colorize">(Optional)</span></label>
-                        <textarea type="text" name="msgdonors" id="msgdonors" rows="2" onChange={this.onChangeMessage} placeholder="This message will appear to all our blood donors" /><br />
+                        <input type="text" name="contactemail" id="contactemail" onChange={this.onChangeContactEmail} placeholder="Enter Email Here" autoComplete="chrome-off" /><br />*/}
+                        <label htmlFor="msgdonors">Message for Donors</label>
+                        <textarea type="text" name="msgdonors" id="msgdonors" rows="2" onChange={this.onChangeMessage} placeholder="This message will appear to all our blood donors" required /><br />
 
                         <p>By submitting these details, you agree that this request should not be made for as commercial interest and you allow with Terms and Conditions of privacy</p>
                         <p className='colorize'>{this.state.warning}</p>
@@ -345,7 +347,7 @@ class Request extends Component {
     }
 
     toggleRedirect() {
-        axios.get('/api/blood/' + this.state.bloodgroup + '&' + this.props.user._id + '&' + this.state.pos.lat + '&' + this.state.pos.lng)
+        axios.get('/api/blood/' + this.state.bloodgroup + '&' + this.props.user._id + '&' + this.state.pos.lat + '&' + this.state.pos.lng + '&' + this.props.user.gender)
             .then(res => {
                 this.setState({ data: res.data, redirect: true })
             })

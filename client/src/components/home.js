@@ -331,11 +331,11 @@ class PageTen extends Component {
                 <h1 style={{ color: 'white' }}>Our Latest Blogs!</h1>
                 <div className="pg10wrapper" data-aos='fade-up'>
                     {this.state.blogs.map((blog, index) => (
-                        <a href={blog.link}>
+                        <a href={blog.link} key={'pg10-' + index}>
                             <div className='blog lift' key={'blog' + (index + 1).toString()}>
                                 <p className="blog-title">{blog.title}</p>
                                 <p className="blog-content">{blog.content.substring(0, 100)}...</p>
-                                <a href={blog.link} style={{ fontWeight: 'bold', fontSize: '15px' }}>Read More</a>
+                                <div style={{ fontWeight: 'bold', fontSize: '15px' }}>Read More</div>
                             </div>
                         </a>
                     ))}

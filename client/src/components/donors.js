@@ -1,33 +1,70 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import ReactPaginate from 'react-paginate';
 
 import { Redirect } from 'react-router-dom';
 import AOS from 'aos';
-import CountUp from 'react-countup';
+//import CountUp from 'react-countup';
 
 
-import Autocomplete from 'react-google-autocomplete';
+//import Autocomplete from 'react-google-autocomplete';
 import './donors.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getDistance } from 'geolib';
 import MapView from './map/mapview'
+import male from '../assets/male-user.png';
+import female from '../assets/female-user.png';
 
 
 
 export const ListView = class ListView extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            pageCount: 1
+        }
+    }
+
+    handlePageClick = (data) => {
+        let selected = data.selected;
+        this.setState({ pageCount: selected + 1 })
+    };
+
     render() {
         return (
-            <div className="listviewwrap">
-                {this.props.data.map((info, index) => (
-                    <div className='listitem'>
-                        <img src="https://www.vhv.rs/dpng/d/408-4087421_person-svg-circle-icon-picture-charing-cross-tube.png" alt="user" className="listitemimg" />
-                        <h3>{info.name}</h3>
-                        <p>Blood Group: {info.bloodgroup}</p>
-                        <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>
-                        <button className="connectbutton"><a href={this.props.onConnect ? 'ivrs' : '/request'}>Connect</a></button>
-                    </div>
-                ))}
+            <div className="listviewwrapper">
+                {this.props.data.length > 0 && <div className="listviewwrap">
+                    {this.props.data.map((info, index) => {
+                        if ((index < this.state.pageCount * 10) && (index >= (this.state.pageCount - 1) * 10)) {
+                            return (<div className='listitem'>
+                                <img src={info.user.gender === "male" ? male : female} alt="user" className="listitemimg" />
+                                <h3>{info.name}</h3>
+                                <p>Blood Group: {info.bloodgroup}</p>
+                                {this.props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>}
+                                <button className="connectbutton"><a href={this.props.onConnect ? 'ivrs' : '/request'}>Connect</a></button>
+                            </div>)
+                        } else{
+                            return null;
+                        }
+                    })}
+                </div>}
+                {this.props.data.length > 0 &&
+                    <div className="pages">
+                        <ReactPaginate
+                            previousLabel={'<'}
+                            nextLabel={'>'}
+                            breakLabel={'...'}
+                            breakClassName={'break-me'}
+                            pageCount={Math.ceil(this.props.data.length / 10)}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={5}
+                            onPageChange={this.handlePageClick}
+                            containerClassName={'pagination'}
+                            subContainerClassName={'pages pagination'}
+                            activeClassName={'active'}
+                        />
+                    </div>}
                 {this.props.data.length === 0 && <div>
                     <h1>No donors available :(</h1>
                 </div>}
@@ -58,28 +95,49 @@ class DonorsFunction extends Component {
             selectedMarker: false,
 
             showdonors: true,
+            alldonors: false,
             totaldonors: 0,
             selected: true
         }
     }
 
     fetchData(bg) { /*TODO: ADD LOCATION DEPENDING ON WHERE HE COMES FROM LITERALLY */
-        axios.get('/api/blood/' + bg + '&' + this.props.user._id + '&' + this.state.pos.lat + '&' + this.state.pos.lng)
-            .then(res => {
-                this.setState({ warning: '', donorsview: true, data: res.data })
-                axios.get('/api/blood/total/' + bg)
-                    .then(res => {
-                        this.setState({ totaldonors: res.data })
-                    })
-                    .catch(err => {
-                        this.setState({ warning: "ERR: Couldn't fetch total" })
-                        console.log(err)
-                    });
-            })
-            .catch(err => {
-                this.setState({ warning: 'ERR: Please Try Again' })
-                console.log(err)
-            });
+        if (this.state.alldonors) {
+            axios.get('/api/blood/' + bg + '&' + this.props.user._id + '&' + this.props.user.gender)
+                .then(res => {
+                    this.setState({ warning: '', donorsview: true, data: res.data })      //TO BE CHANGED!!!!!!!!
+                    axios.get('/api/blood/total/' + bg)
+                        .then(res => {
+                            this.setState({ totaldonors: res.data })
+                        })
+                        .catch(err => {
+                            this.setState({ warning: "ERR: Couldn't fetch total" })
+                            console.log(err)
+                        });
+                })
+                .catch(err => {
+                    this.setState({ warning: 'ERR: Please Try Again' })
+                    console.log(err)
+                });
+
+        } else {
+            axios.get('/api/blood/' + bg + '&' + this.props.user._id + '&' + this.state.pos.lat + '&' + this.state.pos.lng + '&' + this.props.user.gender)
+                .then(res => {
+                    this.setState({ warning: '', donorsview: true, data: res.data })
+                    axios.get('/api/blood/total/' + bg)
+                        .then(res => {
+                            this.setState({ totaldonors: res.data })
+                        })
+                        .catch(err => {
+                            this.setState({ warning: "ERR: Couldn't fetch total" })
+                            console.log(err)
+                        });
+                })
+                .catch(err => {
+                    this.setState({ warning: 'ERR: Please Try Again' })
+                    console.log(err)
+                });
+        }
     }
 
     componentDidMount() {
@@ -91,6 +149,23 @@ class DonorsFunction extends Component {
 
     handleInput(e) {
         this.setState({ address: e.target.value, selected: false })
+    }
+
+    onChangeSelectedPos(e) {
+        switch (e.target.value) {
+            case 'Gwalior':
+                this.setState({ address: e.target.innerText, pos: { lat: 26.2183, lng: 78.1828 } })
+                break;
+            case 'Bhopal':
+                this.setState({ address: e.target.innerText, pos: { lat: 23.2599, lng: 77.4126 } })
+                break;
+            case 'Indore':
+                this.setState({ address: e.target.innerText, pos: { lat: 22.7196, lng: 75.8577 } })
+                break;
+            default:
+                this.setState({ alldonors: true })
+                break;
+        }
     }
 
     onToggleView(e) {
@@ -128,9 +203,16 @@ class DonorsFunction extends Component {
                     <form onSubmit={this.onDonorSearch} autoComplete="off">
                         <div className="donorwrapper">
                             <div className="selectionwrapper">
-                                <div>
+                                <div className="selectionwrapper-1">
                                     <label htmlFor="loc">Location</label>
-                                    <Autocomplete
+                                    {!this.state.redirectedview && <select name="loc" id="loc" onChange={this.onChangeSelectedPos.bind(this)} required>
+                                        <option value="" defaultValue hidden>Select Here</option>
+                                        <option value="Gwalior">Gwalior</option>
+                                        <option value="Bhopal">Bhopal</option>
+                                        <option value="Indore">Indore</option>
+                                        <option value="All">All</option> {/*Special Case*/}
+                                    </select>}
+                                    {/*<Autocomplete        Uncomment to unlock anywhere search
                                         id="loc" name="loc"
                                         apiKey={'AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us'}
                                         onPlaceSelected={(place) => this.setState({ address: place.formatted_address, pos: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }, selected: true })}
@@ -138,9 +220,9 @@ class DonorsFunction extends Component {
                                         placeholder="Select your City"
                                         value={this.state.address}
                                         required
-                                    />
+                                    />*/}
                                 </div>
-                                <div>
+                                <div className="selectionwrapper-2">
                                     <label>Blood Group</label>
                                     <select name="bloodgroup" id="bloodgroup" value={this.state.bloodgroup} onChange={this.onChangeBG} required>
                                         <option value="" defaultValue hidden>Select Here</option>
@@ -159,8 +241,8 @@ class DonorsFunction extends Component {
                                 <div className="colorize">{this.state.warning}</div>
                                 <button type="submit" className="searchbutton">Search</button>
                                 {this.state.showdonors && <div>
-                                    <h3>Total: {this.state.totaldonors ? (this.state.totaldonors-1) : 0} Donor(s)</h3>
-                                    <h3>Donors within 10km radius: {this.state.data.length}</h3>
+                                    <h3>Total: {this.state.totaldonors ? (this.state.totaldonors - 1) : 0} Donor(s)</h3>
+                                    {!this.state.alldonors && <h3>Donors within 10km radius: {this.state.data.length}</h3>}
                                 </div>}
                             </div>
                         </div>
@@ -176,20 +258,28 @@ class DonorsFunction extends Component {
                         <p className="bold">Blood donors in your area</p>
                         {this.state.data.length > 0 &&
                             <div className="sendingpanel">
-                                <div className="msgsent"> {/* TOTAL DONORS SEND SMS AND TEXT*/}
-                                    <p><span className="bold"><CountUp start={0} end={this.state.totaldonors ? (this.state.totaldonors-1) : 0} delay={1} duration={1} /></span> Whatsapp Message(s) Sent</p>
+                                <div className='listitem' style={{margin: '0 auto !important', height: '200px'}}>
+                                    <img src={male} alt="user" className="listitemimg" />
+                                    <h3>Neha Arora</h3>
+                                    <p>Blood Group: O+</p>
+                                    <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} />9.2 km Away</p>
+                                    <button className="connectbutton heart"><a href={this.props.onConnect ? 'ivrs' : '/request'}>Connect</a></button>
+                                </div>
+                                <p style={{width: '60%', marginTop: '10px !important'}}>Click on the connect button to contact donors</p>
+                                {/*<div className="msgsent">
+                                    <p><span className="bold"><CountUp start={0} end={this.state.totaldonors ? (this.state.totaldonors - 1) : 0} delay={1} duration={1} /></span> Whatsapp Message(s) Sent</p>
                                     <FontAwesomeIcon icon='check-circle' />
                                 </div>
                                 <div className="msgsent">
-                                    <p><span className="bold"><CountUp start={0} end={this.state.totaldonors ? (this.state.totaldonors-1) : 0} delay={1} duration={1} /></span> Text SMS Sent</p>
+                                    <p><span className="bold"><CountUp start={0} end={this.state.totaldonors ? (this.state.totaldonors - 1) : 0} delay={1} duration={1} /></span> Text SMS Sent</p>
                                     <div><FontAwesomeIcon icon='check-circle' className="icon" /></div>
-                                </div>
+                                </div>*/}
                             </div>
                         }
-                        {this.state.data.length > 0 && <div>
+                        {/*this.state.data.length > 0 && <div>
                             Your request is sent to <span className="bold">{this.state.data.length} blood donor(s)</span> in your area
                                 </div>
-                        }
+                        */}
                         {this.state.data.length === 0 && <div>
                             <h1 className="nodonors">No donors available!</h1>
                         </div>}
@@ -201,9 +291,9 @@ class DonorsFunction extends Component {
 
                 {/* MAIN FUNCTIONALITY */}
                 {this.state.donorsview && <div className="donorsview">
-                    <div className="selection">
-                        <div className={"view " + (this.state.view === 'Map' ? 'activeview' : '')} onClick={this.onToggleView}>Map View</div>
-                        <div className={"view " + (this.state.view === 'List' ? 'activeview' : '')} onClick={this.onToggleView}>List View</div>
+                    <div className="togglenotifs">
+                        <div className={(this.state.view === 'Map' ? 'activenotif' : '')} onClick={this.onToggleView}>Map View</div>
+                        <div className={(this.state.view === 'List' ? 'activenotif' : '')} onClick={this.onToggleView}>List View</div>
                     </div>
 
                     <div className="therealview">
@@ -214,12 +304,14 @@ class DonorsFunction extends Component {
                                 markers={this.state.data}
                                 onClick={this.handleClickOnMarker}
                                 onConnect={this.props.requested}
+                                alldonors={this.state.alldonors}
                             />}
                         {this.state.view === 'List' &&
                             <ListView
                                 data={this.state.data}
                                 pos={this.state.pos}
                                 onConnect={this.props.requested}
+                                alldonors={this.state.alldonors}
                             />}
                     </div>
                 </div>
@@ -233,7 +325,7 @@ class Donors extends Component {
     render() {
         return (
             this.props.auth ?
-                <DonorsFunction user={this.props.user} requested={this.props.requested} location={this.props.location}/> :
+                <DonorsFunction user={this.props.user} requested={this.props.requested} location={this.props.location} /> :
                 <Redirect to={{ pathname: '/login', state: { from: "donors" } }} />
         )
     }

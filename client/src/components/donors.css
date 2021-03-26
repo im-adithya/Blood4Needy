@@ -16,10 +16,9 @@
 }
 
 .donorwrapper{
-    height: 30vh;
     background-color: white;
     padding: 20px;
-    margin: 10px;
+    margin: 20px 10px;
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
@@ -48,6 +47,7 @@
     height: 40px;
     padding: 0 10px;
     font-size: 16px;
+    text-align-last: center;
 }
 
 .searchbutton,.connectbutton{
@@ -86,7 +86,7 @@
 
 .selection{
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .view{
@@ -107,9 +107,22 @@
     color: white;
 }
 
+.donorsview{
+    margin: 0 10px;
+}
+
+.listviewwrapper{
+    display: flex;
+    flex-direction: column;
+}
+
 .listviewwrap{
     display: flex;
     flex-wrap: wrap;
+}
+
+.listviewwrapper .active > a{
+    color: white !important;
 }
 
 .listitem{
@@ -263,6 +276,14 @@
     .ty>h2{
         width: 80%;
         font-size: 30px !important;
+    }
+
+    .selectionwrapper-1{
+        width: 55%;
+    }
+    
+    .selectionwrapper-2{
+        width: 30%;
     }
     
 }

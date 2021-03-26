@@ -5,7 +5,6 @@
 
 .feed h1{
     color: white;
-    font-size: 30px !important;
 }
 
 .togglenotifs{
@@ -99,10 +98,6 @@
     font-size: 13px !important;
 }
 
-.contactpatient-2{
-    font-size: 10px !important;
-}
-
 .share{
     display: flex;
     flex-direction: row;
@@ -124,6 +119,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    height: 65px;
 }
 
 .userdetails h2{
@@ -151,13 +147,25 @@
     padding-top: 10px;
 }
 
+.donorcount{
+    background-color: #ddd;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px -20px -20px;
+}
+
+.donrcount>h2{
+    margin-right: 10px;
+}
+
 .donorcount>h3{
     font-size: 16px !important;
     width: 75%
 }
 
 .orgupdate{
-    background-color: rgb(221, 221, 221);
+    background-color: white;
     padding: 10px;
     margin-top: 20px;
     border-radius: 5px;
@@ -179,6 +187,12 @@
 }
 
 .requests{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.requestswrapper{
     display: flex;
     flex-wrap: wrap;
 }
@@ -266,29 +280,35 @@
 
 .orgupdates{
     margin-right: 5%;
+    background-color: #e9e9e9;
 }
 
 .recentmembers{
     margin-left: 5%;
+    margin-bottom: 0;
     height: 70vh;
-    max-height: 70vh
+    max-height: 70vh;
 }
 
 .pages{
     margin: 0 auto;
 }
 
+.requests .active > a{
+    color: white !important;
+}
+
 @media(max-width: 500px){
     .requests{
-        display: unset;
-        flex-wrap: unset;
+        display: flex;
+        flex-direction: column;
     }
     
     .bloodrequest{
         position: relative;
         max-width: 100%;
         flex: 30%;
-        margin: 20px 0;
+        margin: 0 0 20px;
     }
     .notifwrapper{
         display: unset;
@@ -307,6 +327,10 @@
     .recentmembers{
         margin-left: 0;
         height: auto;
+        max-height: 80vh
     }
-    
+    .feed h1{
+        font-size: 25px !important;
+        margin-bottom: 20px;
+    }
 }

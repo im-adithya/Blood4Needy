@@ -20,9 +20,9 @@ router.route('/add').post((req, res) => {
     const hospitaladdress = req.body.hospitaladdress
     const pos = req.body.pos
     const description = req.body.description
-    const contactname = req.body.contactname
+    /*const contactname = req.body.contactname
     const contactphone = req.body.contactphone
-    const contactemail = req.body.contactemail
+    const contactemail = req.body.contactemail*/
     const message = req.body.message
 
     const newRequest = new Request({
@@ -38,9 +38,9 @@ router.route('/add').post((req, res) => {
         hospitaladdress,
         pos,
         description,
-        contactname,
+        /*contactname,
         contactphone,
-        contactemail,
+        contactemail,*/
         message,
     });
 
@@ -76,9 +76,9 @@ router.route('/update/:id').post((req, res) => {
             request.hospitaladdress = req.body.bloodgroup;
             request.pos = req.body.pos;
             request.description = req.body.description;
-            request.contactname = req.body.contactname;
+            /*request.contactname = req.body.contactname;
             request.contactphone = req.body.contactphone;
-            request.contactemail = req.body.contactemail;
+            request.contactemail = req.body.contactemail;*/
             request.description = req.body.description;
             request.message = req.body.message;
 

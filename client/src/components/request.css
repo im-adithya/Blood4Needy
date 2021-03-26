@@ -59,6 +59,7 @@
 .request select{
     width: 50%;
     height: 40px;
+    text-align-last: center;
     padding: 0 10px;
     font-size: 16px;
 }
@@ -118,7 +119,7 @@
 }
 
 .mapwrap{
-    height: 70vh
+    height: 590px
 }
 
 .requestfaqwrapper{
@@ -152,7 +153,7 @@
 
 @media(max-width: 500px){
     .requestform{
-        padding: 40px 20px;
+        padding: 20px 20px;
     }
     .requestfaq,.requestpageheader,.requestfaqwrapper{
         display: none;
@@ -193,7 +194,8 @@
     }
     
     .request select{
-        width: 50%;
+        width: 55%;
+        padding: 0;
         height: 30px;
         font-size: 14px;
     }
@@ -206,16 +208,10 @@
         content: attr(placeholder);
         font-size: 14px;
     }
-    .mapwrap{
-        height: 67vh
-    }
 }
 
 @media(max-width: 360px){
     .request label,.donorwrapper label{
         font-size: 14px;
-    }
-    .mapwrap{
-        height: 72vh;
     }
 }
