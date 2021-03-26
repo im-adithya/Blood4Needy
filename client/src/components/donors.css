@@ -68,7 +68,7 @@
 }
 
 .connectbutton>a{
-    color: white;
+    color: white !important;
 }
 
 .warnsearch{
@@ -219,7 +219,6 @@
 
 .numdonors>div{
     font-size: 15px;
-    width: 80%;
     margin: 0 auto !important
 }
 
@@ -246,6 +245,17 @@
 .nodonors{
     padding: 20px !important;
     font-weight: normal !important
+}
+
+.samplelistitem{
+    height: 225px;
+    width: 200px;
+    margin: 0 auto !important;
+}
+
+.sampletext{
+    margin: 10px auto 0px !important;
+    font-size: 20px;
 }
 
 @media(max-width: 500px){

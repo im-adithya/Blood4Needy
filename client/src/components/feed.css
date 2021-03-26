@@ -307,7 +307,7 @@
     .bloodrequest{
         position: relative;
         max-width: 100%;
-        flex: 30%;
+        flex: 100%;
         margin: 0 0 20px;
     }
     .notifwrapper{

@@ -258,14 +258,14 @@ class DonorsFunction extends Component {
                         <p className="bold">Blood donors in your area</p>
                         {this.state.data.length > 0 &&
                             <div className="sendingpanel">
-                                <div className='listitem' style={{margin: '0 auto !important', height: '200px'}}>
-                                    <img src={male} alt="user" className="listitemimg" />
+                                <div className='listitem samplelistitem' >
+                                    <img src={female} alt="user" className="listitemimg" />
                                     <h3>Neha Arora</h3>
                                     <p>Blood Group: O+</p>
-                                    <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} />9.2 km Away</p>
+                                    <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> 9.2 km Away</p><br/>
                                     <button className="connectbutton heart"><a href={this.props.onConnect ? 'ivrs' : '/request'}>Connect</a></button>
                                 </div>
-                                <p style={{width: '60%', marginTop: '10px !important'}}>Click on the connect button to contact donors</p>
+                                <p className="sampletext">Click on the connect button to contact donors</p>
                                 {/*<div className="msgsent">
                                     <p><span className="bold"><CountUp start={0} end={this.state.totaldonors ? (this.state.totaldonors - 1) : 0} delay={1} duration={1} /></span> Whatsapp Message(s) Sent</p>
                                     <FontAwesomeIcon icon='check-circle' />
@@ -285,7 +285,7 @@ class DonorsFunction extends Component {
                         </div>}
                     </div>
                     {this.state.data.length > 0 && <div>
-                        <h1>Connect with {this.state.data.length} Blood Donor(s)</h1>
+                        <h1>Connect with {this.state.data.length} Blood Donor{this.state.data.length>1 ? 's' : ''}</h1>
                     </div>}
                 </div>}
 
