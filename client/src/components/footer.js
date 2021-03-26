@@ -42,7 +42,7 @@ export default class Footer extends Component {
 
                     <div className="footer-2-2">
                         <div>Contact us on help@blood4needy.com</div>
-                        <div>Find us on:</div>
+                        <div style={{marginTop: '25px'}}>Find us on:</div>
                         <div className="socialicons">
                             <a href="http://www.facebook.com"><FontAwesomeIcon icon={['fab', 'facebook-f']} /></a>
                             <a href="http://www.instagram.com"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
@@ -52,7 +52,7 @@ export default class Footer extends Component {
                     </div>
 
                     <div className="footer-2-3">
-                        <div className="copyright">&copy; 2020-2021 Blood4Needy. All Rights Reserved.</div>
+                        <div className="copyright" style={{marginTop: '25px'}}>&copy; 2020-2021 Blood4Needy. All Rights Reserved.</div>
                         <div className="builtin">Built with <FontAwesomeIcon icon='heart' className="colorize"/> in India</div>
                     </div>
                 </div>

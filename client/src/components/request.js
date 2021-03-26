@@ -71,8 +71,7 @@ class RequestForm extends Component {
         this.onChangePatientPhone = this.onChangePatientPhone.bind(this);
         this.onChangeDoctorName = this.onChangeDoctorName.bind(this);
         this.onChangeReason = this.onChangeReason.bind(this);
-        this.onChangeHospitalName = this.onChangeHospitalName.bind(this);
-        this.onChangeHospitalAddress = this.onChangeHospitalAddress.bind(this);
+        this.onChangeHospital = this.onChangeHospital.bind(this);
         this.onChangePosition = this.onChangePosition.bind(this);
         this.onChangeContactName = this.onChangeContactName.bind(this);
         this.onChangeContactPhone = this.onChangeContactPhone.bind(this);
@@ -89,8 +88,7 @@ class RequestForm extends Component {
             patientphone: '',
             doctorname: '',
             reason: '',
-            hospitalname: '',
-            hospitaladdress: '',
+            hospital: '',
             pos: '',
             contactname: '',
             contactphone: '',
@@ -143,15 +141,9 @@ class RequestForm extends Component {
         })
     }
 
-    onChangeHospitalName(e) {
+    onChangeHospital(loc) {
         this.setState({
-            hospitalname: e.target.value
-        })
-    }
-
-    onChangeHospitalAddress(loc) {
-        this.setState({
-            hospitaladdress: loc
+            hospital: loc
         })
     }
 
@@ -200,8 +192,7 @@ class RequestForm extends Component {
             patientphone: this.state.patientphone,
             doctorname: this.state.doctorname,
             reason: this.state.reason,
-            hospitalname: this.state.hospitalname,
-            hospitaladdress: this.state.hospitaladdress,
+            hospital: this.state.hospital,
             pos: this.state.pos,
             contactname: this.state.contactname,
             contactphone: this.state.contactphone,
@@ -281,14 +272,8 @@ class RequestForm extends Component {
                         <textarea type="text" name="reason" id="reason" rows="2" onChange={this.onChangeReason} placeholder="Why you need blood?" /><br />
                     </div>
                     <div className="formwrapper mapwrap">
-                        <label htmlFor="hospitalname">Hospital</label>
-                        <hr />
-                        <div className="info-wrapper">
-                            <label htmlFor="hospitalname">Hospital Name</label>
-                            <input type="text" name="hospitalname" id="hospitalname" onChange={this.onChangeHospitalName} placeholder="Enter Hospital Name" autoComplete="chrome-off" required />
-                        </div>
-                        <div className="main-wrapper" style={{ height: '50%' }}>
-                            <MyGoogleMap addressUpdate={this.onChangeHospitalAddress} locUpdate={this.onChangePosition} />
+                        <div className="main-wrapper" style={{ height: '75%' }}>
+                            <MyGoogleMap addressUpdate={this.onChangeHospital} locUpdate={this.onChangePosition} />
                         </div>
                     </div>
                     <div className="formwrapper">

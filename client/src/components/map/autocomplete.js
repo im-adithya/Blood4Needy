@@ -15,7 +15,6 @@ class AutoComplete extends Component {
     componentDidMount({ map, mapApi } = this.props) {
         const options = {
             // restrict your search to a specific type of result
-            libraries: ['places'],
             type: ['hospitals'],
             // restrict your search to a specific country, or an array of countries
             componentRestrictions: { country: ['in'] },
@@ -56,7 +55,7 @@ class AutoComplete extends Component {
         return (
             <Wrapper>
                 
-                <label htmlFor="hospital" style={{textAlign: 'left'}} autoComplete="chrome-off">Hospital Address</label>
+                <label htmlFor="hospital" style={{textAlign: 'left'}} autoComplete="chrome-off">Hospital</label>
                 <input
                     className="search-input"
                     ref={(ref) => {

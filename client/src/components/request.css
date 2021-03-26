@@ -67,7 +67,7 @@
 .request label,.donorwrapper label{
     display: block;
     margin: 15px 0;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
 }
 
@@ -119,7 +119,7 @@
 }
 
 .mapwrap{
-    height: 590px
+    height: 500px
 }
 
 .requestfaqwrapper{
@@ -190,7 +190,7 @@
     .request label,.donorwrapper label{
         display: block;
         margin: 10px 0;
-        font-size: 16px;
+        font-size: 17px;
     }
     
     .request select{
@@ -206,12 +206,6 @@
     .dateclass.placeholderclass::before {
         width: 100%;
         content: attr(placeholder);
-        font-size: 14px;
-    }
-}
-
-@media(max-width: 360px){
-    .request label,.donorwrapper label{
         font-size: 14px;
     }
 }

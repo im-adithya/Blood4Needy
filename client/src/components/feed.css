@@ -1,6 +1,6 @@
 .feed{
     background-color: #F42929;
-    padding: 20vh 5vw 10px;
+    padding: 20vh 5vw 20px;
 }
 
 .feed h1{
@@ -160,7 +160,7 @@
 }
 
 .donorcount>h3{
-    font-size: 16px !important;
+    font-size: 20px !important;
     width: 75%
 }
 
@@ -261,6 +261,7 @@
 
 .pagination>li{
     padding: 0 10px;
+    color: #363636;
 }
 
 .active > a{

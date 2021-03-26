@@ -56,11 +56,11 @@ class Navigationbar extends Component {
             <Link to="/donors" className="navlinks">
               Blood Donors
             </Link>
-            <Link to="/volunteer" className="navlinks">
-              Volunteer
-            </Link>
             <Link to="/feed" className="navlinks">
               Live Feed
+            </Link>
+            <Link to="/volunteer" className="navlinks">
+              Volunteer
             </Link>
             <Link to="/blogs" className="navlinks mnav">
               Blog

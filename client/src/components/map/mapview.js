@@ -16,11 +16,14 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
 
     return (
         <GoogleMap defaultZoom={16} defaultCenter={props.defaults}>
-            {props.markers.map((marker,index) => {
+            {props.markers.map((marker, index) => {
                 const onClick = props.onClick.bind(this, marker)
                 return (
                     <Marker
-                        key={'marker'+index}
+                        /*icon={{
+                            url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+                        }}*/
+                        key={'marker' + index}
                         onClick={onClick}
                         position={{ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }}
                     >
@@ -30,14 +33,14 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                                     <div className="mapitem-1">
                                         <img src={marker.user.gender === "male" ? male : female} alt="user" className="mapitemimg" />
                                         <div className="mapitem-1-1">
-                                            <h3>{marker.name}</h3>
-                                            {props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }, props.defaults) / 1000).toFixed(2)} km Away</p>}
+                                            <h3>{marker.user._id===props.user._id ? "You" : marker.name}</h3>
+                                            {(marker.user._id!==props.user._id) && !props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }, props.defaults) / 1000).toFixed(2)} km Away</p>}
                                         </div>
                                     </div>
-                                    <div className="mapitem-2">
+                                    {(marker.user._id!==props.user._id) && <div className="mapitem-2">
                                         <h1 style={{ color: 'black' }}>{marker.bloodgroup}</h1>
                                         <button className="connectbutton"><a href={props.onConnect ? 'ivrs' : '/request'}>Connect</a></button>
-                                    </div>
+                                    </div>}
                                 </div>
                             </InfoWindow>}
 
@@ -54,6 +57,7 @@ export default class MapView extends Component {
         return (
             <div style={{ marginTop: '2.5%' }}>
                 <MapWithAMarker
+                    user={this.props.user}
                     alldonors={this.props.alldonors}
                     defaults={this.props.defaults}
                     selectedMarker={this.props.selectedMarker}

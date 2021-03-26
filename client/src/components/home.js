@@ -246,16 +246,16 @@ const PageNine = () => {
             <div className="pg9wrapper">
                 <div className="pg9-1">
                     <div data-aos="fade-up"
-                        data-aos-duration="300"
-                        data-aos-delay="200"
+                        data-aos-duration="150"
+                        data-aos-delay="100"
                         className="pg9-1-1"
                         style={{ backgroundImage: `url(${home5})` }}
                     />
                     <div className="pg9-1-1"
                         style={{ backgroundColor: '#FAD0D2' }}
                         data-aos="fade-down"
-                        data-aos-duration="600"
-                        data-aos-delay="500"
+                        data-aos-duration="300"
+                        data-aos-delay="250"
                     >
                         <h3>Host A Blood Camp</h3>
                         <p>Host a blood camp within your<br /> community and become our partner.</p>
@@ -266,8 +266,8 @@ const PageNine = () => {
                     <div className="pg9-1-2"
                         style={{ backgroundColor: '#D6ECD9' }}
                         data-aos="fade-left"
-                        data-aos-duration="600"
-                        data-aos-delay="350"
+                        data-aos-duration="300"
+                        data-aos-delay="175"
                     >
                         <h3>Volunteer with us</h3>
                         <p>Volunteer with us and help the society</p>
@@ -277,23 +277,23 @@ const PageNine = () => {
                         className="pg9-1-2 pg9-1-img"
                         style={{ backgroundImage: `url(${home8})` }}
                         data-aos="fade-right"
-                        data-aos-duration="150"
-                        data-aos-delay="200"
+                        data-aos-duration="75"
+                        data-aos-delay="100"
                     >
                     </div>
                     <div
                         className="pg9-1-2"
                         style={{ backgroundImage: `url(${home7})` }}
                         data-aos="fade-left"
-                        data-aos-duration="150"
-                        data-aos-delay="200"
+                        data-aos-duration="75"
+                        data-aos-delay="100"
                     >
                     </div>
                     <div className="pg9-1-2"
                         style={{ backgroundColor: '#E3D1E6' }}
                         data-aos="fade-right"
-                        data-aos-duration="600"
-                        data-aos-delay="350"
+                        data-aos-duration="300"
+                        data-aos-delay="175"
                     >
                         <h3>Support us financialy</h3>
                         <p>Other ways you can help us is by sponsoring us.</p>
@@ -405,8 +405,8 @@ const PageTwelve = () => {
     return (
         <div className="w-100 pg12bgparent fullheight">
             <div className="pg12wrapper">
-                <h1 style={{ textAlign: 'center', fontSize: '60px', fontWeight: 'bold', color: 'white', marginBottom: '50px' }}>There is no alternative<br /> to human blood.</h1>
-                <button className="button1 heartwrap" data-aos="fade-up"><Link to='/donate'>Donate Now &nbsp; <FontAwesomeIcon icon='heart' className="heart" /></Link></button>
+                <h1 style={{ textAlign: 'center', fontSize: '66px', fontWeight: 'bold', color: 'white', marginBottom: '50px' }}>There is NO alternative<br /> to human blood.</h1>
+                <button className="button1 heartwrap"><Link to='/donate'>Donate Now &nbsp; <FontAwesomeIcon icon='heart' className="heart" /></Link></button>
             </div>
             <div className="pg12 pg12bg" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(${home11})` }}></div>
         </div>

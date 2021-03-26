@@ -79,6 +79,6 @@ button:focus{
 
 @media(max-width: 500px){
     .main-wrapper{
-        height: 62% !important;
+        height: 80% !important;
     }
 }

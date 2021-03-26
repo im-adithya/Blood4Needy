@@ -36,15 +36,15 @@ export const ListView = class ListView extends Component {
             <div className="listviewwrapper">
                 {this.props.data.length > 0 && <div className="listviewwrap">
                     {this.props.data.map((info, index) => {
-                        if ((index < this.state.pageCount * 10) && (index >= (this.state.pageCount - 1) * 10)) {
-                            return (<div className='listitem'>
+                        if ((index < this.state.pageCount * 10) && (index >= (this.state.pageCount - 1) * 10) && info.user._id !== this.props.user._id) {
+                            return (<div className='listitem' key={"listitem-" + index}>
                                 <img src={info.user.gender === "male" ? male : female} alt="user" className="listitemimg" />
                                 <h3>{info.name}</h3>
                                 <p>Blood Group: {info.bloodgroup}</p>
-                                {this.props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>}
+                                {!this.props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>}
                                 <button className="connectbutton"><a href={this.props.onConnect ? 'ivrs' : '/request'}>Connect</a></button>
                             </div>)
-                        } else{
+                        } else {
                             return null;
                         }
                     })}
@@ -103,8 +103,9 @@ class DonorsFunction extends Component {
 
     fetchData(bg) { /*TODO: ADD LOCATION DEPENDING ON WHERE HE COMES FROM LITERALLY */
         if (this.state.alldonors) {
-            axios.get('/api/blood/' + bg + '&' + this.props.user._id + '&' + this.props.user.gender)
+            axios.get('/api/blood/all/' + bg + '&' + this.props.user._id + '&' + this.props.user.gender)
                 .then(res => {
+                    console.log('hi')
                     this.setState({ warning: '', donorsview: true, data: res.data })      //TO BE CHANGED!!!!!!!!
                     axios.get('/api/blood/total/' + bg)
                         .then(res => {
@@ -154,13 +155,13 @@ class DonorsFunction extends Component {
     onChangeSelectedPos(e) {
         switch (e.target.value) {
             case 'Gwalior':
-                this.setState({ address: e.target.innerText, pos: { lat: 26.2183, lng: 78.1828 } })
+                this.setState({ address: e.target.innerText, pos: { lat: 26.2183, lng: 78.1828 }, alldonors: false })
                 break;
             case 'Bhopal':
-                this.setState({ address: e.target.innerText, pos: { lat: 23.2599, lng: 77.4126 } })
+                this.setState({ address: e.target.innerText, pos: { lat: 23.2599, lng: 77.4126 }, alldonors: false })
                 break;
             case 'Indore':
-                this.setState({ address: e.target.innerText, pos: { lat: 22.7196, lng: 75.8577 } })
+                this.setState({ address: e.target.innerText, pos: { lat: 22.7196, lng: 75.8577 }, alldonors: false })
                 break;
             default:
                 this.setState({ alldonors: true })
@@ -241,7 +242,7 @@ class DonorsFunction extends Component {
                                 <div className="colorize">{this.state.warning}</div>
                                 <button type="submit" className="searchbutton">Search</button>
                                 {this.state.showdonors && <div>
-                                    <h3>Total: {this.state.totaldonors ? (this.state.totaldonors - 1) : 0} Donor(s)</h3>
+                                    <h3 style={{marginTop: '15px'}}>Total: {this.state.totaldonors ? (this.state.totaldonors - 1) : 0} Donor(s)</h3>
                                     {!this.state.alldonors && <h3>Donors within 10km radius: {this.state.data.length}</h3>}
                                 </div>}
                             </div>
@@ -262,7 +263,7 @@ class DonorsFunction extends Component {
                                     <img src={female} alt="user" className="listitemimg" />
                                     <h3>Neha Arora</h3>
                                     <p>Blood Group: O+</p>
-                                    <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> 9.2 km Away</p><br/>
+                                    <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> 9.2 km Away</p><br />
                                     <button className="connectbutton heart"><a href={this.props.onConnect ? 'ivrs' : '/request'}>Connect</a></button>
                                 </div>
                                 <p className="sampletext">Click on the connect button to contact donors</p>
@@ -285,7 +286,7 @@ class DonorsFunction extends Component {
                         </div>}
                     </div>
                     {this.state.data.length > 0 && <div>
-                        <h1>Connect with {this.state.data.length} Blood Donor{this.state.data.length>1 ? 's' : ''}</h1>
+                        <h1>Connect with {this.state.data.length} Blood Donor{this.state.data.length > 1 ? 's' : ''}</h1>
                     </div>}
                 </div>}
 
@@ -299,6 +300,7 @@ class DonorsFunction extends Component {
                     <div className="therealview">
                         {this.state.view === 'Map' &&
                             <MapView
+                                user={this.props.user}
                                 defaults={this.state.pos}
                                 selectedMarker={this.state.selectedMarker}
                                 markers={this.state.data}
@@ -308,6 +310,7 @@ class DonorsFunction extends Component {
                             />}
                         {this.state.view === 'List' &&
                             <ListView
+                                user={this.props.user}
                                 data={this.state.data}
                                 pos={this.state.pos}
                                 onConnect={this.props.requested}

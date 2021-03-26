@@ -92,7 +92,7 @@ a{
 }
 
 .pg4>div{
-    margin: 0 20px;
+    margin: 0 30px;
 }
 
 .pg4img{
@@ -100,7 +100,7 @@ a{
 }
 
 .pg4img,.pg4img>img{
-    width: 450px;
+    width: 470px;
     height: 350px;
 }
 
@@ -186,12 +186,12 @@ a{
 }
 
 .pg7wrapper .carousel-control-prev{
-    top: 65vh;
+    top: 68vh;
     left:40%;    
 }
 
 .pg7wrapper .carousel-control-next{
-    top: 65vh;
+    top: 68vh;
     right:40%;
 }
 
@@ -347,6 +347,7 @@ a{
 
 .carousel-control-next, .carousel-control-prev{
     width: 5%;
+    opacity: 1;
 }
 
 .button2{
@@ -357,7 +358,7 @@ a{
     border: none;
     font-weight: bold;
     padding: 0 30px;
-    margin: 5px 0;
+    margin: 5px 10px;
 }
 
 .disabledbutton {
@@ -630,7 +631,8 @@ a{
         background-size: cover;
     }
     .pg1{
-        padding-top: 30vh;
+        padding-top: 28vh;
+        height: 89vh !important;
         background-position: 82%
     }
     .pg3{
@@ -722,7 +724,7 @@ a{
         margin: 3vh;
     }
     .pg7{
-        height: 80vh;
+        height: 82vh;
     }
     .pg10{
         height: 123vh;
@@ -826,7 +828,7 @@ a{
         font-size: 14px !important;
     }
     .pg12bgparent{
-        height: 70vh;
+        height: 65vh;
     }
     .pg12wrapper{
         height:70vh
@@ -836,6 +838,13 @@ a{
     }
     .heartwrap{
         width: 170px
+    }
+    .pg7wrapper .carousel-control-prev{
+        top: 66vh;    
+    }
+    
+    .pg7wrapper .carousel-control-next{
+        top: 66vh;
     }
 }
 
