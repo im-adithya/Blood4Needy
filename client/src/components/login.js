@@ -155,8 +155,8 @@ class LoginBox extends Component {
     axios.get('/api/user/' + this.state.phone)
       .then(res => {
         if (res.data !== null) {
-          this.setState({ existinguser: true, existinguserdata: res.data })
-          this.setState({ currpage: 4 })
+          this.setState({ existinguser: true, existinguserdata: res.data, currpage: 4 })
+          this.props.addUser(this.state.existinguserdata)
 
         } else {
           this.setState({ currpage: 3 })
@@ -254,8 +254,8 @@ class LoginBox extends Component {
     axios.post('/api/user/add', user)
       .then(res => {
         this.setState({ warningthree: '' })
-        this.pageInc()
         this.props.addUser(res.data)
+        this.pageInc()
         axios.post('/api/blood/add', { user: res.data })
           .then(res => {
             console.log('Added as Donor!')

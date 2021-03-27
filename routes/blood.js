@@ -1,6 +1,29 @@
 const router = require('express').Router();
 let BloodPack = require('../models/bloodPackModel');
 
+function paramsFinder(bg) {
+    switch (bg) {
+        case "O+":
+            return { $in: ['O+', 'O-'] }
+        case "O-":
+            return { $in: ['O-'] }
+        case "A+":
+            return { $in: ['A+', 'A-', 'O+', 'O-'] }
+        case "A-":
+            return { $in: ['A-', 'O-'] }
+        case "B+":
+            return { $in: ['B+', 'B-', 'O+', 'O-'] }
+        case "B-":
+            return { $in: ['B-', 'O-'] }
+        case "AB-":
+            return { $in: ['AB-', 'A-', 'B-', 'O-'] }
+        case "AB+":
+            return { $in: ['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'] }
+        default:
+            return { $in: ['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'] }
+    }
+}
+
 router.route('/').get((req, res) => {
     BloodPack.find()
         .then(bloodpacks => res.json(bloodpacks))
@@ -14,7 +37,7 @@ router.route('/total/:bloodgroup').get((req, res) => {
             .catch(err => res.status(400).json('Error: ' + err));
     } else {
         BloodPack.countDocuments({
-            bloodgroup: req.params.bloodgroup
+            bloodgroup: paramsFinder(req.params.bloodgroup)
         })
             .then(count => res.json(count))
             .catch(err => res.status(400).json('Error: ' + err));
@@ -31,7 +54,7 @@ router.route('/all/:bloodgroup&:userid&:gender').get((req, res) => {
                 .catch(err => res.status(400).json('Error: ' + err));
         } else {
             BloodPack.find({
-                bloodgroup: req.params.bloodgroup,
+                bloodgroup: paramsFinder(req.params.bloodgroup),
                 "user.gender": "male",
             })
                 .then(bloodpacks => res.json(bloodpacks))
@@ -44,7 +67,7 @@ router.route('/all/:bloodgroup&:userid&:gender').get((req, res) => {
                 .catch(err => res.status(400).json('Error: ' + err));
         } else {
             BloodPack.find({
-                bloodgroup: req.params.bloodgroup,
+                bloodgroup: paramsFinder(req.params.bloodgroup),
             })
                 .then(bloodpacks => res.json(bloodpacks))
                 .catch(err => res.status(400).json('Error: ' + err));
@@ -63,7 +86,7 @@ router.route('/:bloodgroup&:userid&:lat&:lng&:gender').get((req, res) => {
                 .catch(err => res.status(400).json('Error: ' + err));
         } else {
             BloodPack.find({
-                bloodgroup: req.params.bloodgroup,
+                bloodgroup: paramsFinder(req.params.bloodgroup),
                 "user.gender": "male",
                 location: { $near: { $maxDistance: 30000, $geometry: { type: "Point", coordinates: [parseFloat(req.params.lng), parseFloat(req.params.lat)] } } }
             })
@@ -79,7 +102,7 @@ router.route('/:bloodgroup&:userid&:lat&:lng&:gender').get((req, res) => {
                 .catch(err => res.status(400).json('Error: ' + err));
         } else {
             BloodPack.find({
-                bloodgroup: req.params.bloodgroup,
+                bloodgroup: paramsFinder(req.params.bloodgroup),
                 location: { $near: { $maxDistance: 30000, $geometry: { type: "Point", coordinates: [parseFloat(req.params.lng), parseFloat(req.params.lat)] } } }
             })
                 .then(bloodpacks => res.json(bloodpacks))

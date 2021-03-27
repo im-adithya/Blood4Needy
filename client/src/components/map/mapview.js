@@ -56,20 +56,22 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                     <Marker
                         icon={{
                             url: (marker.user._id !== props.user._id) ? iconspecifier(marker.bloodgroup) : iconspecifier(),
-                            scaledSize: (marker.user._id !== props.user._id) ? new window.google.maps.Size(40, 60) : new window.google.maps.Size(50, 100),
+                            scaledSize: (marker.user._id !== props.user._id) ? new window.google.maps.Size(30, 55) : new window.google.maps.Size(55, 75),
                         }}
                         key={'marker' + index}
-                        label={{
-                            text: (marker.user._id !== props.user._id) ? (index + 1).toString() : "YOU",
+                        /*label={{
+                            text: (marker.user._id !== props.user._id) ? marker.bloodgroup : ' ',
+                            position: 'absolute',
+                            marginBottom: '2px',
                             fontFamily: "Arial",
-                            fontSize:  (marker.user._id !== props.user._id) ? "14px" : "16px",
+                            fontSize:  (marker.user._id !== props.user._id) ? "12px" : "16px",
                             color: 'white',
                             fontWeight: (marker.user._id !== props.user._id) ? 'normal' : 'bold'
-                        }}
+                        }}*/
                         onClick={onClick}
                         position={{ lat: marker.location.coordinates[1] * ((index + 1) / props.markers.length * (max - min) + min), lng: marker.location.coordinates[0] * ((index + 1) / props.markers.length * (max - min) + min) }}
                     >
-                        {props.selectedMarker === marker &&
+                        {props.selectedMarker === marker && marker.user._id !== props.user._id &&
                             <InfoWindow>
                                 <div className="mapitem">
                                     <div className="mapitem-1">
