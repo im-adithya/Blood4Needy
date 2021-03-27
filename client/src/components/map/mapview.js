@@ -11,7 +11,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getDistance } from 'geolib';
 import male from '../../assets/male-user.png';
 import female from '../../assets/female-user.png';
-
+import markerself from '../../assets/marker-self.png';
+import marker1 from '../../assets/marker-01.png';
+import marker2 from '../../assets/marker-02.png';
+import marker3 from '../../assets/marker-03.png';
+import marker4 from '../../assets/marker-04.png';
+import marker5 from '../../assets/marker-05.png';
+import marker6 from '../../assets/marker-06.png';
+import marker7 from '../../assets/marker-07.png';
+import marker8 from '../../assets/marker-08.png';
+import { WhatsappIcon } from "react-share";
 var min = .999999;
 var max = 1.000001;
 
@@ -20,20 +29,45 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
         <GoogleMap defaultZoom={16} defaultCenter={props.defaults}>
             {props.markers.map((marker, index) => {
                 const onClick = props.onClick.bind(this, marker)
-                let popup = false;
+                function iconspecifier(bg){
+                    switch (bg) {
+                        case 'O+':
+                            return marker1
+                        case 'O-':
+                            return marker2
+                        case 'A+':
+                            return marker3
+                        case 'A-':
+                            return marker4
+                        case 'B+':
+                            return marker5
+                        case 'B-':
+                            return marker6
+                        case 'AB+':
+                            return marker7
+                        case 'AB-':
+                            return marker8
+                    
+                        default:
+                            return markerself
+                    }
+                }
                 return (
                     <Marker
-                        /*icon={{
-                            url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-                        }}*/
+                        icon={{
+                            url: (marker.user._id !== props.user._id) ? iconspecifier(marker.bloodgroup) : iconspecifier(),
+                            scaledSize: (marker.user._id !== props.user._id) ? new window.google.maps.Size(40, 60) : new window.google.maps.Size(50, 100),
+                        }}
                         key={'marker' + index}
                         label={{
-                            text: (index + 1).toString(),
+                            text: (marker.user._id !== props.user._id) ? (index + 1).toString() : "YOU",
                             fontFamily: "Arial",
-                            fontSize: "14px",
+                            fontSize:  (marker.user._id !== props.user._id) ? "14px" : "16px",
+                            color: 'white',
+                            fontWeight: (marker.user._id !== props.user._id) ? 'normal' : 'bold'
                         }}
                         onClick={onClick}
-                        position={{ lat: marker.location.coordinates[1] * ((index+1)/props.markers.length * (max - min) + min), lng: marker.location.coordinates[0] * ((index+1)/props.markers.length * (max - min) + min) }}
+                        position={{ lat: marker.location.coordinates[1] * ((index + 1) / props.markers.length * (max - min) + min), lng: marker.location.coordinates[0] * ((index + 1) / props.markers.length * (max - min) + min) }}
                     >
                         {props.selectedMarker === marker &&
                             <InfoWindow>
@@ -47,7 +81,10 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                                     </div>
                                     {(marker.user._id !== props.user._id) && <div className="mapitem-2">
                                         <h1 style={{ color: 'black' }}>{marker.bloodgroup}</h1>
-                                        <button className="connectbutton">Contact</button>
+                                        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                            <button className="callbtn" style={{width: '100px'}}><a href={props.requested ? 'tel:+91' + marker.user.phone : '/request'} style={{ color: 'white' }}>Contact</a></button>
+                                            <a href={props.requested ? 'https://wa.me/91' + marker.user.phone : 'request'} style={{ color: 'white' }}><WhatsappIcon size={35} round /></a>
+                                        </div>
                                     </div>}
                                 </div>
                             </InfoWindow>}
@@ -70,6 +107,7 @@ export default class MapView extends Component {
                     selectedMarker={this.props.selectedMarker}
                     markers={this.props.markers}
                     onClick={this.props.onClick}
+                    requested={this.props.requested}
                     googleMapURL={"https://maps.googleapis.com/maps/api/js?key=AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us&libraries=geometry&callback=initMap"}
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `80vh` }} />}

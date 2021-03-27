@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import AOS from 'aos';
 //import CountUp from 'react-countup';
 
@@ -15,7 +15,7 @@ import { getDistance } from 'geolib';
 import MapView from './map/mapview'
 import male from '../assets/male-user.png';
 import female from '../assets/female-user.png';
-import { PopUp } from './feed';
+import { WhatsappIcon } from "react-share";
 
 
 
@@ -40,10 +40,13 @@ export const ListView = class ListView extends Component {
                         if ((index < this.state.pageCount * 10) && (index >= (this.state.pageCount - 1) * 10) && info.user._id !== this.props.user._id) {
                             return (<div className='listitem' key={"listitem-" + index}>
                                 <img src={info.user.gender === "male" ? male : female} alt="user" className="listitemimg" />
-                                <h3>{info.name}</h3>
+                                <h3>{info.name.substr(0, 15) + (info.name.length >15 ? '...' : '')}</h3>
                                 <p>Blood Group: {info.bloodgroup}</p>
                                 {!this.props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>}
-                                <button className="connectbutton"><Link href={this.props.onConnect ? '/' : '/request'}>Connect</Link></button>
+                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                                    <button className="callbtn" style={{ width: '80px' }}><a href={this.props.requested ? 'tel:+91' + info.user.phone : '/request'} style={{ color: 'white' }}>Contact</a></button>
+                                    <a href={this.props.requested ? 'https://wa.me/91' + info.user.phone : 'request'} style={{ color: 'white' }}><WhatsappIcon size={35} round /></a>
+                                </div>
                             </div>)
                         } else {
                             return null;
@@ -79,17 +82,15 @@ class DonorsFunction extends Component {
         super(props);
 
         this.onToggleView = this.onToggleView.bind(this);
-        this.popupDetails = this.popupDetails.bind(this);
-        this.cross = this.cross.bind(this)
         this.onChangeBG = this.onChangeBG.bind(this);
         this.onDonorSearch = this.onDonorSearch.bind(this);
 
         this.state = {
             address: this.props.user.address,
-            bloodgroup: this.props.location.data ? this.props.location.data.bloodgroup : this.props.user.bloodgroup,
+            bloodgroup: this.props.location.data ? this.props.location.data.bloodgroup : 'all',
             data: this.props.location.data ? this.props.location.data.data : [],
             warning: '',
-            pos: this.props.location.data ? this.props.location.data.pos : this.props.user.pos,
+            pos: this.props.location.data ? this.props.location.data.pos : { lat: 26.2183, lng: 78.1828 },
 
             view: 'Map',
             donorsview: this.props.location.data ? true : false,
@@ -100,7 +101,7 @@ class DonorsFunction extends Component {
             showpopup: false,
             popupDetails: '',
             showdonors: true,
-            alldonors: false,
+            alldonors: true,
             totaldonors: 0,
             selected: true
         }
@@ -182,19 +183,6 @@ class DonorsFunction extends Component {
         this.setState({ bloodgroup: e.target.value })
     }
 
-    popupDetails(x) {
-        if (this.props.requested) {
-            console.log(x,'i live')
-            this.setState({ showpopup: true, popupDetails: x })
-        } else {
-            window.location = '/request'
-        }
-    }
-
-    cross() {
-        this.setState({ showpopup: false, popupDetails: '' })
-    }
-
     onDonorSearch(e) {
         e.preventDefault();
 
@@ -224,8 +212,8 @@ class DonorsFunction extends Component {
                                 <div className="selectionwrapper-1">
                                     <label htmlFor="loc">Location</label>
                                     {!this.state.redirectedview && <select name="loc" id="loc" onChange={this.onChangeSelectedPos.bind(this)} required>
-                                        <option value="" defaultValue hidden>Select Here</option>
-                                        <option value="Gwalior">Gwalior</option>
+                                        <option value="" hidden>Select Here</option>
+                                        <option value="Gwalior" defaultValue >Gwalior</option>
                                         <option value="Bhopal">Bhopal</option>
                                         <option value="Indore">Indore</option>
                                         <option value="All">All</option> {/*Special Case*/}
@@ -261,7 +249,7 @@ class DonorsFunction extends Component {
                                 <button type="submit" className="searchbutton">Search</button>
                                 {this.state.showdonors && <div>
                                     <h3 style={{ marginTop: '15px' }}>Total: {this.state.totaldonors ? (this.state.totaldonors - 1) : 0} Donor(s)</h3>
-                                    {!this.state.alldonors && <h3>Donors within 30 km radius: {this.state.data.length ? this.state.data.length - 1 : this.state.data.length}</h3>}
+                                    {!this.state.alldonors && <h3>Donors within 30 km radius: {this.state.data.length}</h3>}
                                 </div>}
                             </div>
                         </div>
@@ -282,7 +270,7 @@ class DonorsFunction extends Component {
                                     <h3>Neha Arora</h3>
                                     <p>Blood Group: O+</p>
                                     <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> 9.2 km Away</p><br />
-                                    <button className="connectbutton heart">Connect</button>
+                                    <button className="connectbutton heart">Contact</button>
                                 </div>
                                 <p className="sampletext">Click on the connect button to contact donors</p>
                                 {/*<div className="msgsent">
@@ -323,19 +311,17 @@ class DonorsFunction extends Component {
                                 selectedMarker={this.state.selectedMarker}
                                 markers={this.state.data}
                                 onClick={this.handleClickOnMarker}
-                                popupDetails={this.popupDetails}
                                 alldonors={this.state.alldonors}
+                                requested={this.props.requested}
                             />}
                         {this.state.view === 'List' &&
                             <ListView
                                 user={this.props.user}
                                 data={this.state.data}
                                 pos={this.state.pos}
-                                onConnect={this.props.requested}
-                                popupDetails={this.popupDetails}
+                                requested={this.props.requested}
                                 alldonors={this.state.alldonors}
                             />}
-                        {this.state.showpopup && <PopUp type={'connect'} info={this.state.popupDetails} cross={this.cross} />}
                     </div>
                 </div>
                 }

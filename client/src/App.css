@@ -73,6 +73,10 @@ button:focus{
     box-shadow: none;
 }
 
+.gm-style *{
+    outline: none;
+}
+
 .gm-fullscreen-control {
     display: none;
 }

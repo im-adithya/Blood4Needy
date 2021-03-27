@@ -251,11 +251,10 @@
 
 .callbtn, .wabtn{
     width: 150px;
-    height: 40px;
+    height: 35px;
     outline: none;
     border: none;
-    border-radius: 15px;
-    margin: 10px;
+    border-radius: 5px;
     font-size: 15px;
     font-weight: bold;
     color: white;
@@ -263,10 +262,12 @@
 
 .callbtn{
     background-color: #F42929;
+    margin-right: 5px;
 }
 
 .wabtn{
     background-color: #25D366;
+    margin-left: 5px;
 }
 
 .cross{
