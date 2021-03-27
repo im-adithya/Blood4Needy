@@ -67,7 +67,7 @@
 }
 
 .loginbox label{
-    font-size: 14px;
+    font-size: 13px;
     display: block;
     font-weight: bold;
 }
@@ -297,16 +297,16 @@
     font-size: 10px;
 }
 
-.currloc div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    background-color: #F42929;
-    width: 15%;
-    height: 30px;
+
+.skipcross{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.skipcross>svg{
+    font-size: 25px;
+    color: #F42929;
 }
 
 @media(max-width: 500px) {
@@ -325,9 +325,6 @@
         margin: auto 7.5vw;
     }
     .progstep{
-        width: 85vw !important;
-    }
-    .progressbar{
         width: 85vw !important;
     }
 }

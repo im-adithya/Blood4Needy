@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlus, faMinus, faHeart, faMapMarkerAlt, faShareAlt, faTimesCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faMinus, faHeart, faMapMarkerAlt, faShareAlt, faTimes, faTimesCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 import Navigationbar from "./components/navbar"
@@ -17,7 +17,7 @@ import Donate from "./components/donate";
 import Donors from "./components/donors";
 import Footer from "./components/footer"
 
-library.add(faMinus, faPlus, faHeart, faShareAlt, faFacebookF, faLinkedinIn, faTwitter, faInstagram, faMapMarkerAlt, faTimesCircle, faCheckCircle)
+library.add(faMinus, faPlus, faHeart, faShareAlt, faFacebookF, faLinkedinIn, faTwitter, faInstagram, faMapMarkerAlt, faTimes, faTimesCircle, faCheckCircle)
 
 /*TODO: Add user authentication*/
 

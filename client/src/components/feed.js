@@ -22,15 +22,17 @@ import {
     WhatsappIcon,
 } from "react-share";
 
-class SharePopUp extends Component {
+export const PopUp = class PopUp extends Component {
     render() {
         return (
             <div className="sharepopup">
                 <div className="cross" onClick={this.props.cross}>
-                    <FontAwesomeIcon icon='times-circle' />
+                    <FontAwesomeIcon icon='times' />
                 </div>
-                <div className="sharepopup-2">
-                    <h1>Share to your contacts!</h1>
+                {this.props.type === 'share' && <div className="sharepopup-2">
+                    <h1 style={{ color: 'black' }}>{this.props.info.user.name + ''}</h1>
+                    <p>Needs Your Help</p>
+                    <p>Share with your contacts</p>
                     <div>
                         <EmailShareButton url='https://www.blood4needy.com/donate' subject={"Someone needs your help"} body={this.props.message} openShareDialogOnClick={true} title>
                             <EmailIcon size={32} round />
@@ -51,7 +53,12 @@ class SharePopUp extends Component {
                             <TwitterIcon size={32} round />
                         </TwitterShareButton>
                     </div>
-                </div>
+                </div>}
+                {this.props.type === 'connect' && <div className="sharepopup-2">
+                    <h1 style={{ color: 'black' }}>{this.props.info.user.name + ''}</h1>
+                    <button className="callbtn"><a href={'tel:+91' + this.props.info.user.phone}>Call</a></button>
+                    <button className="wabtn"><a href={'https://wa.me/91' + this.props.info.user.phone} style={{ color: 'white' }}>Whatsapp</a></button>
+                </div>}
             </div>
         )
     }
@@ -142,7 +149,7 @@ class BloodRequests extends Component {
                                     <div className="share" onClick={this.toggleShare} title={index}>Share &nbsp;<FontAwesomeIcon icon={['fas', 'share-alt']} /></div>
                                 </div>
 
-                                {this.state.share === index && <SharePopUp cross={this.toggleShare} message={info.user.name + ' is looking for ' + info.bloodgroup + 'blood in ' + info.hospitaladdress + '. Please help him if you can! Contact: ' + info.contactphone} />}
+                                {this.state.share === index && <PopUp cross={this.toggleShare} type={'share'} info={info} message={info.user.name + ' is looking for ' + info.bloodgroup + 'blood in ' + info.hospitaladdress + '. Please help him if you can! Contact: ' + info.contactphone} />}
                             </div>)
                         } else {
                             return null;

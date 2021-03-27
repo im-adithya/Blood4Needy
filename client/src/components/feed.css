@@ -214,8 +214,9 @@
 
 .sharepopup{
     position: absolute;
-    top: 30%;
-    background-color: #f4433691;
+    top: 20%;
+    background-color: #ffffff91;
+    box-shadow: 2px 2px 20px #bbb;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -223,13 +224,14 @@
     width: 300px;
     margin-left: -150px;
     left: 50%;
-    height: 150px;
+    height: 250px;
     backdrop-filter: blur(4px);
     border-radius: 10px;
 }
 
 .sharepopup-2{
-    height:100px;
+    height:200px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -247,12 +249,36 @@
     font-size: 22px !important;
 }
 
+.callbtn, .wabtn{
+    width: 150px;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+.callbtn{
+    background-color: #F42929;
+}
+
+.wabtn{
+    background-color: #25D366;
+}
+
 .cross{
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
     padding: 10px 10px 0 0;
-    color: white;
+    color: black;
+}
+
+.cross > svg{
+    font-size: 15px;
 }
 
 .pagination{

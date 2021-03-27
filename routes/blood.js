@@ -15,11 +15,10 @@ router.route('/total/:bloodgroup').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:bloodgroup&:userid&:gender').get((req, res) => {
+router.route('/all/:bloodgroup&:userid&:gender').get((req, res) => {
     if (req.params.gender === "male") {
         BloodPack.find({
             bloodgroup: req.params.bloodgroup,
-            "user._id": { $ne: req.params.userid },
             "user.gender": "male",
         })
             .then(bloodpacks => res.json(bloodpacks))
@@ -27,7 +26,6 @@ router.route('/:bloodgroup&:userid&:gender').get((req, res) => {
     } else {
         BloodPack.find({
             bloodgroup: req.params.bloodgroup,
-            "user._id": { $ne: req.params.userid },
         })
             .then(bloodpacks => res.json(bloodpacks))
             .catch(err => res.status(400).json('Error: ' + err));
@@ -38,17 +36,15 @@ router.route('/:bloodgroup&:userid&:lat&:lng&:gender').get((req, res) => {
     if (req.params.gender === "male") {
         BloodPack.find({
             bloodgroup: req.params.bloodgroup,
-            "user._id": { $ne: req.params.userid },
             "user.gender": "male",
-            location: { $near: { $maxDistance: 10000, $geometry: { type: "Point", coordinates: [parseFloat(req.params.lng), parseFloat(req.params.lat)] } } }
+            location: { $near: { $maxDistance: 30000, $geometry: { type: "Point", coordinates: [parseFloat(req.params.lng), parseFloat(req.params.lat)] } } }
         })
             .then(bloodpacks => res.json(bloodpacks))
             .catch(err => res.status(400).json('Error: ' + err));
     } else {
         BloodPack.find({
             bloodgroup: req.params.bloodgroup,
-            "user._id": { $ne: req.params.userid },
-            location: { $near: { $maxDistance: 10000, $geometry: { type: "Point", coordinates: [parseFloat(req.params.lng), parseFloat(req.params.lat)] } } }
+            location: { $near: { $maxDistance: 30000, $geometry: { type: "Point", coordinates: [parseFloat(req.params.lng), parseFloat(req.params.lat)] } } }
         })
             .then(bloodpacks => res.json(bloodpacks))
             .catch(err => res.status(400).json('Error: ' + err));

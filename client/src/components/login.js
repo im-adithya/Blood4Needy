@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Switch from "react-switch";
 import Autocomplete from 'react-google-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
@@ -41,7 +42,6 @@ class LoginBox extends Component {
     this.onSubmitOTP = this.onSubmitOTP.bind(this);
     this.onRetryOTP = this.onRetryOTP.bind(this);
     this.onSubmitFinal = this.onSubmitFinal.bind(this);
-    this.handleSkip = this.handleSkip.bind(this);
     this.pageDec = this.pageDec.bind(this)
     this.pageInc = this.pageInc.bind(this)
 
@@ -54,6 +54,7 @@ class LoginBox extends Component {
       bloodgroup: '',
       address: '',
       pos: '',
+      posavailable: false,
       otp: '',
       warningone: '',
       warningtwo: '',
@@ -107,15 +108,18 @@ class LoginBox extends Component {
   }
 
   setCurrentLocation() {
-    if ('geolocation' in navigator) {
+    if (!this.state.posavailable && 'geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.setState({
           pos: {
             lat: position.coords.latitude,
             lng: position.coords.longitude
-          }
+          },
+          posavailable: true
         });
       });
+    } else {
+      this.setState({posavailable: false, pos: ''})
     }
   }
 
@@ -152,9 +156,10 @@ class LoginBox extends Component {
       .then(res => {
         if (res.data !== null) {
           this.setState({ existinguser: true, existinguserdata: res.data })
-          this.pageInc()
+          this.setState({ currpage: 4 })
+
         } else {
-          this.pageInc()
+          this.setState({ currpage: 3 })
         }
       })
       .catch(err => {
@@ -265,15 +270,11 @@ class LoginBox extends Component {
       });
   }
 
-  handleSkip() {
-    window.location = '/'
-  }
-
   render() {
     let formClass = ["formbox"]
     let successClass = ["formbox", "nodisp"]
     let backStyling = { display: 'block' }
-    let progStyling = { width: 106.6666667 * (this.state.currpage - 1).toString() + 'px' }
+    let progStyling = { width: 33.33 * (this.state.currpage - 1).toString() + '%' }
     switch (this.state.currpage) {
       case 1:
         formClass.push('loginpageone')
@@ -281,7 +282,8 @@ class LoginBox extends Component {
         break;
 
       case 2:
-        formClass.push('loginpagetwo')
+        //        formClass.push('loginpagetwo')
+        formClass.push('loginpageone')
         break;
 
       case 3:
@@ -323,7 +325,7 @@ class LoginBox extends Component {
           </div><br />
           <p className="msgs">{this.state.warningone}</p>
           <div className="btnbox">
-            <button type="submit" id="next1" className="loginbutton">Get OTP</button>
+            <button type="submit" id="next1" className="loginbutton">{/*Get OTP*/}Next</button>
           </div>
         </form>
 
@@ -334,6 +336,7 @@ class LoginBox extends Component {
             <input
               type="tel"
               id="phnlock"
+              pattern="[1-9]{1}[0-9]{9}"
               style={{ width: '144px' }}
               value={this.state.phone}
               disabled />
@@ -362,7 +365,7 @@ class LoginBox extends Component {
             <label htmlFor="email">Email</label>
             <input type="email" name="email" id="email" onChange={this.onChangeEmail} required /><br />
             <label htmlFor="age">Age</label>
-            <input type="number" min="0" name="age" id="age" onChange={this.onChangeAge} required /><br />
+            <input type="number" min="18" name="age" id="age" onChange={this.onChangeAge} required /><br />
             <label htmlFor="address">Address</label>
             <Autocomplete
               id="address" name="address" onChange={this.onChangeAddress}
@@ -374,7 +377,8 @@ class LoginBox extends Component {
             />
             <div className="currloc">
               <label htmlFor="address">Set Current Location <span className="colorize">(Required)</span></label>
-              <div onClick={this.setCurrentLocation} className="clickable"><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: 'white' }} /></div>
+              <Switch onChange={this.setCurrentLocation} checked={this.state.posavailable} uncheckedIcon={false} onColor='#F42929' offColor='#bcbcbc' handleDiameter={16} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #F42929' width={30} height={15} checkedIcon={false}/>
+              {/*<div onClick={this.setCurrentLocation} className="clickable"><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: 'white' }} /></div>*/}
             </div>
           </div>
           <label htmlFor="name" style={{ fontSize: '12px', marginBottom: '0.5rem' }}>Gender</label>
@@ -404,21 +408,24 @@ class LoginBox extends Component {
             <input type="checkbox" id="tnc" name="tnc" value="tnc" required />
             <label htmlFor="tnc" className="tnc"> I agree to the Terms and Conditions</label><br />
           </div>
-          <p className="msgs" style={{display: this.state.warningthree==="" ? 'none' : 'block'}}>{this.state.warningthree}</p>
+          <p className="msgs" style={{ display: this.state.warningthree === "" ? 'none' : 'block' }}>{this.state.warningthree}</p>
           <div className="btnbox">
             <button type="submit" id="next3" className="loginbutton">Submit</button>
           </div>
         </form>
 
-        <div id="success" className={successClass.join(' ')} style={{ textAlign: 'center' }}>
-          <h3>{this.state.existinguser ? 'Login successful!' : 'Congratulations!'}</h3>
-          <p style={{ fontSize: '15px' }}>{this.state.existinguser ? '' : 'Your account has been created.'}</p><br />
-          <div className="btnbox">
-            <button type="button" id="actlog" className="loginbutton"><Link to="/feed" style={{ fontSize: '12px', color: 'white' }}>Activity Log</Link></button>
-            <button type="button" id="reqblood" className="loginbutton"
-              style={{ backgroundColor: 'white', color: 'black', border: '1px solid black' }}><Link to="/request" style={{ fontSize: '12px', color: 'black' }}>Request Blood</Link></button>
-          </div><br />
-          <p style={{ fontSize: '12px', cursor: 'pointer' }} id="skip" onClick={this.handleSkip}><Link to="/" style={{ fontSize: '12px', color: 'black' }}>Skip</Link></p>
+        <div id="success" style={{ display: 'flex' }}>
+          <Link to="/"><div className="skipcross" style={{display: this.state.currpage===4 ? 'block' : 'none'}}><FontAwesomeIcon icon='times' /></div></Link>
+          <div className={successClass.join(' ')} style={{ textAlign: 'center' }}>
+            <h3>{this.state.existinguser ? 'Login successful!' : 'Congratulations!'}</h3>
+            <p style={{ fontSize: '15px' }}>{this.state.existinguser ? '' : 'Your account has been created.'}</p><br />
+            <div className="btnbox">
+              <button type="button" id="actlog" className="loginbutton"><Link to="/request" style={{ fontSize: '12px', color: 'white' }}>Request Blood</Link></button>
+              <button type="button" id="reqblood" className="loginbutton"
+                style={{ backgroundColor: 'white', color: 'black', border: '1px solid black' }}><Link to="/feed" style={{ fontSize: '12px', color: 'black' }}>Live Feed</Link></button>
+            </div><br />
+            <p style={{ fontSize: '12px', cursor: 'pointer' }} id="skip"><Link to="/" style={{ fontSize: '12px', color: 'black' }}>Skip</Link></p>
+          </div>
         </div>
       </div>
     )

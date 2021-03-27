@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import AOS from 'aos';
 //import CountUp from 'react-countup';
 
@@ -15,6 +15,7 @@ import { getDistance } from 'geolib';
 import MapView from './map/mapview'
 import male from '../assets/male-user.png';
 import female from '../assets/female-user.png';
+import { PopUp } from './feed';
 
 
 
@@ -42,7 +43,7 @@ export const ListView = class ListView extends Component {
                                 <h3>{info.name}</h3>
                                 <p>Blood Group: {info.bloodgroup}</p>
                                 {!this.props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>}
-                                <button className="connectbutton"><a href={this.props.onConnect ? 'ivrs' : '/request'}>Connect</a></button>
+                                <button className="connectbutton"><Link href={this.props.onConnect ? '/' : '/request'}>Connect</Link></button>
                             </div>)
                         } else {
                             return null;
@@ -78,6 +79,8 @@ class DonorsFunction extends Component {
         super(props);
 
         this.onToggleView = this.onToggleView.bind(this);
+        this.popupDetails = this.popupDetails.bind(this);
+        this.cross = this.cross.bind(this)
         this.onChangeBG = this.onChangeBG.bind(this);
         this.onDonorSearch = this.onDonorSearch.bind(this);
 
@@ -94,6 +97,8 @@ class DonorsFunction extends Component {
             redirectedview: this.props.location.data ? true : false,
             selectedMarker: false,
 
+            showpopup: false,
+            popupDetails: '',
             showdonors: true,
             alldonors: false,
             totaldonors: 0,
@@ -177,6 +182,18 @@ class DonorsFunction extends Component {
         this.setState({ bloodgroup: e.target.value })
     }
 
+    popupDetails(x) {
+        if (this.props.requested) {
+            console.log(x,'i live')
+            this.setState({ showpopup: true, popupDetails: x })
+        } else {
+            window.location = '/request'
+        }
+    }
+
+    cross() {
+        this.setState({ showpopup: false, popupDetails: '' })
+    }
 
     onDonorSearch(e) {
         e.preventDefault();
@@ -235,6 +252,7 @@ class DonorsFunction extends Component {
                                         <option value="AB+">AB+</option>
                                         <option value="O-">O-</option>
                                         <option value="O+">O+</option>
+                                        <option value="all">All</option>
                                     </select>
                                 </div>
                             </div>
@@ -242,8 +260,8 @@ class DonorsFunction extends Component {
                                 <div className="colorize">{this.state.warning}</div>
                                 <button type="submit" className="searchbutton">Search</button>
                                 {this.state.showdonors && <div>
-                                    <h3 style={{marginTop: '15px'}}>Total: {this.state.totaldonors ? (this.state.totaldonors - 1) : 0} Donor(s)</h3>
-                                    {!this.state.alldonors && <h3>Donors within 10km radius: {this.state.data.length}</h3>}
+                                    <h3 style={{ marginTop: '15px' }}>Total: {this.state.totaldonors ? (this.state.totaldonors - 1) : 0} Donor(s)</h3>
+                                    {!this.state.alldonors && <h3>Donors within 30 km radius: {this.state.data.length ? this.state.data.length - 1 : this.state.data.length}</h3>}
                                 </div>}
                             </div>
                         </div>
@@ -264,7 +282,7 @@ class DonorsFunction extends Component {
                                     <h3>Neha Arora</h3>
                                     <p>Blood Group: O+</p>
                                     <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> 9.2 km Away</p><br />
-                                    <button className="connectbutton heart"><a href={this.props.onConnect ? 'ivrs' : '/request'}>Connect</a></button>
+                                    <button className="connectbutton heart">Connect</button>
                                 </div>
                                 <p className="sampletext">Click on the connect button to contact donors</p>
                                 {/*<div className="msgsent">
@@ -305,7 +323,7 @@ class DonorsFunction extends Component {
                                 selectedMarker={this.state.selectedMarker}
                                 markers={this.state.data}
                                 onClick={this.handleClickOnMarker}
-                                onConnect={this.props.requested}
+                                popupDetails={this.popupDetails}
                                 alldonors={this.state.alldonors}
                             />}
                         {this.state.view === 'List' &&
@@ -314,8 +332,10 @@ class DonorsFunction extends Component {
                                 data={this.state.data}
                                 pos={this.state.pos}
                                 onConnect={this.props.requested}
+                                popupDetails={this.popupDetails}
                                 alldonors={this.state.alldonors}
                             />}
+                        {this.state.showpopup && <PopUp type={'connect'} info={this.state.popupDetails} cross={this.cross} />}
                     </div>
                 </div>
                 }

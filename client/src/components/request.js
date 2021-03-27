@@ -73,9 +73,9 @@ class RequestForm extends Component {
         this.onChangeReason = this.onChangeReason.bind(this);
         this.onChangeHospital = this.onChangeHospital.bind(this);
         this.onChangePosition = this.onChangePosition.bind(this);
-        this.onChangeContactName = this.onChangeContactName.bind(this);
+        /*this.onChangeContactName = this.onChangeContactName.bind(this);
         this.onChangeContactPhone = this.onChangeContactPhone.bind(this);
-        this.onChangeContactEmail = this.onChangeContactEmail.bind(this);
+        this.onChangeContactEmail = this.onChangeContactEmail.bind(this);*/
         this.onChangeMessage = this.onChangeMessage.bind(this);
         this.handleInput = this.handleInput.bind(this)
         this.onSubmitFinal = this.onSubmitFinal.bind(this);
@@ -90,9 +90,9 @@ class RequestForm extends Component {
             reason: '',
             hospital: '',
             pos: '',
-            contactname: '',
+            /*contactname: '',
             contactphone: '',
-            contactemail: '',
+            contactemail: '',*/
             message: '',
             warningmessage: '',
             redirect: false
@@ -153,7 +153,7 @@ class RequestForm extends Component {
         })
     }
 
-    onChangeContactName(e) {
+    /*onChangeContactName(e) {
         this.setState({
             contactname: e.target.value
         })
@@ -169,7 +169,7 @@ class RequestForm extends Component {
         this.setState({
             contactemail: e.target.value
         })
-    }
+    }*/
 
     onChangeMessage(e) {
         this.setState({
@@ -194,9 +194,9 @@ class RequestForm extends Component {
             reason: this.state.reason,
             hospital: this.state.hospital,
             pos: this.state.pos,
-            contactname: this.state.contactname,
+            /*contactname: this.state.contactname,
             contactphone: this.state.contactphone,
-            contactemail: this.state.contactemail,
+            contactemail: this.state.contactemail,*/
             message: this.state.message,
             user: this.props.userData
         }
