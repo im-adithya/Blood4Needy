@@ -5,6 +5,8 @@
 
 .feed h1{
     color: white;
+    text-align: center;
+    margin: 5vh 0 5vh;
 }
 
 .togglenotifs{
@@ -13,18 +15,20 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgb(221, 221, 221);
-    height: 40px;
+    height: 50px;
     border-radius: 10px;
-    margin-bottom: 20px;
+    width: 45%;
+    margin: 30px auto;
+    cursor: pointer;
 }
 
 .togglenotifs div{
-    font-size: 16px;
+    font-size: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 39px;
+    height: 48px;
     width: 50%;
 }
 
@@ -75,12 +79,18 @@
     margin-top: 10px;
 }
 
-.helperbtns>div{
+.helperbtns>button{
     width: 48%;
     color: white;
     height: 40px;
     border-radius: 5px;
-    font-size: 16px
+    font-size: 16px;
+    outline: none;
+    border: none;
+}
+
+.helperbtns>button:hover{
+    background-color: #1dad52;
 }
 
 .contactpatient>a{
@@ -165,7 +175,7 @@
 }
 
 .orgupdate{
-    background-color: white;
+    background-color: #e2e2e2;
     padding: 10px;
     margin-top: 20px;
     border-radius: 5px;
@@ -200,7 +210,7 @@
 .bloodrequest{
     position: relative;
     max-width: 30%;
-    flex: 30%;
+    flex: 25%;
     margin: 0 20px 20px;
 }
 
@@ -255,14 +265,18 @@
     outline: none;
     border: none;
     border-radius: 5px;
-    font-size: 15px;
     font-weight: bold;
     color: white;
 }
 
 .callbtn{
     background-color: #F42929;
-    margin-right: 5px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.callbtn>a{
+    font-size: 15px;
 }
 
 .wabtn{
@@ -276,6 +290,7 @@
     flex-direction: row-reverse;
     padding: 10px 10px 0 0;
     color: black;
+    cursor: pointer;
 }
 
 .cross > svg{
@@ -308,7 +323,7 @@
 
 .orgupdates{
     margin-right: 5%;
-    background-color: #e9e9e9;
+    background-color: white;
 }
 
 .recentmembers{
@@ -359,6 +374,19 @@
     }
     .feed h1{
         font-size: 25px !important;
-        margin-bottom: 20px;
+        text-align: left !important;
+        margin: 0 0 20px !important;
+    }
+    .togglenotifs{
+        height: 40px;
+        width: unset;
+        margin: 20px 0px;
+    }
+    .donors .togglenotifs{
+        margin: 20px 10px;
+    }
+    .togglenotifs>div{
+        font-size: 18px;
+        height: 39px;
     }
 }

@@ -141,9 +141,9 @@ class RequestForm extends Component {
         })
     }
 
-    onChangeHospital(loc) {
+    onChangeHospital(x) {
         this.setState({
-            hospital: loc
+            hospital: x
         })
     }
 

@@ -45,7 +45,7 @@ class Navigationbar extends Component {
             <img src={logo} className="navlogo" alt="Blood4Needy" width='120' />
           </Link>
           <Link to={this.props.auth ? "/" : "/login"} className="navlinks ml-auto userlink" style={{ color: '#F42929' }}>
-            <img src={this.props.auth ? (this.props.user.gender === "male" ? male : female) : "https://www.vhv.rs/dpng/d/408-4087421_person-svg-circle-icon-picture-charing-cross-tube.png"}  alt="user" style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
+            <img src={this.props.auth ? (this.props.user.gender === "male" ? male : female) : "https://www.vhv.rs/dpng/d/408-4087421_person-svg-circle-icon-picture-charing-cross-tube.png"}  alt="user" style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid #ffa9a9' }} />
           </Link>
         </Navbar.Brand>
         <Navbar.Collapse id="basic-navbar-nav">

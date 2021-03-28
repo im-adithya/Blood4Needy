@@ -37,13 +37,13 @@ export const ListView = class ListView extends Component {
             <div className="listviewwrapper">
                 {this.props.data.length > 0 && <div className="listviewwrap">
                     {this.props.data.map((info, index) => {
-                        if ((index < this.state.pageCount * 10) && (index >= (this.state.pageCount - 1) * 10) && info.user._id !== this.props.user._id) {
+                        if ((index < this.state.pageCount * 12) && (index >= (this.state.pageCount - 1) * 12) && info.user._id !== this.props.user._id) {
                             return (<div className='listitem' key={"listitem-" + index}>
                                 <img src={info.user.gender === "male" ? male : female} alt="user" className="listitemimg" />
                                 <h3>{info.name.substr(0, 15) + (info.name.length >15 ? '...' : '')}</h3>
                                 <p>Blood Group: {info.bloodgroup}</p>
                                 {!this.props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>}
-                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '5px' }}>
                                     <button className="callbtn" style={{ width: '80px' }}><a href={this.props.requested ? 'tel:+91' + info.user.phone : '/request'} style={{ color: 'white' }}>Contact</a></button>
                                     <a href={this.props.requested ? 'https://wa.me/91' + info.user.phone : 'request'} style={{ color: 'white' }}><WhatsappIcon size={35} round /></a>
                                 </div>
@@ -60,7 +60,7 @@ export const ListView = class ListView extends Component {
                             nextLabel={'>'}
                             breakLabel={'...'}
                             breakClassName={'break-me'}
-                            pageCount={Math.ceil(this.props.data.length / 10)}
+                            pageCount={Math.ceil(this.props.data.length / 12)}
                             marginPagesDisplayed={2}
                             pageRangeDisplayed={5}
                             onPageChange={this.handlePageClick}
@@ -86,7 +86,7 @@ class DonorsFunction extends Component {
         this.onDonorSearch = this.onDonorSearch.bind(this);
 
         this.state = {
-            address: this.props.user.address,
+            address: 'Gwalior',
             bloodgroup: this.props.location.data ? this.props.location.data.bloodgroup : 'all',
             data: this.props.location.data ? this.props.location.data.data : [],
             warning: '',
@@ -101,7 +101,7 @@ class DonorsFunction extends Component {
             showpopup: false,
             popupDetails: '',
             showdonors: true,
-            alldonors: true,
+            alldonors: false,
             totaldonors: 0,
             selected: true
         }
@@ -111,7 +111,6 @@ class DonorsFunction extends Component {
         if (this.state.alldonors) {
             axios.get('/api/blood/all/' + bg + '&' + this.props.user._id + '&' + this.props.user.gender)
                 .then(res => {
-                    console.log('hi')
                     this.setState({ warning: '', donorsview: true, data: res.data })      //TO BE CHANGED!!!!!!!!
                     axios.get('/api/blood/total/' + bg)
                         .then(res => {
@@ -161,16 +160,16 @@ class DonorsFunction extends Component {
     onChangeSelectedPos(e) {
         switch (e.target.value) {
             case 'Gwalior':
-                this.setState({ address: e.target.innerText, pos: { lat: 26.2183, lng: 78.1828 }, alldonors: false })
+                this.setState({ address: e.target.value, pos: { lat: 26.2183, lng: 78.1828 }, alldonors: false })
                 break;
             case 'Bhopal':
-                this.setState({ address: e.target.innerText, pos: { lat: 23.2599, lng: 77.4126 }, alldonors: false })
+                this.setState({ address: e.target.value, pos: { lat: 23.2599, lng: 77.4126 }, alldonors: false })
                 break;
             case 'Indore':
-                this.setState({ address: e.target.innerText, pos: { lat: 22.7196, lng: 75.8577 }, alldonors: false })
+                this.setState({ address: e.target.value, pos: { lat: 22.7196, lng: 75.8577 }, alldonors: false })
                 break;
             default:
-                this.setState({ alldonors: true })
+                this.setState({ address: e.target.value, alldonors: true })
                 break;
         }
     }
@@ -198,7 +197,11 @@ class DonorsFunction extends Component {
     }
 
     handleClickOnMarker = (marker, event) => {
-        this.setState({ selectedMarker: marker })
+        if (this.state.selectedMarker !== marker){
+            this.setState({ selectedMarker: marker })
+        } else {
+            this.setState({ selectedMarker: '' })
+        }
     }
 
     render() {
@@ -211,7 +214,7 @@ class DonorsFunction extends Component {
                             <div className="selectionwrapper">
                                 <div className="selectionwrapper-1">
                                     <label htmlFor="loc">Location</label>
-                                    {!this.state.redirectedview && <select name="loc" id="loc" onChange={this.onChangeSelectedPos.bind(this)} required>
+                                    {!this.state.redirectedview && <select name="loc" id="loc" value={this.state.address} onChange={this.onChangeSelectedPos.bind(this)} required>
                                         <option value="" hidden>Select Here</option>
                                         <option value="Gwalior" defaultValue >Gwalior</option>
                                         <option value="Bhopal">Bhopal</option>
@@ -267,10 +270,10 @@ class DonorsFunction extends Component {
                             <div className="sendingpanel">
                                 <div className='listitem samplelistitem' >
                                     <img src={female} alt="user" className="listitemimg" />
-                                    <h3>Neha Arora</h3>
+                                    <h3>Blood Donor</h3>
                                     <p>Blood Group: O+</p>
                                     <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> 9.2 km Away</p><br />
-                                    <button className="connectbutton heart">Contact</button>
+                                    <button className="connectbutton">Contact</button>
                                 </div>
                                 <p className="sampletext">Click on the connect button to contact donors</p>
                                 {/*<div className="msgsent">

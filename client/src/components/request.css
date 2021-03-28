@@ -67,7 +67,7 @@
 .request label,.donorwrapper label{
     display: block;
     margin: 15px 0;
-    font-size: 17px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -190,7 +190,7 @@
     .request label,.donorwrapper label{
         display: block;
         margin: 10px 0;
-        font-size: 17px;
+        font-size: 17px !important;
     }
     
     .request select{

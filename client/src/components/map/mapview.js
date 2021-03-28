@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getDistance } from 'geolib';
 import male from '../../assets/male-user.png';
 import female from '../../assets/female-user.png';
-import markerself from '../../assets/marker-self.png';
+import markerself from '../../assets/marker-self-1.png';
 import marker1 from '../../assets/marker-01.png';
 import marker2 from '../../assets/marker-02.png';
 import marker3 from '../../assets/marker-03.png';
@@ -26,10 +26,10 @@ var max = 1.000001;
 
 const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
     return (
-        <GoogleMap defaultZoom={16} defaultCenter={props.defaults}>
+        <GoogleMap defaultZoom={13} defaultCenter={props.defaults}>
             {props.markers.map((marker, index) => {
                 const onClick = props.onClick.bind(this, marker)
-                function iconspecifier(bg){
+                function iconspecifier(bg) {
                     switch (bg) {
                         case 'O+':
                             return marker1
@@ -47,7 +47,7 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                             return marker7
                         case 'AB-':
                             return marker8
-                    
+
                         default:
                             return markerself
                     }
@@ -56,7 +56,7 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                     <Marker
                         icon={{
                             url: (marker.user._id !== props.user._id) ? iconspecifier(marker.bloodgroup) : iconspecifier(),
-                            scaledSize: (marker.user._id !== props.user._id) ? new window.google.maps.Size(30, 55) : new window.google.maps.Size(55, 75),
+                            scaledSize: (marker.user._id !== props.user._id) ? new window.google.maps.Size(30, 55) : new window.google.maps.Size(40, 58),
                         }}
                         key={'marker' + index}
                         /*label={{
@@ -74,6 +74,9 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                         {props.selectedMarker === marker && marker.user._id !== props.user._id &&
                             <InfoWindow>
                                 <div className="mapitem">
+                                    <div className="cross" onClick={onClick}>
+                                        <FontAwesomeIcon icon='times' />
+                                    </div>
                                     <div className="mapitem-1">
                                         <img src={marker.user.gender === "male" ? male : female} alt="user" className="mapitemimg" />
                                         <div className="mapitem-1-1">
@@ -83,8 +86,8 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                                     </div>
                                     {(marker.user._id !== props.user._id) && <div className="mapitem-2">
                                         <h1 style={{ color: 'black' }}>{marker.bloodgroup}</h1>
-                                        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                            <button className="callbtn" style={{width: '100px'}}><a href={props.requested ? 'tel:+91' + marker.user.phone : '/request'} style={{ color: 'white' }}>Contact</a></button>
+                                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                                            <button className="callbtn" style={{ width: '100px' }}><a href={props.requested ? 'tel:+91' + marker.user.phone : '/request'} style={{ color: 'white' }}>Contact</a></button>
                                             <a href={props.requested ? 'https://wa.me/91' + marker.user.phone : 'request'} style={{ color: 'white' }}><WhatsappIcon size={35} round /></a>
                                         </div>
                                     </div>}
@@ -110,7 +113,7 @@ export default class MapView extends Component {
                     markers={this.props.markers}
                     onClick={this.props.onClick}
                     requested={this.props.requested}
-                    googleMapURL={"https://maps.googleapis.com/maps/api/js?key=AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us&libraries=geometry&callback=initMap"}
+                    googleMapURL={"https://maps.googleapis.com/maps/api/js?key=AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us&libraries=geometry&libraries=places&callback=initMap"}
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `80vh` }} />}
                     mapElement={<div style={{ height: `100%` }} />}

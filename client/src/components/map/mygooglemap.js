@@ -23,7 +23,7 @@ class MyGoogleMap extends Component {
         geoCoder: null,
         places: [],
         center: [this.props.user.pos.lat, this.props.user.pos.lng],
-        zoom: 16,
+        zoom: 14,
         address: '',
         draggable: true,
         lat: this.props.user.pos.lat,
@@ -91,7 +91,7 @@ class MyGoogleMap extends Component {
         geocoder.geocode({ 'location': { lat: this.state.lat, lng: this.state.lng } }, (results, status) => {
             if (status === 'OK') {
                 if (results[0]) {
-                    this.zoom = 16;
+                    this.zoom = 14;
                     this.setState({ address: results[0].formatted_address });
                     this.props.addressUpdate(results[0].formatted_address);
                     this.props.locUpdate({ lat: this.state.lat, lng: this.state.lng });
@@ -114,7 +114,7 @@ class MyGoogleMap extends Component {
         geocoder.geocode({ 'location': { lat: lat, lng: lng } }, (results, status) => {
             if (status === 'OK') {
                 if (results[0]) {
-                    this.zoom = 16;
+                    this.zoom = 14;
                     this.setState({ address: results[0].formatted_address });
                     this.props.addressUpdate(results[0].formatted_address);
                     this.props.locUpdate({ lat: lat, lng: lng });
@@ -149,7 +149,6 @@ class MyGoogleMap extends Component {
         const {
             /*places,*/ mapApiLoaded, mapInstance, mapApi,
         } = this.state;
-
         return (
             <Wrapper>
                 {mapApiLoaded && (

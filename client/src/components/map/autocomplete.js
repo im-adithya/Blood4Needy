@@ -39,7 +39,7 @@ class AutoComplete extends Component {
             map.fitBounds(place.geometry.viewport);
         } else {
             map.setCenter(place.geometry.location);
-            map.setZoom(16);
+            map.setZoom(14);
         }
 
         addplace(place);

@@ -13,17 +13,20 @@
 
 .donors h1{
     color: white;
+    text-align: center;
+    margin: 5vh 0 15vh;
 }
 
 .donorwrapper{
     background-color: white;
     padding: 30px 20px;
-    margin: 20px 10px;
+    margin: 20px auto;
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     border-radius: 10px;
+    width: 50%
 }
 
 .selectionwrapper{
@@ -66,6 +69,7 @@
 .connectbutton{
     width: 100px;
     height: 35px;
+    animation: 2s infinite beatHeart;
 }
 
 .connectbutton>a{
@@ -120,6 +124,7 @@
 .listviewwrap{
     display: flex;
     flex-wrap: wrap;
+    margin: 0 10%;
 }
 
 .listviewwrapper .active > a{
@@ -134,26 +139,26 @@
     justify-content: center;
     align-items: center;
     margin: 2.5%;
-    max-width: 45%;
-    flex: 35%;
-    padding: 10px;
+    max-width: 20%;
+    flex: 20%;
+    padding: 20px;
     box-shadow: 1px 1px 5px #00000088;
 }
 
 .listitem p{
-    font-size: 14px !important;
+    font-size: 20px !important;
     margin: 5px 0 10px
 }
 
 .listitem h3{
-    font-size: 15px !important;
+    font-size: 25px !important;
     margin: 2px;
     text-align: center;
 }
 
 .listitemimg{ 
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     padding: 5px
 }
@@ -184,6 +189,12 @@
     height: 50px;
     border-radius: 50%;
     margin-right: 20px;
+}
+
+.mapitem .cross{
+    position: absolute;
+    top: -4px;
+    right: -4px;
 }
 
 .mapitem-1{
@@ -229,12 +240,20 @@
     padding: 10px !important;
 }
 
-.numdonors *{
-    color: black !important;
+.numdonors{
     text-align: center;
 }
 
-.numdonors h1{
+.numdonors button {
+    color: white !important
+}
+
+.numdonors p {
+    color: black
+}
+
+.numdonors h1,.numdonors h3{
+    color: black !important;
     width:100% !important
 }
 
@@ -276,10 +295,15 @@
 
 .sampletext{
     margin: 10px auto 0px !important;
-    font-size: 20px;
+    font-size: 14px !important;
 }
+
 .gm-style-iw-c{
     padding: 15px 15px 5px 15px !important;
+}
+
+.gm-style-iw-c>button {
+    display: none !important;
 }
 
 .gm-style-iw-t button>img{
@@ -292,8 +316,13 @@
     }
     .donors h1{
         font-size: 25px !important;
-        margin: 17px 10px;
-        width: 72vw
+        margin: 17px 0 !important;
+        width: 72vw;
+        text-align: left !important;
+    }
+    .donorwrapper{
+        margin: 20px 0px;
+        width: unset;
     }
     .donorwrapper input{
         height: 30px;
@@ -314,15 +343,33 @@
         width: 80%;
         font-size: 30px !important;
     }
-
+    .listviewwrap{
+        margin: 0;
+    }
     .selectionwrapper-1{
         width: 55%;
     }
-    
+    .searchpanel{
+        margin: 0 20px
+    }
     .selectionwrapper-2{
         width: 30%;
     }
+    .listitem{
+        padding: 10px;
+        max-width: 45%;
+    }
+    .listitem p{
+        font-size: 14px !important;
+    }
     
+    .listitem h3{
+        font-size: 15px !important;
+    }
+    .listitemimg{ 
+        width: 80px;
+        height: 80px;
+    }
 }
 @media(max-width: 360px){
     .donors h1{
