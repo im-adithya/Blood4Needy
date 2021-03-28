@@ -134,9 +134,10 @@ class BloodRequests extends Component {
                                 </div>
                                 <div className="minimap">
                                     <MapView
+                                        user={this.props.user}
                                         defaults={info.pos}
                                         selectedMarker={false}
-                                        markers={[{ location: { coordinates: [info.pos.lng, info.pos.lat] } }]}
+                                        markers={[{ user: info.user, location: { coordinates: [info.pos.lng, info.pos.lat] }, bloodgroup: info.bloodgroup }]}
                                         onClick={this.handleClickOnMarker}
                                     />
                                 </div>
@@ -338,7 +339,7 @@ class Feed extends Component {
                         <div onClick={this.toggleView} className={this.state.view === 'Blood Requests' ? 'activenotif' : ''}>Blood Requests</div>
                         <div onClick={this.toggleView} className={this.state.view === 'Notifications' ? 'activenotif' : ''}>Notifications</div>
                     </div>
-                    {this.state.view === 'Blood Requests' && <BloodRequests />}
+                    {this.state.view === 'Blood Requests' && <BloodRequests user={this.props.user}/>}
                     {this.state.view === 'Notifications' && <Notifications />}
                 </div>) :
                 <Redirect to={{ pathname: '/login', state: { from: "feed" } }} />
@@ -348,7 +349,8 @@ class Feed extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth
+        auth: state.auth,
+        user: state.user,
     }
 }
 
