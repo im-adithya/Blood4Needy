@@ -54,6 +54,7 @@ class LoginBox extends Component {
       bloodgroup: '',
       address: '',
       pos: '',
+      backupPos: '',
       posavailable: false,
       otp: '',
       warningone: '',
@@ -108,8 +109,10 @@ class LoginBox extends Component {
   }
 
   setCurrentLocation() {
+    let available = 0
     if (!this.state.posavailable && 'geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
+        available++
         this.setState({
           pos: {
             lat: position.coords.latitude,
@@ -117,10 +120,19 @@ class LoginBox extends Component {
           },
           posavailable: true
         });
+        return;
       });
-    } else {
-      this.setState({posavailable: false, pos: ''})
+      if (!available && typeof (this.state.backupPos) === 'object') {
+        var coords = { lat: this.state.backupPos.geometry.location.lat(), lng: this.state.backupPos.geometry.location.lng() }
+        this.setState({
+          posavailable: true, pos: coords
+        })
+      } else {
+        this.setState({ posavailable: false, pos: '' })
+      }
+      return;
     }
+    console.log(this.state, typeof (this.state.backupPos))
   }
 
   onChangeOTP(e) {
@@ -366,18 +378,19 @@ class LoginBox extends Component {
             <input type="email" name="email" id="email" onChange={this.onChangeEmail} required /><br />
             <label htmlFor="age">Age</label>
             <input type="number" min="18" name="age" id="age" onChange={this.onChangeAge} required /><br />
-            <label htmlFor="address">Address</label>
+            <label htmlFor="address">City</label>
             <Autocomplete
               id="address" name="address" onChange={this.onChangeAddress}
               apiKey={'AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us'}
-              onPlaceSelected={(place) => this.setState({ address: place.formatted_address })}
+              onPlaceSelected={(place) => this.setState({ address: place.formatted_address, backupPos: place })}
               types={['(cities)']}
               componentRestrictions={{ country: "in" }}
+              placeholder="Select from dropdown"
               required
             />
             <div className="currloc">
               <label htmlFor="address">Set Current Location <span className="colorize">(Required)</span></label>
-              <Switch onChange={this.setCurrentLocation} checked={this.state.posavailable} uncheckedIcon={false} onColor='#F42929' offColor='#bcbcbc' handleDiameter={16} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #F42929' width={30} height={15} checkedIcon={false}/>
+              <Switch onChange={this.setCurrentLocation} checked={this.state.posavailable} uncheckedIcon={false} onColor='#F42929' offColor='#bcbcbc' handleDiameter={16} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #F42929' width={30} height={15} checkedIcon={false} />
               {/*<div onClick={this.setCurrentLocation} className="clickable"><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: 'white' }} /></div>*/}
             </div>
           </div>
@@ -415,7 +428,7 @@ class LoginBox extends Component {
         </form>
 
         <div id="success" style={{ display: 'flex' }}>
-          <Link to="/"><div className="skipcross" style={{display: this.state.currpage===4 ? 'block' : 'none'}}><FontAwesomeIcon icon='times' /></div></Link>
+          <Link to="/"><div className="skipcross" style={{ display: this.state.currpage === 4 ? 'block' : 'none' }}><FontAwesomeIcon icon='times' /></div></Link>
           <div className={successClass.join(' ')} style={{ textAlign: 'center' }}>
             <h3>{this.state.existinguser ? 'Login successful!' : 'Congratulations!'}</h3>
             <p style={{ fontSize: '15px' }}>{this.state.existinguser ? '' : 'Your account has been created.'}</p><br />

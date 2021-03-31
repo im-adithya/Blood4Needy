@@ -342,6 +342,9 @@
 }
 
 @media(max-width: 500px){
+    .feed{
+        padding-top: 19vh
+    }
     .requests{
         display: flex;
         flex-direction: column;

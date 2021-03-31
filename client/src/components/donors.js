@@ -29,7 +29,8 @@ export const ListView = class ListView extends Component {
 
     handlePageClick = (data) => {
         let selected = data.selected;
-        this.setState({ pageCount: selected + 1 })
+        this.setState({ pageCount: selected + 1 });
+        window.scrollTo(0, 350);
     };
 
     render() {
@@ -40,7 +41,7 @@ export const ListView = class ListView extends Component {
                         if ((index < this.state.pageCount * 12) && (index >= (this.state.pageCount - 1) * 12) && info.user._id !== this.props.user._id) {
                             return (<div className='listitem' key={"listitem-" + index}>
                                 <img src={info.user.gender === "male" ? male : female} alt="user" className="listitemimg" />
-                                <h3>{info.name.substr(0, 15) + (info.name.length >15 ? '...' : '')}</h3>
+                                <h3>{info.name.substr(0, 15) + (info.name.length > 15 ? '...' : '')}</h3>
                                 <p>Blood Group: {info.bloodgroup}</p>
                                 {!this.props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>}
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '5px' }}>
@@ -197,7 +198,7 @@ class DonorsFunction extends Component {
     }
 
     handleClickOnMarker = (marker, event) => {
-        if (this.state.selectedMarker !== marker){
+        if (this.state.selectedMarker !== marker) {
             this.setState({ selectedMarker: marker })
         } else {
             this.setState({ selectedMarker: '' })

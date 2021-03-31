@@ -96,7 +96,8 @@ class BloodRequests extends Component {
 
     handlePageClick = (data) => {
         let selected = data.selected;
-        this.setState({ pageCount: selected + 1 })
+        this.setState({ pageCount: selected + 1 });
+        window.scrollTo(0, 0);
     };
 
     stringGenerator = (date) => {
@@ -125,7 +126,7 @@ class BloodRequests extends Component {
                         if ((index < this.state.pageCount * 9) && (index >= (this.state.pageCount - 1) * 9)) {
                             return (<div className='bloodrequest' key={'bloodrequest' + (index + 1).toString()}>
                                 <div>
-                                    <h2>{info.patientname}<span className="colorize" style={{fontSize: '20px'}}>{this.props.user._id !== info.user._id ? '' : ' (You Requested)'}</span></h2>
+                                    <h2>{info.patientname}<span className="colorize" style={{ fontSize: '20px' }}>{this.props.user._id !== info.user._id ? '' : ' (You Requested)'}</span></h2>
                                     <p className="looking for">looking for <span className="bold">{info.bloodgroup}</span> in <span className="bold">{info.hospital}</span></p>
                                 </div>
                                 <div>{this.stringGenerator(info.createdAt)}</div>
@@ -339,7 +340,7 @@ class Feed extends Component {
                         <div onClick={this.toggleView} className={this.state.view === 'Blood Requests' ? 'activenotif' : ''}>Blood Requests</div>
                         <div onClick={this.toggleView} className={this.state.view === 'Notifications' ? 'activenotif' : ''}>Notifications</div>
                     </div>
-                    {this.state.view === 'Blood Requests' && <BloodRequests user={this.props.user}/>}
+                    {this.state.view === 'Blood Requests' && <BloodRequests user={this.props.user} />}
                     {this.state.view === 'Notifications' && <Notifications />}
                 </div>) :
                 <Redirect to={{ pathname: '/login', state: { from: "feed" } }} />

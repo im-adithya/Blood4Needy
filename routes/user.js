@@ -48,17 +48,17 @@ router.route('/add').post((req, res) => {
 });
 
 router.route('/testimonials').get((req, res) => {
-  User.find( { feedback: { $ne: '' } } )
+  User.find({ feedback: { $ne: '' } })
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/:phone').get((req, res) => {
   User.findOne({
-      phone: req.params.phone
-    })
-      .then(user => res.json(user))
-      .catch(err => res.status(400).json('Error: ' + err));
+    phone: req.params.phone
+  })
+    .then(user => res.json(user))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/update/:id').post((req, res) => {
@@ -71,7 +71,7 @@ router.route('/update/:id').post((req, res) => {
       user.gender = req.body.gender;
       user.bloodgroup = req.body.bloodgroup;
       user.address = req.body.address;
-      user.pos = req.body.pos.location;
+      user.pos = req.body.pos;
       user.feedback = req.body.feedback;
 
       user.save()

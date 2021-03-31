@@ -1,0 +1,32 @@
+.aboutus{
+    background-color: #F42929;
+    padding: 19vh 5vw 50px;
+}
+
+.aboutus h1{
+    color: white;
+    text-align: center;
+    margin: 5vh 0 5vh;
+}
+
+.aboutus p{
+    font-size: 16px;
+}
+
+.aboutuscontent{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px
+}
+
+@media(max-width: 500px){
+    .aboutus{
+        background-color: #F42929;
+        padding-bottom: 20px;
+    }
+    .aboutus h1{
+        font-size: 25px !important;
+        margin: 0 0 20px 0;
+        text-align: left;
+    }
+}

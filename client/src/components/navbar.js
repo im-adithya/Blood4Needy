@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Navbar, Nav } from 'react-bootstrap'
 import './navbar.css';
@@ -7,7 +7,9 @@ import logo from '../logodark.svg';
 import male from '../assets/male-user.png';
 import female from '../assets/female-user.png';
 
-class Navigationbar extends Component {
+const Navigationbar = withRouter(props => <NavBar {...props} />);
+
+class NavBar extends Component {
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this)
@@ -44,28 +46,28 @@ class Navigationbar extends Component {
           <Link to="/">
             <img src={logo} className="navlogo" alt="Blood4Needy" width='120' />
           </Link>
-          <Link to={this.props.auth ? "/" : "/login"} className="navlinks ml-auto userlink" style={{ color: '#F42929' }}>
-            <img src={this.props.auth ? (this.props.user.gender === "male" ? male : female) : "https://www.vhv.rs/dpng/d/408-4087421_person-svg-circle-icon-picture-charing-cross-tube.png"}  alt="user" style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid #ffa9a9' }} />
+          <Link to={this.props.auth ? "/profile" : "/login"} className="navlinks ml-auto userlink" style={{ color: '#F42929' }}>
+            <img src={this.props.auth ? (this.props.user.gender === "male" ? male : female) : "https://www.vhv.rs/dpng/d/408-4087421_person-svg-circle-icon-picture-charing-cross-tube.png"} alt="user" style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid ' + ((this.props.location.pathname === '/profile') ? '#F42929' : '#FFA9A9') }} />
           </Link>
         </Navbar.Brand>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto mr-auto">
-            <Link to="/request" className="navlinks dtnav">
+            <Link to="/request" className={'navlinks dtnav' + ((this.props.location.pathname === '/request') ? ' activelink' : '')}>
               Request Blood
             </Link>
-            <Link to="/donors" className="navlinks">
+            <Link to="/donors" className={'navlinks' + ((this.props.location.pathname === '/donors') ? ' activelink' : '')}>
               Blood Donors
             </Link>
-            <Link to="/feed" className="navlinks">
+            <Link to="/feed" className={'navlinks' + ((this.props.location.pathname === '/feed') ? ' activelink' : '')}>
               Live Feed
             </Link>
-            <Link to="/volunteer" className="navlinks">
+            <Link to="/volunteer" className={'navlinks' + ((this.props.location.pathname === '/volunteer') ? ' activelink' : '')}>
               Volunteer
             </Link>
-            <Link to="/blogs" className="navlinks mnav">
+            <Link to="/blogs" className={'navlinks mnav' + ((this.props.location.pathname === '/blogs') ? ' activelink' : '')}>
               Blog
             </Link>
-            <Link to="/about-us" className="navlinks mnav">
+            <Link to="/about-us" className={'navlinks mnav' + ((this.props.location.pathname === '/about-us') ? ' activelink' : '')}>
               About Us
             </Link>
           </Nav>
@@ -77,9 +79,9 @@ class Navigationbar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      auth: state.auth,
-      user: state.user,
-      requested: state.requested
+    auth: state.auth,
+    user: state.user,
+    requested: state.requested
   }
 }
 

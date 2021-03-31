@@ -36,6 +36,11 @@
     margin: 15px;
 }
 
+.activelink{
+    color: #F42929 !important;
+}
+
+
 @media(max-width:1000px){
     .navbar{
         position: fixed;
@@ -65,16 +70,16 @@
     .navbar-collapse{
         border-top: 0.5px solid black;
         width: 100%;
-        padding-top: 5px;
     }
     .navlinks{
-        margin: 0 15px;
+        margin: 0;
         font-size: 16px !important;
         white-space: nowrap;
+        padding: 2px 15px;
     }
     .navbar {
         box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.479);
-        padding: 0.5rem 0;
+        padding: 0.5rem 0 0;
     }
     .navlogo{
         width: 100px;
@@ -97,6 +102,9 @@
         position: unset;
         right: 0;
         margin: 0;
+    }
+    .activelink{
+        border-bottom: 5px solid #F42929;
     }
 }
 

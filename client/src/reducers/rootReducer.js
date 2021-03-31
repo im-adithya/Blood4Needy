@@ -16,6 +16,17 @@ const rootReducer = (state = initState, action) => {
             ...state,
             requested: true
         }
+    } else if (action.type === 'UPDATE_USER') {
+        return {
+            ...state,
+            user: action.userdata
+        }
+    } else if (action.type === 'SIGNOUT_USER') {
+        return {
+            auth: false,
+            requested: false,
+            user: ''
+        }
     }
     return state
 }

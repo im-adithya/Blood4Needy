@@ -312,11 +312,11 @@
 
 @media(max-width: 500px){
     .donors{
-        padding: 17vh 0 2.5%
+        padding: 19vh 0 2.5%
     }
     .donors h1{
         font-size: 25px !important;
-        margin: 17px 0 !important;
+        margin: 0;
         width: 72vw;
         text-align: left !important;
     }

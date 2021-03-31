@@ -8,14 +8,17 @@ import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from "@fortawesome/
 
 import Navigationbar from "./components/navbar"
 import Contactbar from "./components/conbar"
+import Profile from "./components/profile"
 import Home from "./components/home"
 import Login from "./components/login"
 import Volunteer from "./components/volunteer";
 import Request from "./components/request";
 import Feed from "./components/feed";
-import Donate from "./components/donate";
+import AboutUs from "./components/aboutus";
+import KnowMore from "./components/knowmore";
 import Donors from "./components/donors";
-import Footer from "./components/footer"
+import Footer from "./components/footer";
+import ScrollToTop from "./components/scrollToTop";
 
 library.add(faMinus, faPlus, faHeart, faShareAlt, faFacebookF, faLinkedinIn, faTwitter, faInstagram, faMapMarkerAlt, faTimes, faTimesCircle, faCheckCircle)
 
@@ -65,7 +68,7 @@ class App extends Component {
     })
   }
 
-  
+
 
   render() {
     return (
@@ -77,13 +80,33 @@ class App extends Component {
               transition: 'transform 90ms linear',
             }} />
           <Contactbar />
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/request" component={Request} />
-          <Route path="/donors" component={Donors} />
-          <Route path="/donate" component={Donate} />
-          <Route path="/feed" component={Feed} />
-          <Route path="/volunteer" component={Volunteer} />
+          <ScrollToTop>
+            <Route path="/" exact component={Home} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/login" exact component={Login} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/profile" exact component={Profile} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/request" component={Request} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/donors" component={Donors} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/about-us" component={AboutUs} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/know-more" component={KnowMore} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/feed" component={Feed} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/volunteer" component={Volunteer} />
+          </ScrollToTop>
           <Footer />
         </div>
       </Router>
