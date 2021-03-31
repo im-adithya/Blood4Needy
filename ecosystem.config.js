@@ -1,6 +1,6 @@
 module.exports = {
     apps: [{
-      name: "app-name",
+      name: "Blood4Needy",
       watch: true,  
       script: "./server.js",
       // Delay between restart
