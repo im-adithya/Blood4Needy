@@ -120,7 +120,7 @@ class Profile extends Component {
                 setTimeout(function () {
                     this.setState({ warning: '' });
                 }.bind(this), 5000);
-                this.props.addUser(res.data)
+                this.props.updateUser(res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -197,7 +197,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addUser: (user) => { dispatch({ type: 'UPDATE_USER', userdata: user }) },
+        updateUser: (user) => { dispatch({ type: 'UPDATE_USER', userdata: user }) },
         signoutUser: () => { dispatch({ type: 'SIGNOUT_USER' }) }
     }
 }

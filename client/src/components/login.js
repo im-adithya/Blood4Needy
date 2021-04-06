@@ -3,7 +3,7 @@ import Switch from "react-switch";
 import Autocomplete from 'react-google-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { LoginBG } from "./home"
 
 import axios from 'axios';
@@ -331,6 +331,7 @@ class LoginBox extends Component {
               style={{ width: '144px' }}
               name="phone"
               id="phone"
+              pattern="[1-9]{1}[0-9]{9}"
               onInput={this.handleInput}
               onChange={this.onChangePhone}
               required />
@@ -348,7 +349,6 @@ class LoginBox extends Component {
             <input
               type="tel"
               id="phnlock"
-              pattern="[1-9]{1}[0-9]{9}"
               style={{ width: '144px' }}
               value={this.state.phone}
               disabled />
@@ -373,11 +373,11 @@ class LoginBox extends Component {
           <h3>Fill your Details</h3>
           <div className="details">
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" onChange={this.onChangeName} required /><br />
+            <input type="text" name="name" id="name" placeholder="Your Name" onChange={this.onChangeName} required /><br />
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" onChange={this.onChangeEmail} required /><br />
+            <input type="email" name="email" id="email" placeholder="example@domain.com" onChange={this.onChangeEmail} required /><br />
             <label htmlFor="age">Age</label>
-            <input type="number" min="18" name="age" id="age" onChange={this.onChangeAge} required /><br />
+            <input type="number" min="18" name="age" id="age" placeholder="Your Age" onChange={this.onChangeAge} required /><br />
             <label htmlFor="address">City</label>
             <Autocomplete
               id="address" name="address" onChange={this.onChangeAddress}
@@ -448,7 +448,7 @@ class LoginBox extends Component {
 class Login extends Component {
   render() {
     return (
-      <div>
+      !this.props.auth ? (<div>
         <div className="blur">
           <LoginBG />
         </div>
@@ -456,7 +456,8 @@ class Login extends Component {
           <TextBox />
           <LoginBox addUser={this.props.addUser} auth={this.props.auth} details={this.props.user} />
         </div>
-      </div>
+      </div>) :
+        <Redirect to={{ pathname: '/', state: { from: "login" } }} />
     )
   }
 }

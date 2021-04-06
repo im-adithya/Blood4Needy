@@ -11,7 +11,8 @@ const userSchema = new Schema({
     bloodgroup: { type: String, required: true },
     address: { type: String, required: true },
     pos: { type: Object, required: true },
-    feedback: {type: String},
+    feedback: { type: String },
+    volunteer: { type: Boolean },
 }, {
     timestamps: true,
 });

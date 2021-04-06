@@ -61,6 +61,17 @@ router.route('/:phone').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/volunteer/:id').post((req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      user.volunteer = req.body.volunteer;
+      user.save()
+        .then((updatedUser) => res.json(updatedUser))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/update/:id').post((req, res) => {
   User.findById(req.params.id)
     .then(user => {
@@ -75,7 +86,7 @@ router.route('/update/:id').post((req, res) => {
       user.feedback = req.body.feedback;
 
       user.save()
-        .then(() => res.json('User updated!'))
+        .then((updatedUser) => res.json(updatedUser))
         .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));

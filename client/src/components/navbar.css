@@ -70,6 +70,7 @@
     .navbar-collapse{
         border-top: 0.5px solid black;
         width: 100%;
+        min-height: 33px;
     }
     .navlinks{
         margin: 0;

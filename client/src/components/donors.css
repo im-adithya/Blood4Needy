@@ -217,7 +217,7 @@
 
 .mapitem-2 h1{
     color: black;
-    margin: 10px;
+    margin: 10px !important;
 }
 
 .mapitem-2 .connectbutton{

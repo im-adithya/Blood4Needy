@@ -6,7 +6,7 @@ export default class KnowMore extends Component {
     render() {
         return (
             <div className="aboutus">
-                <h1>About Us</h1>
+                <h1>Know More</h1>
                 <div className="aboutuscontent">
                     <p>It all started when... Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit, sed do eiusmod tempor incididunt ut labore et
