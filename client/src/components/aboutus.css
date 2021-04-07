@@ -1,32 +1,259 @@
-.aboutus{
+.aboutpg1, .aboutpg2, .aboutpg3, .aboutpg4, .aboutpg6, .aboutpg7{
+    height: 100vh;
+}
+
+.aboutpg1{
     background-color: #F42929;
-    padding: 19vh 5vw 50px;
-}
-
-.aboutus h1{
+    padding: 35vh 5vw 0;
     color: white;
-    text-align: center;
-    margin: 5vh 0 5vh;
 }
 
-.aboutus p{
+.aboutpg1>p{
+    width: 90%;
+    font-size: 40px;
+}
+
+.aboutpg2{
+    padding: 10vh 10vw;
+}
+
+.aboutpg2>h1{
+    font-size: 60px;
+}
+
+.aboutpg2,.innumber,.aboutpg4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.innumbers,.aboutpg3,.supportus{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.aboutpg3{
+    padding: 10vh 10vw
+}
+
+.aboutpg3-1{
+    font-size: 30px;
+    width: 50%;
+}
+
+.aboutpg3-2{
+    border-radius: 10px;
+    background-color: rgb(253, 234, 234);
+    width: 450px;
+    height: 450px;
+}
+
+.innumbers{
+    width: 100%;
+    margin-top: 15vh;
+}
+
+.innumber{
+    width: 250px;
+}
+
+.innumber>h1{
+    font-size: 70px;
+    text-align: center;
+}
+
+.innumber span{
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.innumber>p{
+    font-size: 20px;
+    text-align: center;
+}
+
+.aboutpg4{
+    background-color: rgb(253, 234, 234);
+}
+
+.aboutpg4>h1{
+    text-align: center;
+}
+
+.aboutpg5{
+    background-color: #F42929;
+    padding: 5vh 5vw;
+    height: 280vh
+}
+
+.bgpaper{
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 280vh;
+    padding: 30vh 7vw 0;
+}
+
+.bgpaper>h1{
+    margin-bottom: 50px;
+}
+
+.bgpaper>p{
+    font-family: 'Coming Soon';
+    font-size: 28px;
+}
+
+.bgpaper>div{
+    font-family: 'Coming Soon';
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.owner{
+    margin-top: 25px;
+    font-family: 'DM Sans' !important;
+    text-align: right;
+}
+
+.aboutpg6{
+    background-color: #F42929;
+    padding: 0 5vw
+}
+
+.aboutpg6>h1{
+    text-align: center;
+    padding: 5vh 0;
+    color: white;
+}
+
+.supportus{
+    padding: 5vh 0
+}
+
+.supportcnt{
+    font-size: 30px;
+    width: 38%;
+    color: white
+}
+
+.supportimg{
+    border-radius: 10px;
+    background-color: rgb(253, 234, 234);
+    width: 500px;
+    height: 300px;
+}
+
+.aboutvol{
+    height: 45px;
+    width: 200px;
     font-size: 16px;
 }
 
-.aboutuscontent{
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px
+.supportbtn{
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 45px;
+    border-radius: 5px;
+    margin-top: 5vh;
+    color: black;
+    background-color: #fff !important;
+    border: none;
+    font-weight: bold;
 }
 
 @media(max-width: 500px){
-    .aboutus{
-        background-color: #F42929;
-        padding-bottom: 20px;
+    .aboutpg1{
+        height: 85vh;
     }
-    .aboutus h1{
+    .innumbers{
+        flex-direction: column;
+        margin-top: 8vh;
+    }
+    .innumber{
+        margin-bottom: 20px;
+    }
+    .aboutpg2{
+        padding: 0;
+    }
+    .aboutpg2>h1{
+        text-align: center;
+    }
+    .innumber span{
+        font-size: 33px;
+    }
+    .aboutpg3{
+        flex-direction: column;
+        height: 75vh;
+        padding: 5vh 10vw;
+    }
+    .aboutpg3mob{
+        flex-direction: column-reverse;
+    }
+    .aboutpg3-1{
+        width: 100%;
+    }
+    .aboutpg3-2{
+        width: 300px;
+        height: 200px;
+    }
+    .aboutpg4{
+        height: 40vh;
+    }
+    .aboutpg4>h1{
+        font-size: 20px !important;
+    }
+    .aboutpg5{
+        height: 120vh;
+        padding: 2vh 2vw;
+    }
+    .bgpaper{
+        background-size: 100% 120vh;
+        padding: 18vh 10vw 0 5vw;
+    }
+    .bgpaper>h1{
+        margin: 0;
         font-size: 25px !important;
-        margin: 0 0 20px 0;
-        text-align: left;
+    }
+    .bgpaper>p{
+        font-size: 11px !important;
+    }
+    .bgpaper>div{
+        font-size: 13px
+    }
+    .owner{
+        margin-top: 5px;
+    }
+    .aboutpg6>h1{
+        padding: 5vh 0 0 0;
+        text-align: center;
+    }
+    .supportus{
+        flex-direction: column;
+    }
+    .supportimg{
+        width: 300px;
+        height: 200px;
+    }
+    .supportcnt{
+        margin-top: 5vh;
+        width: 80%;
+    }
+    .aboutpg6{
+        height: 90vh;
+    }
+}
+
+@media(max-width: 370px) {
+    .aboutpg6{
+        height: 100vh;
+    }
+    .aboutpg5{
+        height: 150vh;
+    }
+    .bgpaper{
+        background-size: 100% 150vh;
     }
 }

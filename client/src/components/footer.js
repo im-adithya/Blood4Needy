@@ -10,7 +10,7 @@ export default class Footer extends Component {
             <div className="footer">
                 <div className="footer-1">
                     <div className="footer-1-1">
-                        <img src={logo} className="footlogo" alt="Blood4Needy" width='100' /><br/>
+                        <img src={logo} className="footlogo" alt="Blood4Needy" width='100' /><br />
                         <div>XYZ builds platforms & investment products to invest better in Indian equities. A smallcase is a basket of stocks/ETFs weighted intelligently to reflect an idea A smallcase is a basket of stocks/ETFs weighted intelligently to reflect an idea</div>
                         {/*<form>
                             <input type="email" placeholder="Email Address" />
@@ -19,7 +19,7 @@ export default class Footer extends Component {
                     </div>
                     <div className="footer-1-2 sidefooter">
                         <h6>Company</h6>
-                        <div><Link to="/about-us">About Us</Link></div>
+                        <div><Link to="/about">About Us</Link></div>
                         <div><Link to="/contact">Contact Us</Link></div>
                     </div>
                     <div className="footer-1-3 sidefooter">
@@ -27,11 +27,11 @@ export default class Footer extends Component {
                         <div><Link to="/">Home</Link></div>
                         <div><Link to="/donors">Blood Donors</Link></div>
                         <div><Link to="/volunteer">Volunteer</Link></div>
-                        <div><Link to="/blog">Blog</Link></div>
+                        <div><a href="https://blog.blood4needy.com/">Blog</a></div>
                     </div>
                 </div>
                 <hr />
-                <br/>
+                <br />
                 <div className="footer-2">
                     <div className="footer-2-1">
                         Blood4Needy NGO<br />
@@ -42,7 +42,7 @@ export default class Footer extends Component {
 
                     <div className="footer-2-2">
                         <div>Contact us on help@blood4needy.com</div>
-                        <div style={{marginTop: '25px'}}>Find us on:</div>
+                        <div style={{ marginTop: '25px' }}>Find us on:</div>
                         <div className="socialicons">
                             <a href="http://www.facebook.com"><FontAwesomeIcon icon={['fab', 'facebook-f']} /></a>
                             <a href="http://www.instagram.com"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
@@ -52,8 +52,8 @@ export default class Footer extends Component {
                     </div>
 
                     <div className="footer-2-3">
-                        <div className="copyright" style={{marginTop: '25px'}}>&copy; 2020-2021 Blood4Needy. All Rights Reserved.</div>
-                        <div className="builtin">Built with <FontAwesomeIcon icon='heart' className="colorize"/> in India</div>
+                        <div className="copyright" style={{ marginTop: '25px' }}>&copy; 2020-2021 Blood4Needy. All Rights Reserved.</div>
+                        <div className="builtin">Built with <FontAwesomeIcon icon='heart' className="colorize" /> in India</div>
                     </div>
                 </div>
             </div>

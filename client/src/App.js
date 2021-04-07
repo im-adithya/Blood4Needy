@@ -15,7 +15,6 @@ import Volunteer from "./components/volunteer";
 import Request from "./components/request";
 import Feed from "./components/feed";
 import AboutUs from "./components/aboutus";
-import KnowMore from "./components/knowmore";
 import Donors from "./components/donors";
 import Footer from "./components/footer";
 import ScrollToTop from "./components/scrollToTop";
@@ -96,10 +95,7 @@ class App extends Component {
             <Route path="/donors" component={Donors} />
           </ScrollToTop>
           <ScrollToTop>
-            <Route path="/about-us" component={AboutUs} />
-          </ScrollToTop>
-          <ScrollToTop>
-            <Route path="/know-more" component={KnowMore} />
+            <Route path="/about" component={AboutUs} />
           </ScrollToTop>
           <ScrollToTop>
             <Route path="/feed" component={Feed} />

@@ -169,7 +169,7 @@ class Form extends Component {
 
     render() {
         return (
-            <div className="volformwrap">
+            <div className="volformwrap" id="volunteerform">
                 <h1>Fill this form</h1>
                 <div className="form-page">
                     <div id="page1" className={"hand " + ((this.state.currpage > 1) ? 'active' : '')}>1</div>
@@ -344,6 +344,9 @@ const WhatWeDo = () => {
 }
 
 class Volunteer extends Component {
+    scrolltoform = () => {
+        document.getElementById('volunteerform').scrollIntoView()
+    }
     render() {
         return (
             this.props.auth ? (<div className="volunteer">
@@ -352,12 +355,12 @@ class Volunteer extends Component {
                     <br /><br /><br /><br />
                     <p>We depend on volunteers! Volunteers make up 96% of our total workforce and carry on our humanitarian work.</p>
                     <br /><br />
-                    <button>Join Us</button>
+                    <button onClick={this.scrolltoform}>Join Us</button>
                 </div>
 
                 <div className="fullheight volpg2">
                     <h1><span className="colorize" style={{ fontSize: 'inherit' }}>"Your Time and Talent can literally</span> save someone's lives<span className="colorize" style={{ fontSize: 'inherit' }}>."</span></h1><br />
-                    <button className="signout">I'm ready to volunteer</button>
+                    <button className="signout" onClick={this.scrolltoform}>I'm ready to volunteer</button>
                 </div>
 
                 <WhatWeDo />

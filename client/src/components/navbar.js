@@ -64,10 +64,10 @@ class NavBar extends Component {
             <Link to="/volunteer" className={'navlinks' + ((this.props.location.pathname === '/volunteer') ? ' activelink' : '')}>
               Volunteer
             </Link>
-            <Link to="/blogs" className={'navlinks mnav' + ((this.props.location.pathname === '/blogs') ? ' activelink' : '')}>
+            <a href="https://blog.blood4needy.com/" className={'navlinks mnav' + ((this.props.location.pathname === '/blogs') ? ' activelink' : '')}>
               Blog
-            </Link>
-            <Link to="/about-us" className={'navlinks mnav' + ((this.props.location.pathname === '/about-us') ? ' activelink' : '')}>
+            </a>
+            <Link to="/about" className={'navlinks mnav' + ((this.props.location.pathname === '/about') ? ' activelink' : '')}>
               About Us
             </Link>
           </Nav>

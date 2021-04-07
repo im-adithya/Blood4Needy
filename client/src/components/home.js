@@ -88,7 +88,7 @@ const PageThree = () => {
                     in need of blood anytime, anywhere in the world.<br />
             </p>
             <br />
-            <Link to="/know-more"><span style={{ fontSize: '20px', color: '#F42929' }}>Click here</span> to know more about us</Link>
+            <Link to="/about"><span style={{ fontSize: '20px', color: '#F42929' }}>Click here</span> to know more about us</Link>
         </div>
     )
 }
@@ -341,7 +341,7 @@ class PageTen extends Component {
                     ))}
                 </div>
                 <button className="button3">
-                    <Link to='/blogs' className='moreblogs'>More Blogs</Link>
+                    <a href='https://blog.blood4needy.com/' className='moreblogs'>More Blogs</a>
                 </button>
             </div>
         )
