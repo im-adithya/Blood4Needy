@@ -38,20 +38,20 @@ export default class About extends Component {
                 </div>
                 <div className="aboutpg3">
                     <div className="aboutpg3-1">
-                        <h1 style={{ color: '#b21e2e' }}>Mission:</h1><br />
-                        <p>Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage</p>
+                        <h1 style={{ color: '#b21e2e' }}>Vision:</h1><br />
+                        <p>Bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood.</p>
                     </div>
                     <div className="aboutpg3-2"></div>
                 </div>
                 <div className="aboutpg3 aboutpg3mob">
                     <div className="aboutpg3-2"></div>
                     <div className="aboutpg3-1">
-                        <h1 style={{ color: '#b21e2e' }}>Vision:</h1><br />
-                        <p>Bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood.</p>
+                        <h1 style={{ color: '#b21e2e' }}>Mission:</h1><br />
+                        <p>Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage.</p>
                     </div>
                 </div>
                 <div className="aboutpg4">
-                    <h1>"We connect people who need<br /> blood to people who donate blood<br />And <span style={{ color: '#F42929', fontSize: 'inherit' }}>that too for FREE!</span>"</h1>
+                    <h1>"We connect people who need<br /> blood to people who donate blood"</h1>
                 </div>
                 <div className="aboutpg5">
                     <div className="bgpaper" style={{ backgroundImage: `url(${paper})` }}>
@@ -89,7 +89,7 @@ export default class About extends Component {
                         <div className="supportimg"></div>
                         <p className="supportcnt">You can help us build a country where people can get blood whenever they require and that too FREE. Make your donation today and support Blood4Needy's conservation solutions.</p>
                     </div>
-                    <Link to="/feed"><button className="supportbtn" >Donate Now <FontAwesomeIcon icon='heart' className="colorize" /></button></Link>
+                    <Link to="/feed"><button className="supportbtn" >Donate Now <FontAwesomeIcon icon='heart' className="colorize heart" /></button></Link>
                 </div>
             </div>
         )

@@ -169,7 +169,7 @@ class LoginBox extends Component {
         if (res.data !== null) {
           this.setState({ existinguser: true, existinguserdata: res.data, currpage: 4 })
           this.props.addUser(this.state.existinguserdata)
-
+          console.log('hey', this.state)
         } else {
           this.setState({ currpage: 3 })
         }
@@ -446,9 +446,18 @@ class LoginBox extends Component {
 }
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      authorizedfromstart: false
+    }
+  }
+  componentDidMount() {
+    this.setState({ authorizedfromstart: this.props.auth })
+  }
   render() {
     return (
-      !this.props.auth ? (<div>
+      !this.state.authorizedfromstart ? (<div>
         <div className="blur">
           <LoginBG />
         </div>

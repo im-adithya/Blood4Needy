@@ -561,8 +561,8 @@ a{
     }
     .chevron {
         position: absolute;
-        top: 75%;
-        left: 50%;
+        top: 70%;
+        left: 46.5%;
         width: 25px;
         height: 8px;
         opacity: 0;
@@ -632,7 +632,7 @@ a{
     }
     .pg1{
         padding-top: 28vh;
-        height: 89vh !important;
+        height: 85vh !important;
         background-position: 82%
     }
     .pg3{

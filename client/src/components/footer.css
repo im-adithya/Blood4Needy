@@ -84,7 +84,7 @@ h6{
 
 @media(max-width: 500px){
     .footer{
-        padding: 2vh 5vw 70px;
+        padding: 5vh 5vw 70px;
     }
     h6{
         font-size: 16px;

@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.post('/redeploy', validateSecret, (req,res) => {
+app.post('/redeploy', validateSecret, (req, res) => {
 
   exec('git pull && npm run post-deploy', (err, stdout, stderr) => {
     if (err) {
@@ -33,9 +33,9 @@ function validateSecret(req, res, next) {
     return next('Request body empty')
   }
   let sig =
-    'sha1='+
+    'sha1=' +
     crypto
-      .createHmac('sha1','Blood4Needy')
+      .createHmac('sha1', 'Blood4Needy')
       .update(payload)
       .digest('hex');
   if (req.headers['x-hub-signature'] == sig) {
@@ -55,6 +55,7 @@ connection.once('open', () => {
 
 const otpRouter = require('./routes/otp');
 const userRouter = require('./routes/user');
+const volunteerRouter = require('./routes/volunteer');
 const bloodRouter = require('./routes/blood');
 const requestRouter = require('./routes/request');
 const updateRouter = require('./routes/updates');
@@ -64,11 +65,12 @@ app.use('/api/user', userRouter);
 app.use('/api/blood', bloodRouter);
 app.use('/api/updates', updateRouter);
 app.use('/api/request', requestRouter);
+app.use('/api/volunteer', volunteerRouter);
 
 app.use(express.static('client/build'))
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'client/build/index.html'), function(err) {
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'client/build/index.html'), function (err) {
     if (err) {
       res.status(500).send(err)
     }
@@ -76,5 +78,5 @@ app.get('/*', function(req, res) {
 })
 
 app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port}`);
 });

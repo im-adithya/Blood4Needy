@@ -14,16 +14,12 @@ class Form extends Component {
             email: '',
             phone: '',
             occupation: '',
-            graduation: '',
-            org: '',
-
             city: '',
+
             interest1: [],
             experience: '',
 
-            interest2: [],
             reached: '',
-            contactname: '',
             additionalinfo: '',
 
             currpage: this.props.user.volunteer ? 4 : 1,
@@ -55,18 +51,6 @@ class Form extends Component {
         })
     }
 
-    onChangeGraduation = (e) => {
-        this.setState({
-            graduation: e.target.value
-        })
-    }
-
-    onChangeOrg = (e) => {
-        this.setState({
-            org: e.target.value
-        })
-    }
-
     onChangeCity = (e) => {
         this.setState({
             city: e.target.value
@@ -87,20 +71,6 @@ class Form extends Component {
         })
     }
 
-    onChangeReason2 = (e) => {
-        this.setState(prevState => {
-            let arr = prevState.interest2
-            if (arr.includes(e.target.value)) {
-                arr.splice(arr.indexOf(e.target.value), 1)
-            } else {
-                arr.push(e.target.value)
-            }
-            return {
-                interest2: arr
-            }
-        })
-    }
-
     onChangeExperience = (e) => {
         this.setState({
             experience: e.target.value
@@ -110,12 +80,6 @@ class Form extends Component {
     onChangeReached = (e) => {
         this.setState({
             reached: e.target.value
-        })
-    }
-
-    onChangeContactname = (e) => {
-        this.setState({
-            contactname: e.target.value
         })
     }
 
@@ -152,19 +116,35 @@ class Form extends Component {
     onSubmitVolpg3 = (e) => {
         e.preventDefault()
 
-        if (this.state.interest2.length !== 0) {
-            axios.post('/api/user/volunteer/' + this.props.user._id, { volunteer: true })
-                .then(res => {
-                    this.setState({ currpage: 4, warning: '' })
-                    this.props.updateUser(res.data)
-                })
-                .catch(err => {
-                    this.setState({ warning: 'An error occured, please try again!' })
-                    console.log(err)
-                })
-        } else {
-            this.setState({ warning: 'Select why you want to join.' })
+        const data = {
+            name: this.state.name,
+            email: this.state.email,
+            phone: this.state.phone,
+            occupation: this.state.occupation,
+            city: this.state.city,
+            interest: this.state.interest1,
+            experience: this.state.experience,
+            reached: this.state.reached,
+            additionalinfo: this.state.additionalinfo,
         }
+
+        axios.post('/api/volunteer/add', data)
+            .then(res => {
+                console.log(res.data)
+                axios.post('/api/user/volunteer/' + this.props.user._id, { volunteer: true })
+                    .then(res => {
+                        this.setState({ currpage: 4, warning: '' })
+                        this.props.updateUser(res.data)
+                    })
+                    .catch(err => {
+                        this.setState({ warning: 'An error occured, please try again!' })
+                        console.log(err)
+                    })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
     }
 
     render() {
@@ -195,28 +175,14 @@ class Form extends Component {
                             onInput={this.handleInput}
                             onChange={this.onChangePhone}
                             required />
-                        <div className="volwrapbw" style={{ display: 'flex', flexDirection: 'row' }}>
-                            <div style={{ width: '55%', marginRight: '5%' }}>
-                                <label htmlFor="occupation">Occupation</label>
-                                <select name="occupation" id="occupation" onChange={this.onChangeOccupation} required>
-                                    <option value="" defaultValue hidden>--</option>
-                                    <option value="student">Student</option>
-                                    <option value="wp">Working Professional</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div style={{ width: '45%' }}>
-                                <label htmlFor="graduation">Year of Graduation</label>
-                                <input type="number" min="1900" max="2200" name="graduation" id="graduation" placeholder="20xx" onChange={this.onChangeGraduation} /><br />
-                            </div>
-                        </div>
-                        <label htmlFor="org">Organization</label>
-                        <input type="text" name="org" id="org" onChange={this.onChangeOrg} placeholder="Workplace/Institute you are part of" required /><br />
-                        <button type="submit" className="volbtn">Next</button>
-                    </form>
-                </div>
-                <div className="volform" style={{ display: this.state.currpage === 2 ? 'block' : 'none' }}>
-                    <form onSubmit={this.onSubmitVolpg2}>
+                        <label htmlFor="occupation">What Defines You Better?</label>
+                        <select name="occupation" id="occupation" onChange={this.onChangeOccupation} required>
+                            <option value="" defaultValue hidden>Select Here</option>
+                            <option value="student">Student</option>
+                            <option value="wp">Working Professional</option>
+                            <option value="hw">House Wife</option>
+                            <option value="other">Other</option>
+                        </select>
                         <label htmlFor="name">City in which you wish to volunteer</label>
                         <select name="loc" id="loc" onChange={this.onChangeCity} required>
                             <option value="" defaultValue hidden>Select Here</option>
@@ -225,35 +191,36 @@ class Form extends Component {
                             <option value="Indore">Indore</option>
                             <option value="Other">Other</option> {/*Special Case*/}
                         </select>
-                        <label htmlfor="interest1">Select your interest in Blood4Needy</label>
+                        <button type="submit" className="volbtn">Next</button>
+                    </form>
+                </div>
+                <div className="volform" style={{ display: this.state.currpage === 2 ? 'block' : 'none' }}>
+                    <form onSubmit={this.onSubmitVolpg2}>
+                        <label htmlFor="interest2">Why do you want to be a part of Blood4Needy?</label>
                         <div className="manyboxes">
                             <div>
-                                <input type="checkbox" id="cityop" onChange={this.onChangeReason1} value="City Operation" />&nbsp;
-                                <label htmlFor="cityop">City Operation (Camps, emergency helpline, awareness)</label><br />
+                                <input type="checkbox" id="service" onChange={this.onChangeReason1} value="service" />&nbsp;
+                                <label htmlFor="service">Social service</label><br />
                             </div>
                             <div>
-                                <input type="checkbox" id="tech" onChange={this.onChangeReason1} value="Tech" />&nbsp;
-                                <label htmlFor="tech">Tech (Website, CRM)</label><br />
+                                <input type="checkbox" id="friends" onChange={this.onChangeReason1} value="friends" />&nbsp;
+                                <label htmlFor="friends">Because my friends are also working here</label><br />
                             </div>
                             <div>
-                                <input type="checkbox" id="pr" onChange={this.onChangeReason1} value="PR" />&nbsp;
-                                <label htmlFor="pr">PR (Digital marketing, fundraising)</label><br />
+                                <input type="checkbox" id="resume" onChange={this.onChangeReason1} value="resume" />&nbsp;
+                                <label htmlFor="resume">For my resume</label><br />
                             </div>
                             <div>
-                                <input type="checkbox" id="creative" onChange={this.onChangeReason1} value="Creative" />&nbsp;
-                                <label htmlFor="creative">Creative (Doodles, posters, video editing, content writing)</label><br />
+                                <input type="checkbox" id="speak" onChange={this.onChangeReason1} value="speak" />&nbsp;
+                                <label htmlFor="speak">I like to speak with people</label><br />
                             </div>
                             <div>
-                                <input type="checkbox" id="consulting" onChange={this.onChangeReason1} value="Consulting" />&nbsp;
-                                <label htmlFor="consulting">Consulting (Organizing camps across India virtually)</label><br />
-                            </div>
-                            <div>
-                                <input type="checkbox" id="nothingspecific" onChange={this.onChangeReason1} value="Nothing Specific" />&nbsp;
-                                <label htmlFor="nothingspecific">Nothing Specific, I am up for any activity</label><br />
+                                <input type="checkbox" id="nothing" onChange={this.onChangeReason1} value="nothing" />&nbsp;
+                                <label htmlFor="nothing">Nothing Specific</label><br />
                             </div>
                         </div>
-                        <label htmlFor="experience">Do you have prior experience in volunteering with any NGO or any other extra-curricular activities?</label>
-                        <textarea type="text" name="experience" id="experience" rows="2" onChange={this.onChangeExperience} placeholder="Share your prior experience with us!" /><br />
+                        <label htmlFor="experience">Do you have prior experience in volunteering with any NGO or any other extra-curricular activities? <span className="colorize">(optional)</span></label>
+                        <textarea type="text" name="experience" id="experience" rows="6" onChange={this.onChangeExperience} placeholder="Share your prior experience with us!" /><br />
                         <p className="warning">{this.state.warning}</p>
                         <div className="backnext">
                             <button onClick={this.prevPage} className="backbtn">Back</button>
@@ -261,35 +228,9 @@ class Form extends Component {
                         </div>
                     </form>
                 </div>
-                <div className="volform" style={{ overflowY: 'scroll', display: this.state.currpage === 3 ? 'block' : 'none' }}>
+                <div className="volform" style={{ display: this.state.currpage === 3 ? 'block' : 'none' }}>
                     <form onSubmit={this.onSubmitVolpg3}>
-                        <label htmlfor="interest2">Why do you want to be a part of Blood4Needy</label>
-                        <div className="manyboxes">
-                            <div>
-                                <input type="checkbox" id="service" onChange={this.onChangeReason2} value="service" />&nbsp;
-                                <label htmlFor="service">Social service</label><br />
-                            </div>
-                            <div>
-                                <input type="checkbox" id="friends" onChange={this.onChangeReason2} value="friends" />&nbsp;
-                                <label htmlFor="friends">Because my friends are also working here</label><br />
-                            </div>
-                            <div>
-                                <input type="checkbox" id="resume" onChange={this.onChangeReason2} value="resume" />&nbsp;
-                                <label htmlFor="resume">For my resume</label><br />
-                            </div>
-                            <div>
-                                <input type="checkbox" id="travel" onChange={this.onChangeReason2} value="travel" />&nbsp;
-                                <label htmlFor="travel">I love to travel</label><br />
-                            </div>
-                            <div>
-                                <input type="checkbox" id="speak" onChange={this.onChangeReason2} value="speak" />&nbsp;
-                                <label htmlFor="speak">I like to speak with people</label><br />
-                            </div>
-                            <div>
-                                <input type="checkbox" id="nothing" onChange={this.onChangeReason2} value="nothing" />&nbsp;
-                                <label htmlFor="nothing">Nothing Specific</label><br />
-                            </div>
-                        </div>
+
                         <label htmlFor="reached">How did you get to know about Blood4Needy?</label>
                         <select name="reached" id="reached" onChange={this.onChangeReached} required>
                             <option value="" defaultValue hidden>Select Here</option>
@@ -302,10 +243,8 @@ class Form extends Component {
                             <option value="linkedin">Linkedin</option>
                             <option value="other">Other</option>
                         </select>
-                        <label htmlFor="referralname">Do you have a personal contact in BloodConnect team? If Yes, please mention his/her name.</label>
-                        <input type="text" name="referralname" id="referralname" placeholder="Personal Contact Name" onChange={this.onChangeContactName} /><br />
-                        <label htmlFor="additionalinfo">Any additional information you would like to share about your application?</label>
-                        <textarea type="text" name="additionalinfo" id="additionalinfo" rows="2" onChange={this.onChangeAdditionalnfo} placeholder="Feel free to share it with us!" /><br />
+                        <label htmlFor="additionalinfo">Any additional information you would like to share about yourself? <span className="colorize">(optional)</span></label>
+                        <textarea type="text" name="additionalinfo" id="additionalinfo" rows="6" onChange={this.onChangeAdditionalInfo} placeholder="Feel free to share it with us!" /><br />
                         <p className="warning">{this.state.warning}</p>
                         <div className="backnext">
                             <button onClick={this.prevPage} className="backbtn">Back</button>

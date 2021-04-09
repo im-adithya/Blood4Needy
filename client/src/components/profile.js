@@ -128,7 +128,6 @@ class Profile extends Component {
     }
 
     signOut() {
-        console.log('hello')
         this.props.signoutUser({})
         window.location = '/'
     }
@@ -159,6 +158,8 @@ class Profile extends Component {
                         </div>
                         <label htmlFor="age">Age</label>
                         <input type="number" min="18" name="age" id="age" onChange={this.onChangeAge} value={this.state.updatedAge} required /><br />
+                        <label htmlFor="email">Email</label>
+                        <input type="email" name="email" id="email" onChange={this.onChangeEmail} value={this.state.updatedEmail} required /><br />
                         <label htmlFor="address">Address</label>
                         <Autocomplete
                             id="address" name="address" onChange={this.onChangeAddress} value={this.state.updatedAddress}
@@ -172,8 +173,6 @@ class Profile extends Component {
                             <label htmlFor="address">Reset Location to Present</label>
                             <Switch onChange={this.setCurrentLocation} checked={this.state.posavailable} uncheckedIcon={false} onColor='#b21e2e' offColor='#bcbcbc' handleDiameter={16} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #b21e2e' width={30} height={15} checkedIcon={false} />
                         </div>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id="email" onChange={this.onChangeEmail} value={this.state.updatedEmail} required /><br />
                         <label htmlFor="feedback">Feedback</label>
                         <textarea value={this.state.updatedFeedback ? this.state.updatedFeedback : ''} onChange={this.onChangeFeedback} placeholder="Please give us your valuable feedback!"></textarea>
                         <p className="colorize" style={{ textAlign: 'center' }}>{this.state.warning}</p>
