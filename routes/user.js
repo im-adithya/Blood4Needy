@@ -2,7 +2,7 @@ const router = require('express').Router();
 let User = require('../models/userModel');
 
 router.route('/').get((req, res) => {
-  User.find()
+  User.find().sort({ $natural: -1 })
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -28,7 +28,7 @@ router.route('/add').post((req, res) => {
   const bloodgroup = req.body.bloodgroup;
   const address = req.body.address;
   const pos = req.body.pos;
-  const feedback = req.body.feedback;
+  const feedback = "";
 
   const newUser = new User({
     name,
@@ -48,7 +48,7 @@ router.route('/add').post((req, res) => {
 });
 
 router.route('/testimonials').get((req, res) => {
-  User.find({ feedback: { $ne: '' } })
+  User.find({ feedback: { $ne: '' } }, { name: 1, feedback: 1 })
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -89,6 +89,12 @@ router.route('/update/:id').post((req, res) => {
         .then((updatedUser) => res.json(updatedUser))
         .catch(err => res.status(400).json('Error: ' + err));
     })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/:id').delete((req, res) => {
+  User.findByIdAndDelete(req.params.id)
+    .then(() => res.json('User deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

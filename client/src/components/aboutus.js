@@ -8,6 +8,9 @@ import paper from '../assets/paper.png'
 
 
 export default class About extends Component {
+    componentDidMount() {
+        document.getElementsByClassName('navbar-nav')[0].scrollLeft = 400
+    }
     render() {
         return (
             <div className="aboutus">

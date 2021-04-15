@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, matchPath } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faMinus, faHeart, faMapMarkerAlt, faShareAlt, faTimes, faTimesCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
+import Admin from "./components/admin"
 import Navigationbar from "./components/navbar"
 import Contactbar from "./components/conbar"
 import Profile from "./components/profile"
@@ -70,6 +71,11 @@ class App extends Component {
 
 
   render() {
+    const matched = matchPath(window.location.pathname, {
+      path: "/admin",
+      exact: true,
+      strict: false
+    });
     return (
       <Router>
         <div className="container">
@@ -78,7 +84,7 @@ class App extends Component {
               transform: `translate(0, ${this.state.slide})`,
               transition: 'transform 90ms linear',
             }} />
-          <Contactbar />
+          <Route render={() => (!matched ? <Contactbar /> : null)} />);
           <ScrollToTop>
             <Route path="/" exact component={Home} />
           </ScrollToTop>
@@ -102,6 +108,9 @@ class App extends Component {
           </ScrollToTop>
           <ScrollToTop>
             <Route path="/volunteer" component={Volunteer} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/admin" component={Admin} />
           </ScrollToTop>
           <Footer />
         </div>

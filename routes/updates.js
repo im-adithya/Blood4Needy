@@ -2,7 +2,7 @@ const router = require('express').Router();
 let Update = require('../models/updatesModel');
 
 router.route('/').get((req, res) => {
-  Update.find().sort({$natural:-1})
+  Update.find().sort({ $natural: -1 })
     .then(updates => res.json(updates))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -31,6 +31,12 @@ router.route('/update/:id').post((req, res) => {
         .then(() => res.json('Update updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/:id').delete((req, res) => {
+  Update.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Update deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

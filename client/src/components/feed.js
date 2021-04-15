@@ -325,7 +325,9 @@ class Feed extends Component {
 
         this.toggleView = this.toggleView.bind(this)
     }
-
+    componentDidMount() {
+        document.getElementsByClassName('navbar-nav')[0].scrollLeft = -400
+    }
 
     toggleView(e) {
         this.setState({ view: e.target.innerText })

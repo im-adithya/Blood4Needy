@@ -178,10 +178,10 @@ class Form extends Component {
                         <label htmlFor="occupation">What Defines You Better?</label>
                         <select name="occupation" id="occupation" onChange={this.onChangeOccupation} required>
                             <option value="" defaultValue hidden>Select Here</option>
-                            <option value="student">Student</option>
-                            <option value="wp">Working Professional</option>
-                            <option value="hw">House Wife</option>
-                            <option value="other">Other</option>
+                            <option value="Student">Student</option>
+                            <option value="Working Professional">Working Professional</option>
+                            <option value="House Wife">House Wife</option>
+                            <option value="Other">Other</option>
                         </select>
                         <label htmlFor="name">City in which you wish to volunteer</label>
                         <select name="loc" id="loc" onChange={this.onChangeCity} required>
@@ -199,23 +199,23 @@ class Form extends Component {
                         <label htmlFor="interest2">Why do you want to be a part of Blood4Needy?</label>
                         <div className="manyboxes">
                             <div>
-                                <input type="checkbox" id="service" onChange={this.onChangeReason1} value="service" />&nbsp;
-                                <label htmlFor="service">Social service</label><br />
+                                <input type="checkbox" id="service" onChange={this.onChangeReason1} value="Social Service" />&nbsp;
+                                <label htmlFor="service">Social Service</label><br />
                             </div>
                             <div>
-                                <input type="checkbox" id="friends" onChange={this.onChangeReason1} value="friends" />&nbsp;
+                                <input type="checkbox" id="friends" onChange={this.onChangeReason1} value="Because of Friends" />&nbsp;
                                 <label htmlFor="friends">Because my friends are also working here</label><br />
                             </div>
                             <div>
-                                <input type="checkbox" id="resume" onChange={this.onChangeReason1} value="resume" />&nbsp;
+                                <input type="checkbox" id="resume" onChange={this.onChangeReason1} value="For Resume" />&nbsp;
                                 <label htmlFor="resume">For my resume</label><br />
                             </div>
                             <div>
-                                <input type="checkbox" id="speak" onChange={this.onChangeReason1} value="speak" />&nbsp;
+                                <input type="checkbox" id="speak" onChange={this.onChangeReason1} value="I like to speak" />&nbsp;
                                 <label htmlFor="speak">I like to speak with people</label><br />
                             </div>
                             <div>
-                                <input type="checkbox" id="nothing" onChange={this.onChangeReason1} value="nothing" />&nbsp;
+                                <input type="checkbox" id="nothing" onChange={this.onChangeReason1} value="Nothing Specific" />&nbsp;
                                 <label htmlFor="nothing">Nothing Specific</label><br />
                             </div>
                         </div>
@@ -234,14 +234,14 @@ class Form extends Component {
                         <label htmlFor="reached">How did you get to know about Blood4Needy?</label>
                         <select name="reached" id="reached" onChange={this.onChangeReached} required>
                             <option value="" defaultValue hidden>Select Here</option>
-                            <option value="member">Through Blood4Needy Member</option>
-                            <option value="event">In an event/camp of Blood4Needy</option>
-                            <option value="website">Website</option>
-                            <option value="facebook">Facebook</option>
-                            <option value="instagram">Instagram</option>
-                            <option value="twitter">Twitter</option>
-                            <option value="linkedin">Linkedin</option>
-                            <option value="other">Other</option>
+                            <option value="Through Blood4Needy Member">Through Blood4Needy Member</option>
+                            <option value="In an event/camp of Blood4Needy">In an event/camp of Blood4Needy</option>
+                            <option value="Website">Website</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Twitter">Twitter</option>
+                            <option value="Linkedin">Linkedin</option>
+                            <option value="Other">Other</option>
                         </select>
                         <label htmlFor="additionalinfo">Any additional information you would like to share about yourself? <span className="colorize">(optional)</span></label>
                         <textarea type="text" name="additionalinfo" id="additionalinfo" rows="6" onChange={this.onChangeAdditionalInfo} placeholder="Feel free to share it with us!" /><br />
@@ -283,6 +283,9 @@ const WhatWeDo = () => {
 }
 
 class Volunteer extends Component {
+    componentDidMount() {
+        document.getElementsByClassName('navbar-nav')[0].scrollLeft = 400
+    }
     scrolltoform = () => {
         document.getElementById('volunteerform').scrollIntoView()
     }

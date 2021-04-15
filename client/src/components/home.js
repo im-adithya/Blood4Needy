@@ -340,10 +340,12 @@ class PageTen extends Component {
                         </a>
                     ))}
                 </div>
-                <button className="button3">
-                    <a href='https://blog.blood4needy.com/' className='moreblogs'>More Blogs</a>
-                </button>
-            </div>
+                <a href='https://blog.blood4needy.com/' className='moreblogs'>
+                    <button className="button3">
+                        More Blogs
+                    </button>
+                </a>
+            </div >
         )
     }
 }

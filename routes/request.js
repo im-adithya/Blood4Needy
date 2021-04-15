@@ -2,10 +2,16 @@ const router = require('express').Router();
 let Request = require('../models/requestModel');
 
 router.route('/').get((req, res) => {
-    Request.find().sort({$natural:-1})
+    Request.find({ show: true }).sort({ $natural: -1 })
         .then(requests => res.json(requests))
         .catch(err => res.status(400).json('Error: ' + err));
 });
+
+router.route('/all').get((req, res) => {
+    Request.find().sort({ $natural: -1 })
+        .then(requests => res.json(requests))
+        .catch(err => res.status(400).json('Error: ' + err));
+})
 
 router.route('/add').post((req, res) => {
     const user = req.body.user
@@ -23,6 +29,7 @@ router.route('/add').post((req, res) => {
     const contactphone = req.body.contactphone
     const contactemail = req.body.contactemail*/
     const message = req.body.message
+    const show = true
 
     const newRequest = new Request({
         user,
@@ -40,6 +47,7 @@ router.route('/add').post((req, res) => {
         contactphone,
         contactemail,*/
         message,
+        show
     });
 
     newRequest.save()
@@ -62,23 +70,23 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Request.findById(req.params.id)
         .then(request => {
-            request.user = req.body.user;
             request.bloodgroup = req.body.bloodgroup;
-            request.units = req.body.units;
+            //request.units = req.body.units;
             request.requireddate = req.body.requireddate;
-            request.patientname = req.body.patientname;
             request.patientphone = req.body.patientphone;
-            request.doctorname = req.body.doctorname;
-            request.reason = req.body.reason;
-            request.hospital = req.body.hospital;
-            request.pos = req.body.pos;
-            request.description = req.body.description;
-            /*request.contactname = req.body.contactname;
-            request.contactphone = req.body.contactphone;
-            request.contactemail = req.body.contactemail;*/
-            request.description = req.body.description;
             request.message = req.body.message;
 
+            request.save()
+                .then(() => res.json('Request updated!'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/show/:id').post((req, res) => {
+    Request.findById(req.params.id)
+        .then(request => {
+            request.show = req.body.show;
             request.save()
                 .then(() => res.json('Request updated!'))
                 .catch(err => res.status(400).json('Error: ' + err));

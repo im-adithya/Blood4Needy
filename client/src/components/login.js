@@ -132,7 +132,6 @@ class LoginBox extends Component {
       }
       return;
     }
-    console.log(this.state, typeof (this.state.backupPos))
   }
 
   onChangeOTP(e) {

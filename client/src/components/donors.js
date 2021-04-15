@@ -71,7 +71,7 @@ export const ListView = class ListView extends Component {
                         />
                     </div>}
                 {this.props.data.length === 0 && <div>
-                    <h1>No donors available :(</h1>
+                    <h1 style={{ textAlign: 'center' }}>No donors available :(</h1>
                 </div>}
             </div>
         )
@@ -265,7 +265,7 @@ class DonorsFunction extends Component {
                     <h1>Thankyou!</h1><br />
                     <h2>We have recieved your request!</h2>
                     <div className="numdonors">
-                        <h1>Searching...</h1>
+                        <h1 style={{ textAlign: 'center' }}>Searching...</h1>
                         <p className="bold">Blood donors in your area</p>
                         {this.state.data.length > 0 &&
                             <div className="sendingpanel">
@@ -292,7 +292,7 @@ class DonorsFunction extends Component {
                                 </div>
                         */}
                         {this.state.data.length === 0 && <div>
-                            <h1 className="nodonors">No donors available!</h1>
+                            <p className="nodonors">No donors available!</p>
                         </div>}
                     </div>
                     {this.state.data.length > 0 && <div>
@@ -335,6 +335,9 @@ class DonorsFunction extends Component {
 }
 
 class Donors extends Component {
+    componentDidMount() {
+        document.getElementsByClassName('navbar-nav')[0].scrollLeft = -400
+    }
     render() {
         return (
             this.props.auth ?
