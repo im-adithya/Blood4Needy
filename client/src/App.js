@@ -6,12 +6,12 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faMinus, faHeart, faMapMarkerAlt, faShareAlt, faTimes, faTimesCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
-import Admin from "./components/admin"
-import Navigationbar from "./components/navbar"
-import Contactbar from "./components/conbar"
-import Profile from "./components/profile"
-import Home from "./components/home"
-import Login from "./components/login"
+import Admin from "./components/admin";
+import Navigationbar from "./components/navbar";
+import Contactbar from "./components/conbar";
+import Profile from "./components/profile";
+import Home from "./components/home";
+import Login from "./components/login";
 import Volunteer from "./components/volunteer";
 import Request from "./components/request";
 import Feed from "./components/feed";
@@ -19,6 +19,7 @@ import AboutUs from "./components/aboutus";
 import Donors from "./components/donors";
 import Footer from "./components/footer";
 import ScrollToTop from "./components/scrollToTop";
+import LandingPage from "./components/landingpage";
 
 library.add(faMinus, faPlus, faHeart, faShareAlt, faFacebookF, faLinkedinIn, faTwitter, faInstagram, faMapMarkerAlt, faTimes, faTimesCircle, faCheckCircle)
 
@@ -71,20 +72,25 @@ class App extends Component {
 
 
   render() {
-    const matched = matchPath(window.location.pathname, {
+    const adminmatched = matchPath(window.location.pathname, {
       path: "/admin",
+      exact: true,
+      strict: false
+    });
+    const landingmatched = matchPath(window.location.pathname, {
+      path: "/lp",
       exact: true,
       strict: false
     });
     return (
       <Router>
         <div className="container">
-          <Navigationbar
+          <Route render={() => (!landingmatched ? <Navigationbar
             style={{
               transform: `translate(0, ${this.state.slide})`,
               transition: 'transform 90ms linear',
-            }} />
-          <Route render={() => (!matched ? <Contactbar /> : null)} />);
+            }} /> : null)} />
+          <Route render={() => (!(adminmatched || landingmatched) ? <Contactbar /> : null)} />
           <ScrollToTop>
             <Route path="/" exact component={Home} />
           </ScrollToTop>
@@ -112,7 +118,10 @@ class App extends Component {
           <ScrollToTop>
             <Route path="/admin" component={Admin} />
           </ScrollToTop>
-          <Footer />
+          <ScrollToTop>
+            <Route path="/lp" component={LandingPage} />
+          </ScrollToTop>
+          <Route render={() => (!landingmatched ? <Footer /> : null)} />
         </div>
       </Router>
     )
