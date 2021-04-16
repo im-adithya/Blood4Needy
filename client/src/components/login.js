@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Switch from "react-switch";
+//import Switch from "react-switch";
 import Autocomplete from 'react-google-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
@@ -35,7 +35,6 @@ class LoginBox extends Component {
     this.onChangeGender = this.onChangeGender.bind(this);
     this.onChangeBG = this.onChangeBG.bind(this);
     this.onChangeAddress = this.onChangeAddress.bind(this);
-    this.setCurrentLocation = this.setCurrentLocation.bind(this);
     this.onChangeOTP = this.onChangeOTP.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.onSubmitforOTP = this.onSubmitforOTP.bind(this);
@@ -108,7 +107,7 @@ class LoginBox extends Component {
     })
   }
 
-  setCurrentLocation() {
+  /*setCurrentLocation() {
     let available = 0
     if (!this.state.posavailable && 'geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -132,7 +131,7 @@ class LoginBox extends Component {
       }
       return;
     }
-  }
+  }*/
 
   onChangeOTP(e) {
     this.setState({
@@ -258,7 +257,7 @@ class LoginBox extends Component {
     }
 
     if (typeof (this.state.pos) !== 'object') {
-      this.setState({ warningthree: 'Please allow access to your location' })
+      this.setState({ warningthree: 'Please select from dropdown.' })
       return
     }
 
@@ -381,17 +380,17 @@ class LoginBox extends Component {
             <Autocomplete
               id="address" name="address" onChange={this.onChangeAddress}
               apiKey={'AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us'}
-              onPlaceSelected={(place) => this.setState({ address: place.formatted_address, backupPos: place })}
+              onPlaceSelected={(place) => this.setState({ address: place.formatted_address, pos: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } })}
               types={['(cities)']}
               componentRestrictions={{ country: "in" }}
               placeholder="Select from dropdown"
               required
             />
-            <div className="currloc">
+            {/*<div className="currloc">
               <label htmlFor="address">Set Current Location <span className="colorize">(Required)</span></label>
               <Switch onChange={this.setCurrentLocation} checked={this.state.posavailable} uncheckedIcon={false} onColor='#F42929' offColor='#bcbcbc' handleDiameter={16} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #F42929' width={30} height={15} checkedIcon={false} />
-              {/*<div onClick={this.setCurrentLocation} className="clickable"><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: 'white' }} /></div>*/}
-            </div>
+              //  <div onClick={this.setCurrentLocation} className="clickable"><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: 'white' }} /></div>
+            </div>*/}
           </div>
           <label htmlFor="name" style={{ fontSize: '12px', marginBottom: '0.5rem' }}>Gender</label>
           <div className="radiobtn">

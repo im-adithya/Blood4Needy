@@ -21,12 +21,10 @@ import marker6 from '../../assets/marker-06.png';
 import marker7 from '../../assets/marker-07.png';
 import marker8 from '../../assets/marker-08.png';
 import { WhatsappIcon } from "react-share";
-var min = .999999;
-var max = 1.000001;
 
 const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
     return (
-        <GoogleMap defaultZoom={13} defaultCenter={props.defaults}>
+        <GoogleMap defaultZoom={18} defaultCenter={props.defaults}>
             {props.markers.map((marker, index) => {
                 const onClick = props.onClick.bind(this, marker)
                 function iconspecifier(bg) {
@@ -52,6 +50,17 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                             return markerself
                     }
                 }
+
+                /*CHANGE THESE SPRINKLERS WHEN SUFFICIENT DONORS CHANGE THEIR LOCATION (SIMPLY CHANGE THE VALUE OF 0.000025 TO 0.000000000025 OR EVEN LESS)*/
+
+                function lngsprinkler(i) {
+                    return ((i % 6 * 0.000025) * i % (props.markers.length / 50)) * Math.sin((i % 50) * (2 * Math.PI / 50))
+                }
+
+                function latsprinkler(i) {
+                    return ((i % 6 * 0.000025) * i % (props.markers.length / 50)) * Math.cos((i % 50) * (2 * Math.PI / 50))
+                }
+
                 return (
                     <Marker
                         icon={{
@@ -69,7 +78,7 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                             fontWeight: (marker.user._id !== props.user._id) ? 'normal' : 'bold'
                         }}*/
                         onClick={onClick}
-                        position={{ lat: marker.location.coordinates[1] * ((index + 1) / props.markers.length * (max - min) + min), lng: marker.location.coordinates[0] * ((index + 1) / props.markers.length * (max - min) + min) }}
+                        position={{ lat: marker.location.coordinates[1] + latsprinkler(index), lng: marker.location.coordinates[0] + lngsprinkler(index) }}
                     >
                         {props.selectedMarker === marker && marker.user._id !== props.user._id &&
                             <InfoWindow>
@@ -96,7 +105,7 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                     </Marker>
                 )
             })}
-        </GoogleMap>
+        </GoogleMap >
     )
 })
 

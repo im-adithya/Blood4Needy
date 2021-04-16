@@ -43,19 +43,19 @@ class AutoComplete extends Component {
         }
 
         addplace(place);
-        this.setState({add: place.formatted_address})
+        this.setState({ add: place.formatted_address })
         this.searchInput.blur();
     };
 
-    handleInput(e){
+    handleInput(e) {
         this.props.addressUpdate(e.target.value)
     }
 
     render() {
         return (
             <Wrapper>
-                
-                <label htmlFor="hospital" style={{textAlign: 'left'}} autoComplete="chrome-off">Hospital</label>
+
+                <label htmlFor="hospital" style={{ textAlign: 'left' }} autoComplete="chrome-off">Hospital (अस्पताल)&nbsp;</label>
                 <input
                     className="search-input"
                     ref={(ref) => {

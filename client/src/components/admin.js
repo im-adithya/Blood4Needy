@@ -572,6 +572,7 @@ class AdminPanel extends Component {
                                             <span className="bold">Age: </span>{info.age}<br />
                                             <span className="bold">Gender: </span>{info.gender}<br />
                                             <span className="bold">Address: </span>{info.address}<br />
+                                            <span className="bold">Joined: </span>{info.createdAt}<br />
                                             <span className="bold">Pos: </span>{info.pos.lat + '-' + info.pos.lng}<br />
                                             <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editUser}>Edit User</button>&nbsp;&nbsp;&nbsp;
                                             <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeUser}>Delete User</button>

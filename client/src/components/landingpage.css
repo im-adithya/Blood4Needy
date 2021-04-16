@@ -7,16 +7,17 @@
 
 .lp-cover{
     width: 100%;
-    height: 35vh;
+    height: 50vh;
     background-size: cover;
     position: relative;
+    background-position-y: -110px;
 }
 
 .lp-admin{
     width: 100%;
     bottom: 0;
     position: absolute;
-    background: rgba(0, 103, 238, 0.80);
+    background: #ff1100b8;
     text-align: center;
     font-size: 20px;
     padding: 5px 0;
@@ -68,7 +69,7 @@
 
 .lp-form > input{
     width: 100%;
-    height: 30px;
+    height: 40px;
     color: #444444 !important;
     border: 1px solid #e8ebed !important;
     background-color: #FDFEFF;
@@ -92,7 +93,7 @@
 .lp-form select{
     font-size: 15px;  
     width: 50%;
-    height: 30px;
+    height: 40px;
 }
 
 .lp-form .radiobtn label{
@@ -108,7 +109,7 @@
 }
 
 .lp-form>.selection>select{
-    height: 30px;
+    height: 40px;
     width: 100px;
 }
 
@@ -147,6 +148,21 @@
     width: 150px;
 }
 
+.lp-warning{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.lp-typage{
+    height: 45vh;
+}
+
+.lp-ty{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
 @media (max-width: 500px) {
     .lp {
         width: 100%;
@@ -161,5 +177,15 @@
     }
     .lp-bg{
         width: 60%;
+    }
+    .lp-cover{
+        background-position-y: 0;
+        height: 30vh;
+    }
+    .lp-admin{
+        font-size: 17px;
+    }
+    .lp-typage{
+        height: 70vh;
     }
 }

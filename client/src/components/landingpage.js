@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 import Autocomplete from 'react-google-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { connect } from 'react-redux';
 import './landingpage.css';
 
 import logo from '../logodark.svg';
 import clock from '../assets/clock-icon.webp';
 
-export default class LandingPage extends Component {
+class LandingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,6 +20,8 @@ export default class LandingPage extends Component {
             bloodgroup: '',
             address: '',
             pos: '',
+
+            page: 1,
         }
     }
 
@@ -64,10 +67,11 @@ export default class LandingPage extends Component {
         })
     }
 
+
+
     submitform = (e) => {
         e.preventDefault()
-        console.log(this.state)
-        /*const data = {
+        const data = {
             phone: this.state.phone,
             name: this.state.name,
             gender: this.state.gender,
@@ -75,24 +79,46 @@ export default class LandingPage extends Component {
             address: this.state.address,
             pos: this.state.pos,
             age: this.state.age,
-            bloodgroup: this.state.bloodgroup
-        }*/
-        //axios.post('/api/landingpage/', data)
-        //    .then(res => {
-        //        console.log(res)
-        //    })
-        //    .catch(err => {
-        //        console.log(err)
-        //    })
+            bloodgroup: this.state.bloodgroup,
+        }
+
+        if (typeof (data.pos) === 'object') {
+            axios.get('/api/user/' + this.state.phone)
+                .then(res => {
+                    if (res.data === null) {
+                        axios.post('/api/user/add', data)
+                            .then(res => {
+                                this.props.addUser(res.data)
+                                axios.post('/api/blood/add', { user: res.data })
+                                    .then(res => {
+                                        this.setState({ page: 1 })
+                                    })
+                                    .catch(err => {
+                                        console.log(err)
+                                    })
+                            })
+                            .catch(err => {
+                                console.log(err)
+                            });
+                    } else {
+                        this.setState({ warning: "User Already Exists!" })
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        } else {
+            this.setState({ warning: "Please select from dropdown" })
+        }
     }
 
     render() {
         return (
             <div className="lp">
-                <div style={{ backgroundImage: `url(${logo})` }} className="lp-cover">
+                <div style={{ backgroundImage: `url(https://californiaivf.eggdonorconnect.com/ClinicFiles/Clinic59/bg-egg-donor.jpg)` }} className="lp-cover">
                     <div className="lp-admin">Become a Blood Donor with Blood4Needy</div>
                 </div>
-                <form className="lp-form" onSubmit={this.submitform}>
+                {this.state.page === 0 && <form className="lp-form" onSubmit={this.submitform}>
                     <img className="lp-logo" alt="logo" src={logo} width="150" />
                     <p className="lp-tag-1">Donate Blood, Save Lives <FontAwesomeIcon icon='heart' className="heart" /></p>
                     <p className="lp-tag-2 bold">Blood4Needy is an online NGO. We connect blood donors with the blood receivers through an integrated online platform.</p>
@@ -105,11 +131,11 @@ export default class LandingPage extends Component {
                     </div>
                     <p style={{ fontSize: '15px' }}>Please complete the form below to begin your blood donation journey with Blood4Needy</p>
                     <label htmlFor="phone">10-Digit Mobile Number</label>
-                    <input type="tel" value='+91' style={{ width: '10%', textAlign: 'center' }} disabled />
+                    <input type="tel" value='+91' style={{ width: '20%', textAlign: 'center' }} disabled />
                     <input
                         type="tel"
                         placeholder="Mobile Number"
-                        style={{ width: '90%' }}
+                        style={{ width: '80%' }}
                         name="phone"
                         id="phone"
                         pattern="[1-9]{1}[0-9]{9}"
@@ -161,11 +187,39 @@ export default class LandingPage extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="bold colorize lp-warning">{this.state.warning}</div>
                     <div className="btnbox">
                         <button type="submit" id="next3" className="loginbutton">Submit</button>
                     </div>
-                </form>
+                </form>}
+                {this.state.page === 1 && <div className="lp-typage">
+                    <div>
+                        <div className="btnbox">
+                            <div className="lp-ty" style={{ marginTop: '50px' }}>Your account has been created!</div>
+                            <div className="lp-ty" style={{ marginBottom: '50px' }}>Thank You For Being a Part of Blood4Needy!</div>
+                            <button type="button" id="actlog" className="loginbutton"><a href="/request" style={{ fontSize: '15px', color: 'white' }}>Request Blood</a></button>
+                            <button type="button" id="reqblood" className="loginbutton"
+                                style={{ backgroundColor: 'white', color: 'black', border: '1px solid black' }}><a href="/feed" style={{ fontSize: '15px', color: 'black' }}>Live Feed</a></button>
+                        </div><br /><br /><br /><br /><br />
+                    </div>
+                </div>
+                }
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth,
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addUser: (user) => { dispatch({ type: 'AUTHENTICATE_USER', userdata: user }) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage)

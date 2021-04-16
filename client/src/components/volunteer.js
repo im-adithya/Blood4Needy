@@ -186,7 +186,7 @@ class Form extends Component {
                         <label htmlFor="name">City in which you wish to volunteer</label>
                         <select name="loc" id="loc" onChange={this.onChangeCity} required>
                             <option value="" defaultValue hidden>Select Here</option>
-                            <option value="Gwalior" >Gwalior</option>
+                            <option value="Gwalior, Madhya Pradesh, India" >Gwalior</option>
                             <option value="Bhopal">Bhopal</option>
                             <option value="Indore">Indore</option>
                             <option value="Other">Other</option> {/*Special Case*/}

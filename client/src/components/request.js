@@ -227,7 +227,7 @@ class RequestForm extends Component {
                 <form className="requestform" onSubmit={this.onSubmitFinal} >
                     <div className="requestheader">Kindly fill below details accurately so we can help you better!</div>
                     <div className="formwrapper">
-                        <label>Blood Group</label>
+                        <label>Blood Group (रक्त वर्ग)&nbsp;</label>
                         <select name="bloodgroup" id="bloodgroup" onChange={this.onChangeBG} required>
                             <option value="" hidden>Select Blood Group</option>
                             <option value="A-">A-</option>
@@ -239,7 +239,7 @@ class RequestForm extends Component {
                             <option value="O-">O-</option>
                             <option value="O+">O+</option>
                         </select>
-                        <label>Blood Units Required</label>
+                        <label>Blood Units Required (आवश्यक यूनिट्स)&nbsp;</label>
                         <div className="units">
                             <div onClick={this.onChangeUnits} className={'clickable ' + (this.state.units === 1 ? 'activeunits' : '')}>1</div>
                             <div onClick={this.onChangeUnits} className={'clickable ' + (this.state.units === 2 ? 'activeunits' : '')}>2</div>
@@ -248,13 +248,13 @@ class RequestForm extends Component {
                             <div onClick={this.onChangeUnits} className={'clickable ' + (this.state.units === 5 ? 'activeunits' : '')}>5</div>
                             <div onClick={this.onChangeUnits} className={'clickable ' + (this.state.units === 6 ? 'activeunits' : '')}>6</div>
                         </div>
-                        <label htmlFor="requireddate">Date When Required</label>
+                        <label htmlFor="requireddate">Date When Required (तारीख)&nbsp;</label>
                         <input type="date" id="requireddate" className={"dateclass " + (this.state.requireddate !== '' ? '' : 'placeholderclass')} name="requireddate" onChange={this.onChangeRequiredDate} placeholder="Select Date" />
                     </div>
                     <div className="formwrapper">
-                        <label htmlFor="patientname">Patient's Full Name</label>
+                        <label htmlFor="patientname">Patient's Full Name (रोगी का पूरा नाम)&nbsp;</label>
                         <input type="text" name="patientname" id="patientname" onChange={this.onChangePatientName} autoComplete="chrome-off" placeholder="Enter Name Here" required />
-                        <label htmlFor="patientphone">Patient's Contact Number</label>
+                        <label htmlFor="patientphone">Patient's Contact Number (रोगी का संपर्क नंबर)&nbsp;</label>
                         <input type="tel" value='+91' style={{ width: '15%', textAlign: 'center' }} disabled />
                         <input
                             type="tel"
@@ -266,9 +266,9 @@ class RequestForm extends Component {
                             onChange={this.onChangePatientPhone}
                             autoComplete="chrome-off"
                             required />
-                        <label htmlFor="doctorname">Doctor's Name <span className="colorize">(Optional)</span></label>
+                        <label htmlFor="doctorname">Doctor's Name (डॉक्टर का नाम)&nbsp;<span className="colorize">(Optional)</span></label>
                         <input type="text" name="doctorname" id="doctorname" onChange={this.onChangeDoctorName} autoComplete="chrome-off" placeholder="Doctor Name" />
-                        <label htmlFor="reason">Reason/Purpose Details <span className="colorize">(Optional)</span></label>
+                        <label htmlFor="reason">Reason/Purpose Details (उद्देश्य विवरण)&nbsp;<span className="colorize">(Optional)</span></label>
                         <textarea type="text" name="reason" id="reason" rows="2" onChange={this.onChangeReason} placeholder="Why you need blood?" /><br />
                     </div>
                     <div className="formwrapper mapwrap">
@@ -293,7 +293,7 @@ class RequestForm extends Component {
                             required />
                         <label htmlFor="contactemail">Contact Person's Email <span className="colorize">(Optional)</span></label>
                         <input type="text" name="contactemail" id="contactemail" onChange={this.onChangeContactEmail} placeholder="Enter Email Here" autoComplete="chrome-off" /><br />*/}
-                        <label htmlFor="msgdonors">Message for Donors</label>
+                        <label htmlFor="msgdonors">Message for Donors (दाताओं के लिए संदेश)&nbsp;</label>
                         <textarea type="text" name="msgdonors" id="msgdonors" rows="2" onChange={this.onChangeMessage} placeholder="This message will appear to all our blood donors" required /><br />
 
                         <p>By submitting these details, you agree that this request should not be made for as commercial interest and you allow with Terms and Conditions of privacy</p>

@@ -78,7 +78,7 @@ class App extends Component {
       strict: false
     });
     const landingmatched = matchPath(window.location.pathname, {
-      path: "/lp",
+      path: "/lp/s/1",
       exact: true,
       strict: false
     });
@@ -119,7 +119,7 @@ class App extends Component {
             <Route path="/admin" component={Admin} />
           </ScrollToTop>
           <ScrollToTop>
-            <Route path="/lp" component={LandingPage} />
+            <Route path="/lp/s/1" component={LandingPage} />
           </ScrollToTop>
           <Route render={() => (!landingmatched ? <Footer /> : null)} />
         </div>
