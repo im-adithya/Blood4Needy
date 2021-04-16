@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import axios from 'axios';
 import Autocomplete from 'react-google-autocomplete';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './landingpage.css';
 
 import logo from '../logodark.svg';
@@ -93,22 +94,22 @@ export default class LandingPage extends Component {
                 </div>
                 <form className="lp-form" onSubmit={this.submitform}>
                     <img className="lp-logo" alt="logo" src={logo} width="150" />
-                    <p className="lp-tag">Donate Blood, Save Lives :heart:</p>
-                    <p className="lp-tag bold">Blood4Needy is an online NGO. We connect blood donors with the blood receivers through an integrated online platform.</p>
+                    <p className="lp-tag-1">Donate Blood, Save Lives <FontAwesomeIcon icon='heart' className="heart" /></p>
+                    <p className="lp-tag-2 bold">Blood4Needy is an online NGO. We connect blood donors with the blood receivers through an integrated online platform.</p>
                     <div className="lp-time">
                         <img alt="time" src={clock} width="40" height="40" />
                         <div className="lp-time-tags">
                             <p>Estimated completion time:</p>
-                            <p style={{ fontSize: '18px' }}>2-3 minutes</p>
+                            <p style={{ fontSize: '18px' }}>1 - 1½ minutes</p>
                         </div>
                     </div>
-                    <p style={{ fontSize: '10px' }}>Please complete the form below to begin your blood donation journey with Blood4Needy</p>
+                    <p style={{ fontSize: '15px' }}>Please complete the form below to begin your blood donation journey with Blood4Needy</p>
                     <label htmlFor="phone">10-Digit Mobile Number</label>
-                    <input type="tel" value='+91' style={{ width: '15%' }} disabled />
+                    <input type="tel" value='+91' style={{ width: '10%', textAlign: 'center' }} disabled />
                     <input
                         type="tel"
                         placeholder="Mobile Number"
-                        style={{ width: '85%' }}
+                        style={{ width: '90%' }}
                         name="phone"
                         id="phone"
                         pattern="[1-9]{1}[0-9]{9}"
@@ -131,28 +132,34 @@ export default class LandingPage extends Component {
                         placeholder="Select from dropdown"
                         required
                     />
-                    <label htmlFor="name" style={{ fontSize: '12px', marginBottom: '0.5rem' }}>Gender</label>
-                    <div className="radiobtn">
-                        <input type="radio" id="male" name="gender" value="male" onChange={this.onChangeGender} required />
-                        <label htmlFor="male">Male</label><br />
-                        <input type="radio" id="female" name="gender" value="female" onChange={this.onChangeGender} required />
-                        <label htmlFor="female">Female</label><br />
-                        <input type="radio" id="other" name="gender" value="other" onChange={this.onChangeGender} required />
-                        <label htmlFor="other">Other</label>
-                    </div>
-                    <div className="selection">
-                        <label htmlFor="bloodgroup">Blood Group</label>
-                        <select name="bloodgroup" id="bloodgroup" onChange={this.onChangeBG} required>
-                            <option value="" defaultValue hidden>--</option>
-                            <option value="A-">A-</option>
-                            <option value="A+">A+</option>
-                            <option value="B-">B-</option>
-                            <option value="B+">B+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="O-">O-</option>
-                            <option value="O+">O+</option>
-                        </select>
+                    <div className="lp-surround">
+                        <div className="lp-gender">
+                            <label htmlFor="name">Gender</label>
+                            <div className="radiobtn">
+                                <input type="radio" id="male" name="gender" value="male" onChange={this.onChangeGender} required />
+                                <label htmlFor="male">Male</label><br />
+                                <input type="radio" id="female" name="gender" value="female" onChange={this.onChangeGender} required />
+                                <label htmlFor="female">Female</label><br />
+                                <input type="radio" id="other" name="gender" value="other" onChange={this.onChangeGender} required />
+                                <label htmlFor="other">Other</label>
+                            </div>
+                        </div>
+                        <div className="lp-bg">
+                            <div className="selection">
+                                <label htmlFor="bloodgroup">Blood Group</label>
+                                <select name="bloodgroup" id="bloodgroup" onChange={this.onChangeBG} required>
+                                    <option value="" defaultValue hidden>--</option>
+                                    <option value="A-">A-</option>
+                                    <option value="A+">A+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="O+">O+</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div className="btnbox">
                         <button type="submit" id="next3" className="loginbutton">Submit</button>

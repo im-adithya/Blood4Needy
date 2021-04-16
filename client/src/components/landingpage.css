@@ -1,6 +1,5 @@
 .lp {
-    width: 45%;
-    max-width: 50%;
+    width: 60%;
     margin: 10px auto;
     box-shadow: 2px 2px 10px #00000040;
     box-sizing: border-box;
@@ -30,11 +29,17 @@
     margin: 15px auto;
 }
 
-.lp-tag{
+.lp-tag-1{
     text-align: center;
     font-size: 13px;
     margin: 10px auto 20px;
     width: 60%;
+}
+
+.lp-tag-2{
+    text-align: left;
+    font-size: 15px;
+    margin: 10px 20px 20px 0;
 }
 
 .lp-time{
@@ -51,22 +56,48 @@
 }
 
 .lp-form{
-    padding: 0 20px 20px;
+    padding: 0 40px 20px;
 }
 
-.lp-form > label{
+.lp-form label{
     font-weight: bold;
     display: block;
-    margin-top: 10px;
+    margin: 20px 0 10px;
+    font-size: 15px;
 }
 
 .lp-form > input{
     width: 100%;
     height: 30px;
+    color: #444444 !important;
+    border: 1px solid #e8ebed !important;
+    background-color: #FDFEFF;
+    padding: 6px 12px 6px 12px;
+    box-shadow: inset 0 1px 4px 0 rgb(0 0 0 / 8%);
+    font-size: 15px;
 }
 
-.lp-form>.radiobtn{
-    width: 60%;
+.lp-form select, .lp-form .radiobtn input{
+    color: #444444 !important;
+    border: 1px solid #e8ebed !important;
+    background-color: #FDFEFF;
+    box-shadow: inset 0 1px 4px 0 rgb(0 0 0 / 8%);
+    font-size: 15px;
+}
+
+.lp-form>input:focus,.lp-form select:focus, .lp-form .radiobtn input:focus{
+    outline: 1px solid #f42929;
+}
+
+.lp-form select{
+    font-size: 15px;  
+    width: 50%;
+    height: 30px;
+}
+
+.lp-form .radiobtn label{
+    font-size: 15px;
+    margin: 0 20px;
 }
 
 .lp-form>.selection{
@@ -81,6 +112,41 @@
     width: 100px;
 }
 
+.lp .heart{
+    color: red
+}
+
+.lp-surround{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lp-bg{
+    width: 40%;
+}
+
+.lp-bg .selection{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.lp-bg select{
+    width: 40%;
+}
+
+.lp-form .btnbox{
+    margin-top: 30px;
+}
+
+.lp-form button{
+    font-size: 15px;
+    border-radius: 5px;
+    width: 150px;
+}
+
 @media (max-width: 500px) {
     .lp {
         width: 100%;
@@ -89,5 +155,11 @@
     }
     .lp-tag{
         width: 100%;
+    }
+    .lp-surround{
+        flex-direction: column;
+    }
+    .lp-bg{
+        width: 60%;
     }
 }
