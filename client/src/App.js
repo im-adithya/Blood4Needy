@@ -85,7 +85,7 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <Route render={() => (!landingmatched ? <Navigationbar
+          <Route render={() => (!(adminmatched || landingmatched) ? <Navigationbar
             style={{
               transform: `translate(0, ${this.state.slide})`,
               transition: 'transform 90ms linear',
@@ -121,7 +121,7 @@ class App extends Component {
           <ScrollToTop>
             <Route path="/lp/s/1" component={LandingPage} />
           </ScrollToTop>
-          <Route render={() => (!landingmatched ? <Footer /> : null)} />
+          <Route render={() => (!(adminmatched || landingmatched) ? <Footer /> : null)} />
         </div>
       </Router>
     )

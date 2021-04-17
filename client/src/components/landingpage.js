@@ -21,7 +21,7 @@ class LandingPage extends Component {
             address: '',
             pos: '',
 
-            page: 1,
+            page: 0,
         }
     }
 

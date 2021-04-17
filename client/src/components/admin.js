@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
-import './admin.css'
+import './admin.css';
+import logo from '../logodark.svg';
 
 class AdminLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            warning: ' '
         }
     }
 
@@ -18,26 +20,45 @@ class AdminLogin extends Component {
     }
 
     onChangePass = (e) => {
-        this.setState({ username: e.target.value })
+        this.setState({ password: e.target.value })
     }
 
     adminLogin = (e) => {
-        if (this.state.username === 'Lakshya' && this.state.password === 'Blood4Needy') {
-            this.props.toggle()
+        e.preventDefault()
+        console.log(this.state)
+        if (window.innerWidth < 600) {
+            this.setState({ warning: 'Login from Laptop/PC' })
+        } else {
+            if (this.state.username === 'Lakshya' && this.state.password === 'Blood4Needy') {
+                this.props.toggle()
+            } else {
+                this.setState({ warning: 'Invalid Credentials' })
+            }
         }
     }
 
     render() {
-        return (
-            <div className="adminlogin">
-                <form onSubmit={this.adminLogin} className="adminform">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="username" onChange={this.onChangeUserName} required /><br />
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password" onChange={this.onChangePass} required /><br />
-                </form>
-            </div>
-        )
+        if (this.props.display) {
+            return (
+                <div className="adminlogin">
+                    <form onSubmit={this.adminLogin} className="adminform">
+                        <div className="logheader">
+                            <img src={logo} alt="logo" width={100} />
+                            <h3>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;Admin</h3>
+                        </div><br /><br />
+                        <label htmlFor="username">Username</label>
+                        <input type="text" name="username" id="username" placeholder="username" onChange={this.onChangeUserName} required /><br />
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Password" onChange={this.onChangePass} required /><br />
+                        <div className="bold colorize admin-warn">{this.state.warning}</div>
+                        <button className="admin-btn">Login</button>
+                    </form>
+                    <a href="/" className="admin-sug">← Back to Blood4Needy</a>
+                </div>
+            )
+        } else {
+            return (<div></div>)
+        }
     }
 }
 
@@ -82,6 +103,8 @@ class AdminPanel extends Component {
             newupdatemode: true,
             newusermode: true,
             reqeditmode: false,
+
+            active: 'users'
         }
     }
 
@@ -550,313 +573,330 @@ class AdminPanel extends Component {
     }
 
     render() {
-        return (
-            <div className="admin">
-                <div className="notifwrapper">
-                    <div className="orgupdates">
-                        <div style={{ height: '95%' }}>
-                            <h3>All Users</h3>
-                            {this.state.users.map((info, index) => {
-                                if ((index < this.state.userspageCount * 4) && (index >= (this.state.userspageCount - 1) * 4)) {
-                                    return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
-                                        <h2 className="orgupdate-1">
-                                            {info.name}
-                                        </h2>
-                                        <div className="orgupdate-2">
-                                            <div className="userbg">{info.bloodgroup}</div>
-                                            <button className="readbtn" style={{ width: '80px' }} onClick={() => this.handleReadUser(index)}>{this.state.openeduser === index ? 'Hide ' : 'View '} Details</button>
-                                        </div>
-                                        {this.state.openeduser === index && <div style={{ marginTop: '10px' }} className="voldata">
-                                            <span className="bold">Phone: </span>{info.phone}<br />
-                                            <span className="bold">Email: </span>{info.email}<br />
-                                            <span className="bold">Age: </span>{info.age}<br />
-                                            <span className="bold">Gender: </span>{info.gender}<br />
-                                            <span className="bold">Address: </span>{info.address}<br />
-                                            <span className="bold">Joined: </span>{info.createdAt}<br />
-                                            <span className="bold">Pos: </span>{info.pos.lat + '-' + info.pos.lng}<br />
-                                            <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editUser}>Edit User</button>&nbsp;&nbsp;&nbsp;
+        if (this.props.display) {
+            return (
+                <div>
+                    <div class="sidenav">
+                        <a href="/"><img src={logo} alt="logo" width={100} style={{ marginBottom: '30px', paddingLeft: '10px' }} /></a>
+                        <p style={{ color: ((this.state.active === 'users') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'users' })}>Users</p>
+                        <p style={{ color: ((this.state.active === 'requests') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'requests' })}>Requests</p>
+                        <p style={{ color: ((this.state.active === 'updates') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'updates' })}>Updates</p>
+                        <p style={{ color: ((this.state.active === 'volunteers') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'volunteers' })}>Volunteers</p>
+                    </div>
+                    <div className="admin">
+                        <div className="admin-header">
+                            <h2>Admin Panel</h2>
+                            <button className="admin-so" onClick={() => this.props.toggle()}>Sign Out</button>
+                        </div>
+                        {this.state.active === 'users' && <div className="notifwrapper">
+                            <div className="orgupdates">
+                                <div style={{ height: '95%' }}>
+                                    <h3>All Users</h3>
+                                    {this.state.users.map((info, index) => {
+                                        if ((index < this.state.userspageCount * 5) && (index >= (this.state.userspageCount - 1) * 5)) {
+                                            return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
+                                                <h2 className="orgupdate-1">
+                                                    {info.name}
+                                                </h2>
+                                                <div className="orgupdate-2">
+                                                    <div className="userbg">{info.bloodgroup}</div>
+                                                    <button className="readbtn" style={{ width: '80px' }} onClick={() => this.handleReadUser(index)}>{this.state.openeduser === index ? 'Hide ' : 'View '} Details</button>
+                                                </div>
+                                                {this.state.openeduser === index && <div style={{ marginTop: '10px' }} className="voldata">
+                                                    <span className="bold">Phone: </span>{info.phone}<br />
+                                                    <span className="bold">Email: </span>{info.email}<br />
+                                                    <span className="bold">Age: </span>{info.age}<br />
+                                                    <span className="bold">Gender: </span>{info.gender}<br />
+                                                    <span className="bold">Address: </span>{info.address}<br />
+                                                    <span className="bold">Joined: </span>{info.createdAt}<br />
+                                                    <span className="bold">Pos: </span>{info.pos.lat + '-' + info.pos.lng}<br />
+                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editUser}>Edit User</button>&nbsp;&nbsp;&nbsp;
                                             <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeUser}>Delete User</button>
-                                        </div>}
-                                    </div>)
-                                } else {
-                                    return null;
-                                }
-                            })}
-                        </div>
-                        <div className="pages">
-                            <ReactPaginate
-                                previousLabel={'<'}
-                                nextLabel={'>'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={Math.ceil(this.state.users.length / 4)}
-                                marginPagesDisplayed={2}
-                                pageRangeDisplayed={5}
-                                onPageChange={this.handleusersPageClick}
-                                containerClassName={'pagination'}
-                                subContainerClassName={'pages pagination'}
-                                activeClassName={'active'}
-                            />
-                        </div>
-                    </div>
-                    <div className="orgupdates" style={{ display: 'block' }}>
-                        <div>
-                            <h3>{this.state.newusermode ? 'Add New ' : 'Edit '} User</h3>
-                            <form onSubmit={this.newUser} className="updatesform">
-                                <label htmlFor="phone">10-Digit Mobile Number</label>
-                                <input type="tel" value='+91' style={{ width: '10%' }} disabled />
-                                <input
-                                    type="tel"
-                                    placeholder="Mobile Number"
-                                    style={{ width: '90%' }}
-                                    name="phone"
-                                    id="phone"
-                                    pattern="[1-9]{1}[0-9]{9}"
-                                    onChange={this.onChangePhone}
-                                    value={this.state.userphone}
-                                    required />
-                                <label htmlFor="name">Name</label>
-                                <input type="text" name="name" id="name" placeholder="Name" value={this.state.username} onChange={this.onChangeName} required /><br />
-                                <div className="selection">
-                                    <label htmlFor="bloodgroup" style={{ fontSize: '30px' }}>Blood Group</label>
-                                    <select name="bloodgroup" id="bloodgroup" value={this.state.userbg} onChange={this.onChangeBG} style={{ width: '30%', fontSize: '20px' }} required>
-                                        <option value="" defaultValue hidden>--</option>
-                                        <option value="A-">A-</option>
-                                        <option value="A+">A+</option>
-                                        <option value="B-">B-</option>
-                                        <option value="B+">B+</option>
-                                        <option value="AB-">AB-</option>
-                                        <option value="AB+">AB+</option>
-                                        <option value="O-">O-</option>
-                                        <option value="O+">O+</option>
-                                    </select>
+                                                </div>}
+                                            </div>)
+                                        } else {
+                                            return null;
+                                        }
+                                    })}
                                 </div>
-                                <label htmlFor="email">Email</label>
-                                <input type="email" name="email" id="email" placeholder="example@domain.com" value={this.state.useremail} onChange={this.onChangeEmail} required /><br />
-                                <label htmlFor="age">Age</label>
-                                <input type="number" min="18" name="age" id="age" placeholder="Age" value={this.state.userage} onChange={this.onChangeAge} required /><br />
-                                <label htmlFor="address">City</label>
-                                <Autocomplete
-                                    id="address" name="address"
-                                    onChange={this.onChangeAddress}
-                                    value={this.state.useraddress}
-                                    apiKey={'AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us'}
-                                    onPlaceSelected={(place) => this.setState({ useraddress: place.formatted_address, userpos: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } })}
-                                    types={['(cities)']}
-                                    componentRestrictions={{ country: "in" }}
-                                    placeholder="Select from dropdown"
-                                    required
-                                />
-                                <div className="radiobtn">
-                                    <input type="radio" id="male" name="gender" value="male" checked={this.state.usergender === 'male'} onChange={this.onChangeGender} required />
-                                    <label htmlFor="male">Male</label><br />
-                                    <input type="radio" id="female" name="gender" value="female" checked={this.state.usergender === 'female'} onChange={this.onChangeGender} required />
-                                    <label htmlFor="female">Female</label><br />
-                                    <input type="radio" id="other" name="gender" value="other" checked={this.state.usergender === 'other'} onChange={this.onChangeGender} required />
-                                    <label htmlFor="other">Other</label>
+                                <div className="pages">
+                                    <ReactPaginate
+                                        previousLabel={'<'}
+                                        nextLabel={'>'}
+                                        breakLabel={'...'}
+                                        breakClassName={'break-me'}
+                                        pageCount={Math.ceil(this.state.users.length / 5)}
+                                        marginPagesDisplayed={2}
+                                        pageRangeDisplayed={3}
+                                        onPageChange={this.handleusersPageClick}
+                                        containerClassName={'pagination'}
+                                        subContainerClassName={'pages pagination'}
+                                        activeClassName={'active'}
+                                    />
                                 </div>
-                                <div className="colorize">{this.state.userwarning}</div>
-                                <button type="submit" style={{ width: '80px', marginTop: '10px' }} className="readbtn">{this.state.newusermode ? 'Add ' : 'Edit '} User</button><br />
-                                {!this.state.newusermode && <button onClick={this.usercancel} style={{ width: '80px', marginTop: '10px' }} className="readbtn">Cancel</button>}
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div className="notifwrapper">
-                    <div className="orgupdates">
-                        <div style={{ height: '95%' }}>
-                            <h3>Blood Requests</h3>
-                            {this.state.requests.map((info, index) => {
-                                if ((index < this.state.requestspageCount * 4) && (index >= (this.state.requestspageCount - 1) * 4)) {
-                                    return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
-                                        <h2 className="orgupdate-1">
-                                            {info.patientname}
-                                        </h2>
-                                        <div className="orgupdate-2">
-                                            <div className="userbg">{info.units + ' units'} {info.bloodgroup}</div>
-                                            <button className="readbtn" style={{ width: '80px' }} onClick={() => this.handleReadRequest(index)}>{this.state.openedrequest === index ? 'Hide ' : 'View '} Details</button>
+                            </div>
+                            <div className="orgupdates" style={{ display: 'block' }}>
+                                <div>
+                                    <h3>{this.state.newusermode ? 'Add New ' : 'Edit '} User</h3>
+                                    <form onSubmit={this.newUser} className="updatesform">
+                                        <label htmlFor="phone">10-Digit Mobile Number</label>
+                                        <input type="tel" value='+91' style={{ width: '10%' }} disabled />
+                                        <input
+                                            type="tel"
+                                            placeholder="Mobile Number"
+                                            style={{ width: '90%' }}
+                                            name="phone"
+                                            id="phone"
+                                            pattern="[1-9]{1}[0-9]{9}"
+                                            onChange={this.onChangePhone}
+                                            value={this.state.userphone}
+                                            required />
+                                        <label htmlFor="name">Name</label>
+                                        <input type="text" name="name" id="name" placeholder="Name" value={this.state.username} onChange={this.onChangeName} required /><br />
+                                        <div className="selection">
+                                            <label htmlFor="bloodgroup" style={{ fontSize: '30px' }}>Blood Group</label>
+                                            <select name="bloodgroup" id="bloodgroup" value={this.state.userbg} onChange={this.onChangeBG} style={{ width: '30%', fontSize: '20px' }} required>
+                                                <option value="" defaultValue hidden>--</option>
+                                                <option value="A-">A-</option>
+                                                <option value="A+">A+</option>
+                                                <option value="B-">B-</option>
+                                                <option value="B+">B+</option>
+                                                <option value="AB-">AB-</option>
+                                                <option value="AB+">AB+</option>
+                                                <option value="O-">O-</option>
+                                                <option value="O+">O+</option>
+                                            </select>
                                         </div>
-                                        {this.state.openedrequest === index && <div style={{ marginTop: '10px' }} className="voldata">
-                                            <span className="bold">Required Date: </span>{info.requireddate}<br />
-                                            <span className="bold">Patient Phone: </span>{info.patientphone}<br />
-                                            <span className="bold">Doctor Name: </span>{info.doctorname}<br />
-                                            <span className="bold">Reason: </span>{info.reason}<br />
-                                            <span className="bold">Hospital: </span>{info.hospital}<br />
-                                            <span className="bold">Description: </span>{info.description}<br />
-                                            <span className="bold">Pos: </span>{info.pos.lat + '-' + info.pos.lng}<br />
-                                            <span className="bold">Contact Phone: </span>{info.user.phone}<br />
-                                            <span className="bold">Contact Email: </span>{info.contactemail}<br />
-                                            <span className="bold">Message: </span>{info.message}<br />
-                                            <span className="bold colorize">Shown: </span>{info.show.toString()}<br />
-                                            <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editRequest}>Edit Request</button>&nbsp;&nbsp;&nbsp;
+                                        <label htmlFor="email">Email</label>
+                                        <input type="email" name="email" id="email" placeholder="example@domain.com" value={this.state.useremail} onChange={this.onChangeEmail} required /><br />
+                                        <label htmlFor="age">Age</label>
+                                        <input type="number" min="18" name="age" id="age" placeholder="Age" value={this.state.userage} onChange={this.onChangeAge} required /><br />
+                                        <label htmlFor="address">City</label>
+                                        <Autocomplete
+                                            id="address" name="address"
+                                            onChange={this.onChangeAddress}
+                                            value={this.state.useraddress}
+                                            apiKey={'AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us'}
+                                            onPlaceSelected={(place) => this.setState({ useraddress: place.formatted_address, userpos: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } })}
+                                            types={['(cities)']}
+                                            componentRestrictions={{ country: "in" }}
+                                            placeholder="Select from dropdown"
+                                            required
+                                        />
+                                        <div className="radiobtn">
+                                            <input type="radio" id="male" name="gender" value="male" checked={this.state.usergender === 'male'} onChange={this.onChangeGender} required />
+                                            <label htmlFor="male">Male</label><br />
+                                            <input type="radio" id="female" name="gender" value="female" checked={this.state.usergender === 'female'} onChange={this.onChangeGender} required />
+                                            <label htmlFor="female">Female</label><br />
+                                            <input type="radio" id="other" name="gender" value="other" checked={this.state.usergender === 'other'} onChange={this.onChangeGender} required />
+                                            <label htmlFor="other">Other</label>
+                                        </div>
+                                        <div className="colorize">{this.state.userwarning}</div>
+                                        <button type="submit" style={{ width: '80px', marginTop: '10px' }} className="readbtn">{this.state.newusermode ? 'Add ' : 'Edit '} User</button><br />
+                                        {!this.state.newusermode && <button onClick={this.usercancel} style={{ width: '80px', marginTop: '10px' }} className="readbtn">Cancel</button>}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>}
+                        {this.state.active === 'requests' && <div className="notifwrapper">
+                            <div className="orgupdates">
+                                <div style={{ height: '95%' }}>
+                                    <h3>Blood Requests</h3>
+                                    {this.state.requests.map((info, index) => {
+                                        if ((index < this.state.requestspageCount * 4) && (index >= (this.state.requestspageCount - 1) * 4)) {
+                                            return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
+                                                <h2 className="orgupdate-1">
+                                                    {info.patientname}
+                                                </h2>
+                                                <div className="orgupdate-2">
+                                                    <div className="userbg">{info.units + ' units'} {info.bloodgroup}</div>
+                                                    <button className="readbtn" style={{ width: '80px' }} onClick={() => this.handleReadRequest(index)}>{this.state.openedrequest === index ? 'Hide ' : 'View '} Details</button>
+                                                </div>
+                                                {this.state.openedrequest === index && <div style={{ marginTop: '10px' }} className="voldata">
+                                                    <span className="bold">Required Date: </span>{info.requireddate}<br />
+                                                    <span className="bold">Patient Phone: </span>{info.patientphone}<br />
+                                                    <span className="bold">Doctor Name: </span>{info.doctorname}<br />
+                                                    <span className="bold">Reason: </span>{info.reason}<br />
+                                                    <span className="bold">Hospital: </span>{info.hospital}<br />
+                                                    <span className="bold">Description: </span>{info.description}<br />
+                                                    <span className="bold">Pos: </span>{info.pos.lat + '-' + info.pos.lng}<br />
+                                                    <span className="bold">Contact Phone: </span>{info.user.phone}<br />
+                                                    <span className="bold">Contact Email: </span>{info.contactemail}<br />
+                                                    <span className="bold">Message: </span>{info.message}<br />
+                                                    <span className="bold colorize">Shown: </span>{info.show.toString()}<br />
+                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editRequest}>Edit Request</button>&nbsp;&nbsp;&nbsp;
                                             <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.hideRequest}>{info.show ? 'Hide' : 'Show'} Request</button>&nbsp;&nbsp;&nbsp;
                                             <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeRequest}>Delete Request</button>
-                                        </div>}
-                                    </div>)
-                                } else {
-                                    return null;
-                                }
-                            })}
-                        </div>
-                        <div className="pages">
-                            <ReactPaginate
-                                previousLabel={'<'}
-                                nextLabel={'>'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={Math.ceil(this.state.requests.length / 4)}
-                                marginPagesDisplayed={2}
-                                pageRangeDisplayed={5}
-                                onPageChange={this.handlerequestsPageClick}
-                                containerClassName={'pagination'}
-                                subContainerClassName={'pages pagination'}
-                                activeClassName={'active'}
-                            />
-                        </div>
-                    </div>
-                    <div className="orgupdates" style={{ display: 'block' }}>
-                        <div>
-                            <h3>Edit Request</h3>
-                            <form onSubmit={this.updateRequest} className="updatesform">
-                                <label htmlFor="reqphone">Patient's Number</label>
-                                <input type="tel" value='+91' style={{ width: '10%' }} disabled />
-                                <input
-                                    type="tel"
-                                    placeholder="Mobile Number"
-                                    style={{ width: '90%' }}
-                                    name="reqphone"
-                                    id="reqphone"
-                                    pattern="[1-9]{1}[0-9]{9}"
-                                    onChange={this.onChangePatientPhone}
-                                    value={this.state.requestpatientphone}
-                                    required
-                                />
-                                <div className="selection">
-                                    <label htmlFor="reqbloodgroup" style={{ fontSize: '30px' }}>Blood Group</label>
-                                    <select name="reqbloodgroup" id="reqbloodgroup" value={this.state.requestbloodgroup} onChange={this.onChangeReqBG} style={{ width: '30%', fontSize: '20px' }} required>
-                                        <option value="" defaultValue hidden>--</option>
-                                        <option value="A-">A-</option>
-                                        <option value="A+">A+</option>
-                                        <option value="B-">B-</option>
-                                        <option value="B+">B+</option>
-                                        <option value="AB-">AB-</option>
-                                        <option value="AB+">AB+</option>
-                                        <option value="O-">O-</option>
-                                        <option value="O+">O+</option>
-                                    </select>
+                                                </div>}
+                                            </div>)
+                                        } else {
+                                            return null;
+                                        }
+                                    })}
                                 </div>
-                                <label htmlFor="requireddate">Date When Required</label>
-                                <input type="date" id="requireddate" className={"dateclass " + (this.state.requestrequireddate !== '' ? '' : 'placeholderclass')} name="requireddate" value={this.state.requestrequireddate} onChange={this.onChangeRequiredDate} placeholder="Select Date" />
-                                <label htmlFor="reqmsg">Message</label>
-                                <textarea type="text" name="reqmsg" id="reqmsg" placeholder="Request Message" value={this.state.requestmessage} onChange={this.onChangeReqMsg} required /><br />
-                                <div className="colorize">{this.state.requestwarning}</div>
-                                <button type="submit" style={{ width: '80px', marginTop: '10px' }} className="readbtn">Edit Request</button><br />
-                                {!this.state.reqeditmode && <button onClick={this.usercancel} style={{ width: '80px', marginTop: '10px' }} className="readbtn">Cancel</button>}
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div className="notifwrapper">
-                    <div className="orgupdates">
-                        <div style={{ height: '95%' }}>
-                            <h3>Organization Updates</h3>
-                            {this.state.updates.map((info, index) => {
-                                if ((index < this.state.updatespageCount * 4) && (index >= (this.state.updatespageCount - 1) * 4)) {
-                                    return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
-                                        <h2 className="orgupdate-1">{info.title}</h2>
-                                        <div className="orgupdate-2">
-                                            <div>{this.stringGenerator(info.createdAt)}</div>
-                                            <button className="readbtn" onClick={() => this.handleReadUpdate(index)} value={index}>{this.state.openedupdate === index ? 'Hide ' : 'Read'} Post</button>
+                                <div className="pages">
+                                    <ReactPaginate
+                                        previousLabel={'<'}
+                                        nextLabel={'>'}
+                                        breakLabel={'...'}
+                                        breakClassName={'break-me'}
+                                        pageCount={Math.ceil(this.state.requests.length / 4)}
+                                        marginPagesDisplayed={2}
+                                        pageRangeDisplayed={5}
+                                        onPageChange={this.handlerequestsPageClick}
+                                        containerClassName={'pagination'}
+                                        subContainerClassName={'pages pagination'}
+                                        activeClassName={'active'}
+                                    />
+                                </div>
+                            </div>
+                            <div className="orgupdates" style={{ display: 'block' }}>
+                                <div>
+                                    <h3>Edit Request</h3>
+                                    <form onSubmit={this.updateRequest} className="updatesform">
+                                        <label htmlFor="reqphone">Patient's Number</label>
+                                        <input type="tel" value='+91' style={{ width: '10%' }} disabled />
+                                        <input
+                                            type="tel"
+                                            placeholder="Mobile Number"
+                                            style={{ width: '90%' }}
+                                            name="reqphone"
+                                            id="reqphone"
+                                            pattern="[1-9]{1}[0-9]{9}"
+                                            onChange={this.onChangePatientPhone}
+                                            value={this.state.requestpatientphone}
+                                            required
+                                        />
+                                        <div className="selection">
+                                            <label htmlFor="reqbloodgroup" style={{ fontSize: '30px' }}>Blood Group</label>
+                                            <select name="reqbloodgroup" id="reqbloodgroup" value={this.state.requestbloodgroup} onChange={this.onChangeReqBG} style={{ width: '30%', fontSize: '20px' }} required>
+                                                <option value="" defaultValue hidden>--</option>
+                                                <option value="A-">A-</option>
+                                                <option value="A+">A+</option>
+                                                <option value="B-">B-</option>
+                                                <option value="B+">B+</option>
+                                                <option value="AB-">AB-</option>
+                                                <option value="AB+">AB+</option>
+                                                <option value="O-">O-</option>
+                                                <option value="O+">O+</option>
+                                            </select>
                                         </div>
-                                        {this.state.openedupdate === index && <div style={{ marginTop: '10px' }}>
-                                            {info.content}<br />
-                                            <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editUpdate}>Edit Update</button>&nbsp;&nbsp;&nbsp;
+                                        <label htmlFor="requireddate">Date When Required</label>
+                                        <input type="date" id="requireddate" className={"dateclass " + (this.state.requestrequireddate !== '' ? '' : 'placeholderclass')} name="requireddate" value={this.state.requestrequireddate} onChange={this.onChangeRequiredDate} placeholder="Select Date" />
+                                        <label htmlFor="reqmsg">Message</label>
+                                        <textarea type="text" name="reqmsg" id="reqmsg" placeholder="Request Message" value={this.state.requestmessage} onChange={this.onChangeReqMsg} required /><br />
+                                        <div className="colorize">{this.state.requestwarning}</div>
+                                        <button type="submit" style={{ width: '80px', marginTop: '10px' }} className="readbtn">Edit Request</button><br />
+                                        {!this.state.reqeditmode && <button onClick={this.usercancel} style={{ width: '80px', marginTop: '10px' }} className="readbtn">Cancel</button>}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>}
+                        {this.state.active === 'updates' && <div className="notifwrapper">
+                            <div className="orgupdates">
+                                <div style={{ height: '95%' }}>
+                                    <h3>Organization Updates</h3>
+                                    {this.state.updates.map((info, index) => {
+                                        if ((index < this.state.updatespageCount * 4) && (index >= (this.state.updatespageCount - 1) * 4)) {
+                                            return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
+                                                <h2 className="orgupdate-1">{info.title}</h2>
+                                                <div className="orgupdate-2">
+                                                    <div>{this.stringGenerator(info.createdAt)}</div>
+                                                    <button className="readbtn" onClick={() => this.handleReadUpdate(index)} value={index}>{this.state.openedupdate === index ? 'Hide ' : 'Read'} Post</button>
+                                                </div>
+                                                {this.state.openedupdate === index && <div style={{ marginTop: '10px' }}>
+                                                    {info.content}<br />
+                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editUpdate}>Edit Update</button>&nbsp;&nbsp;&nbsp;
                                             <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeUpdate}>Delete Update</button>
-                                        </div>}
-                                    </div>)
-                                } else {
-                                    return null;
-                                }
-                            })}
-                        </div>
-                        <div className="pages">
-                            <ReactPaginate
-                                previousLabel={'<'}
-                                nextLabel={'>'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={Math.ceil(this.state.updates.length / 4)}
-                                marginPagesDisplayed={2}
-                                pageRangeDisplayed={5}
-                                onPageChange={this.handleupdatesPageClick}
-                                containerClassName={'pagination'}
-                                subContainerClassName={'pages pagination'}
-                                activeClassName={'active'}
-                            />
-                        </div>
-                    </div>
-                    <div className="orgupdates" style={{ display: 'block' }}>
-                        <div>
-                            <h3>{this.state.newupdatemode ? 'Post New ' : 'Edit '} Update</h3>
-                            <form onSubmit={this.newUpdate} className="updatesform">
-                                <label htmlFor="title">Title</label>
-                                <input type="text" name="title" id="title" placeholder="Update Title" value={this.state.updatetitle} onChange={this.onChangeTitle} required /><br />
-                                <label htmlFor="update">Update</label>
-                                <textarea type="text" name="update" id="update" placeholder="Update Content" value={this.state.updatecontent} onChange={this.onChangeUC} required /><br />
-                                <div className="colorize">{this.state.updatewarning}</div>
-                                <button type="submit" style={{ width: '80px', marginTop: '10px' }} className="readbtn">{this.state.newupdatemode ? 'Post ' : 'Edit '} Update</button><br />
-                                {!this.state.newupdatemode && <button onClick={this.updatecancel} style={{ width: '80px', marginTop: '10px' }} className="readbtn">Cancel</button>}
-                            </form>
-                        </div>
+                                                </div>}
+                                            </div>)
+                                        } else {
+                                            return null;
+                                        }
+                                    })}
+                                </div>
+                                <div className="pages">
+                                    <ReactPaginate
+                                        previousLabel={'<'}
+                                        nextLabel={'>'}
+                                        breakLabel={'...'}
+                                        breakClassName={'break-me'}
+                                        pageCount={Math.ceil(this.state.updates.length / 4)}
+                                        marginPagesDisplayed={2}
+                                        pageRangeDisplayed={5}
+                                        onPageChange={this.handleupdatesPageClick}
+                                        containerClassName={'pagination'}
+                                        subContainerClassName={'pages pagination'}
+                                        activeClassName={'active'}
+                                    />
+                                </div>
+                            </div>
+                            <div className="orgupdates" style={{ display: 'block' }}>
+                                <div>
+                                    <h3>{this.state.newupdatemode ? 'Post New ' : 'Edit '} Update</h3>
+                                    <form onSubmit={this.newUpdate} className="updatesform">
+                                        <label htmlFor="title">Title</label>
+                                        <input type="text" name="title" id="title" placeholder="Update Title" value={this.state.updatetitle} onChange={this.onChangeTitle} required /><br />
+                                        <label htmlFor="update">Update</label>
+                                        <textarea type="text" name="update" id="update" placeholder="Update Content" value={this.state.updatecontent} onChange={this.onChangeUC} required /><br />
+                                        <div className="colorize">{this.state.updatewarning}</div>
+                                        <button type="submit" style={{ width: '80px', marginTop: '10px' }} className="readbtn">{this.state.newupdatemode ? 'Post ' : 'Edit '} Update</button><br />
+                                        {!this.state.newupdatemode && <button onClick={this.updatecancel} style={{ width: '80px', marginTop: '10px' }} className="readbtn">Cancel</button>}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>}
+                        {this.state.active === 'volunteers' && <div className="notifwrapper">
+                            <div className="orgupdates">
+                                <div style={{ height: '95%' }}>
+                                    <h3>Volunteer Requests</h3>
+                                    {this.state.volunteers.map((info, index) => {
+                                        if ((index < this.state.volunteerspageCount * 4) && (index >= (this.state.volunteerspageCount - 1) * 4)) {
+                                            return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
+                                                <h2 className="orgupdate-1">{info.name}</h2>
+                                                <div className="orgupdate-2">
+                                                    <button className="readbtn" style={{ width: '80px' }} onClick={() => this.handleReadVolunteer(index)}>{this.state.openedvolunteer === index ? 'Hide ' : 'View '} Details</button>
+                                                </div>
+                                                {this.state.openedvolunteer === index && <div style={{ marginTop: '10px' }} className="voldata">
+                                                    <span className="bold">Phone: </span>{info.phone}<br />
+                                                    <span className="bold">Email: </span>{info.email}<br />
+                                                    <span className="bold">Occupation: </span>{info.occupation}<br />
+                                                    <span className="bold">City: </span>{info.city}<br />
+                                                    <span className="bold">Interest: </span>{info.interest}<br />
+                                                    <span className="bold">Experience: </span>{info.experience}<br />
+                                                    <span className="bold">Reached: </span>{info.reached}<br />
+                                                    <span className="bold">Additional Info: </span>{info.additioninfo}<br />
+                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeVolunteer}>Delete Request</button>
+                                                </div>}
+                                            </div>)
+                                        } else {
+                                            return null;
+                                        }
+                                    })}
+                                </div>
+                                <div className="pages">
+                                    <ReactPaginate
+                                        previousLabel={'<'}
+                                        nextLabel={'>'}
+                                        breakLabel={'...'}
+                                        breakClassName={'break-me'}
+                                        pageCount={Math.ceil(this.state.volunteers.length / 4)}
+                                        marginPagesDisplayed={2}
+                                        pageRangeDisplayed={5}
+                                        onPageChange={this.handlevolunteersPageClick}
+                                        containerClassName={'pagination'}
+                                        subContainerClassName={'pages pagination'}
+                                        activeClassName={'active'}
+                                    />
+                                </div>
+                            </div>
+                        </div>}
                     </div>
                 </div>
-                <div className="notifwrapper">
-                    <div className="orgupdates">
-                        <div style={{ height: '95%' }}>
-                            <h3>Volunteer Requests</h3>
-                            {this.state.volunteers.map((info, index) => {
-                                if ((index < this.state.volunteerspageCount * 4) && (index >= (this.state.volunteerspageCount - 1) * 4)) {
-                                    return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
-                                        <h2 className="orgupdate-1">{info.name}</h2>
-                                        <div className="orgupdate-2">
-                                            <button className="readbtn" style={{ width: '80px' }} onClick={() => this.handleReadVolunteer(index)}>{this.state.openedvolunteer === index ? 'Hide ' : 'View '} Details</button>
-                                        </div>
-                                        {this.state.openedvolunteer === index && <div style={{ marginTop: '10px' }} className="voldata">
-                                            <span className="bold">Phone: </span>{info.phone}<br />
-                                            <span className="bold">Email: </span>{info.email}<br />
-                                            <span className="bold">Occupation: </span>{info.occupation}<br />
-                                            <span className="bold">City: </span>{info.city}<br />
-                                            <span className="bold">Interest: </span>{info.interest}<br />
-                                            <span className="bold">Experience: </span>{info.experience}<br />
-                                            <span className="bold">Reached: </span>{info.reached}<br />
-                                            <span className="bold">Additional Info: </span>{info.additioninfo}<br />
-                                            <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeVolunteer}>Delete Request</button>
-                                        </div>}
-                                    </div>)
-                                } else {
-                                    return null;
-                                }
-                            })}
-                        </div>
-                        <div className="pages">
-                            <ReactPaginate
-                                previousLabel={'<'}
-                                nextLabel={'>'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={Math.ceil(this.state.volunteers.length / 4)}
-                                marginPagesDisplayed={2}
-                                pageRangeDisplayed={5}
-                                onPageChange={this.handlevolunteersPageClick}
-                                containerClassName={'pagination'}
-                                subContainerClassName={'pages pagination'}
-                                activeClassName={'active'}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
+            )
+        } else {
+            return (<div></div>)
+        }
     }
 }
 
@@ -868,16 +908,15 @@ export default class Admin extends Component {
         }
     }
     toggleAuth = () => {
-        this.setState = ({ auth }) => ({
-            auth: !auth
+        this.setState(({ auth }) => {
+            return { auth: !auth }
         })
-        console.log(this.state.auth)
     }
     render() {
         return (
             <div>
-                <AdminLogin toggle={this.toggleAuth} />
-                <AdminPanel display={this.state.auth} />
+                <AdminLogin toggle={this.toggleAuth} display={!this.state.auth} />
+                <AdminPanel toggle={this.toggleAuth} display={this.state.auth} />
             </div>
         )
     }
