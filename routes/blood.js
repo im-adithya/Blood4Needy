@@ -1,4 +1,5 @@
 const router = require('express').Router();
+var mongoose = require('mongoose');
 let BloodPack = require('../models/bloodPackModel');
 
 function genderParams(gender) {
@@ -87,9 +88,9 @@ router.route('/add').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').delete((req, res) => {
-    BloodPack.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Blood pack deleted.'))
+router.route('/:phone').delete((req, res) => {
+    BloodPack.deleteOne({ "user.phone": req.params.phone })
+        .then(() => res.json('Deleted Successfully'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 

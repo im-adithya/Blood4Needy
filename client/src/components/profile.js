@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -135,6 +136,10 @@ class Profile extends Component {
     render() {
         return (
             this.props.auth ? <div className="profile">
+                <Helmet>
+                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
+                    <title>Profile • Blood4Needy</title>
+                </Helmet>
                 <h1>Profile</h1>
                 <div className="userprof">
                     <img src={this.state.gender === "male" ? male : female} alt="user" className="profileimg" width="200" />

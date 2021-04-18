@@ -4,6 +4,7 @@
     background-color: #F42929;
     font-size: 20px !important;
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+    min-height:100vh
 }
 
 .donorwrapper label{

@@ -8,7 +8,7 @@ import {
 } from "react-google-maps"
 import { compose } from "recompose";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getDistance } from 'geolib';
+//import { getDistance } from 'geolib';
 import male from '../../assets/male-user.png';
 import female from '../../assets/female-user.png';
 import markerself from '../../assets/marker-self-1.png';
@@ -90,7 +90,7 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                                         <img src={marker.user.gender === "male" ? male : female} alt="user" className="mapitemimg" />
                                         <div className="mapitem-1-1">
                                             <h3>{marker.user._id === props.user._id ? "You" : marker.name}</h3>
-                                            {(marker.user._id !== props.user._id) && !props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }, props.defaults) / 1000).toFixed(2)} km Away</p>}
+                                            {/*(marker.user._id !== props.user._id && false) && !props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: marker.location.coordinates[1], lng: marker.location.coordinates[0] }, props.defaults) / 1000).toFixed(2)} km Away</p>*/}
                                         </div>
                                     </div>
                                     {(marker.user._id !== props.user._id) && <div className="mapitem-2">

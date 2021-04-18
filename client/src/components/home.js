@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import axios from 'axios';
 import AOS from 'aos';
 import "aos/dist/aos.css";
@@ -68,8 +69,8 @@ const PageTwo = () => {
             style={{ backgroundImage: "linear-gradient(#FDEAEA,#FDEAEA)" }}
         >
             <h3>According to WHO</h3><br />
-            <h1>"India runs short of <span className="emphasize">2,000,000</span> units of blood every year."</h1><br />
-            <p>Every two seconds someone needs blood. More than 38,000 blood donations are needed every day.</p><br />
+            <h1>"India runs short of <span className="emphasize">2,000,000<br /></span> units of blood every year."</h1><br />
+            <p>Every two seconds someone needs blood.<br />More than 38,000 blood donations are needed every day.</p><br />
             <button className="button1"><Link to='/donate'>Donate Blood</Link></button>
         </div>
     )
@@ -95,8 +96,8 @@ const PageThree = () => {
 
 const PageFour = () => {
     return (
-        <div className="fullheight pg4" data-aos="fade-up">
-            <div>
+        <div className="fullheight pg4">
+            <div data-aos="fade-up">
                 <div className="pg4text">
                     <h2>Request Blood</h2>
                     <h4>NEED BLOOD FOR YOURSELF <br />OR SOMEONE YOU KNOW?</h4>
@@ -106,7 +107,7 @@ const PageFour = () => {
                     <img src={home3} alt='request' />
                 </div>
             </div>
-            <div>
+            <div data-aos="fade-up">
                 <div className="pg4text">
                     <h2>Become a Volunteer</h2>
                     <h4>VOLUNTEER WITH US AND <br />HELP THE SOCIETY</h4>
@@ -171,7 +172,7 @@ class PageFive extends Component {
 const PageSix = () => {
     let reasons = ['No Fees/No Commission', 'Live Update Feature', 'Connect directly with Blood donors', 'Time Saving', 'Map View', 'And many more...']
     return (
-        <div className="fullheight pg6">
+        <div className="pg6">
             <h1>Why Blood4Needy?</h1>
             <div className="pg6wrapper">
                 {reasons.map((reason, index) => (
@@ -370,7 +371,7 @@ class PageEleven extends Component {
 
     render() {
         return (
-            <div className={"fullheight pg11 " + ((this.state.active !== 'u') ? 'pg11extend' : 'pg11initial')}>
+            <div className="pg11">
                 <h1>Frequently Asked Questions</h1>
                 <div className="pg11wrapper">
                     <button className="faqbox" onClick={this.toggleFAQs} value='1' style={{ borderTop: '2px solid rgb(131, 131, 131)' }}>How to create an account<FontAwesomeIcon style={{ pointerEvents: 'none' }} icon={this.state.active === '1' ? 'minus' : 'plus'} /></button>
@@ -425,6 +426,10 @@ export const LoginBG = class HomeWrapper extends Component {
     render() {
         return (
             <div className="home container">
+                <Helmet>
+                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
+                    <title>Home • Blood4Needy</title>
+                </Helmet>
                 <PageOne />
                 <PageTwo />
                 <PageThree />

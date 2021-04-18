@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,6 +15,10 @@ export default class About extends Component {
     render() {
         return (
             <div className="aboutus">
+                <Helmet>
+                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
+                    <title>About • Blood4Needy</title>
+                </Helmet>
                 <div className="aboutpg1">
                     <h1>About Us</h1><br /><br />
                     <p>Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform</p>

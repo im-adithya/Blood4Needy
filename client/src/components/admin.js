@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import Autocomplete from 'react-google-autocomplete';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
@@ -316,14 +317,18 @@ class AdminPanel extends Component {
     removeUser = () => {
         axios.delete('/api/user/' + this.state.users[this.state.openeduser]._id)
             .then(res => {
-                this.setState(({ openeduser, users }) => {
-                    let usrs = users
-                    usrs.splice(openeduser, 1)
-                    return {
-                        openeduser: '',
-                        users: usrs
-                    }
-                })
+                axios.delete('/api/blood/' + this.state.users[this.state.openeduser].phone)
+                    .then(res => {
+                        console.log(res)
+                        this.setState(({ openeduser, users }) => {
+                            let usrs = users
+                            usrs.splice(openeduser, 1)
+                            return {
+                                openeduser: '',
+                                users: usrs
+                            }
+                        })
+                    })
             })
     }
 
@@ -804,7 +809,7 @@ class AdminPanel extends Component {
                                                     <div>{this.stringGenerator(info.createdAt)}</div>
                                                     <button className="readbtn" onClick={() => this.handleReadUpdate(index)} value={index}>{this.state.openedupdate === index ? 'Hide ' : 'Read'} Post</button>
                                                 </div>
-                                                {this.state.openedupdate === index && <div style={{ marginTop: '10px' }}>
+                                                {this.state.openedupdate === index && <div style={{ marginTop: '10px', maxHeight: '150px', overflow: 'auto', textAlign: 'justify', paddingRight: '10px' }}>
                                                     {info.content}<br />
                                                     <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editUpdate}>Edit Update</button>&nbsp;&nbsp;&nbsp;
                                             <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeUpdate}>Delete Update</button>
@@ -915,6 +920,10 @@ export default class Admin extends Component {
     render() {
         return (
             <div>
+                <Helmet>
+                    <meta name="robots" content="noindex"></meta>
+                    <title>Admin Panel</title>
+                </Helmet>
                 <AdminLogin toggle={this.toggleAuth} display={!this.state.auth} />
                 <AdminPanel toggle={this.toggleAuth} display={this.state.auth} />
             </div>

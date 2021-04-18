@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import axios from 'axios';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
@@ -11,7 +12,7 @@ import AOS from 'aos';
 //import Autocomplete from 'react-google-autocomplete';
 import './donors.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getDistance } from 'geolib';
+//import { getDistance } from 'geolib';
 import MapView from './map/mapview'
 import male from '../assets/male-user.png';
 import female from '../assets/female-user.png';
@@ -43,7 +44,7 @@ export const ListView = class ListView extends Component {
                                 <img src={info.user.gender === "male" ? male : female} alt="user" className="listitemimg" />
                                 <h3>{info.name.substr(0, 15) + (info.name.length > 15 ? '...' : '')}</h3>
                                 <p>Blood Group: {info.bloodgroup}</p>
-                                {!this.props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>}
+                                {/*!this.props.alldonors && <p><FontAwesomeIcon icon={['fas', 'map-marker-alt']} style={{ color: '#F42929' }} /> {(getDistance({ lat: info.location.coordinates[1], lng: info.location.coordinates[0] }, this.props.pos) / 1000).toFixed(2)} km Away</p>*/}
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '5px' }}>
                                     <button className="callbtn" style={{ width: '80px' }}><a href={this.props.requested ? 'tel:+91' + info.user.phone : '/request'} style={{ color: 'white' }}>Contact</a></button>
                                     <a href={this.props.requested ? 'https://wa.me/91' + info.user.phone : 'request'} style={{ color: 'white' }}><WhatsappIcon size={35} round /></a>
@@ -208,6 +209,10 @@ class DonorsFunction extends Component {
     render() {
         return (
             <div className="donors">
+                <Helmet>
+                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
+                    <title>Donors • Blood4Needy</title>
+                </Helmet>
                 {!this.state.redirectedview && <div className="searchpanel">
                     <h1>Connect With Blood Donors in your location</h1>
                     <form onSubmit={this.onDonorSearch} autoComplete="off">

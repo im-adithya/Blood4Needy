@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 //import Switch from "react-switch";
 import Autocomplete from 'react-google-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -376,12 +377,12 @@ class LoginBox extends Component {
             <input type="email" name="email" id="email" placeholder="example@domain.com" onChange={this.onChangeEmail} required /><br />
             <label htmlFor="age">Age</label>
             <input type="number" min="18" name="age" id="age" placeholder="Your Age" onChange={this.onChangeAge} required /><br />
-            <label htmlFor="address">City</label>
+            <label htmlFor="address">Address</label>
             <Autocomplete
               id="address" name="address" onChange={this.onChangeAddress}
               apiKey={'AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us'}
               onPlaceSelected={(place) => this.setState({ address: place.formatted_address, pos: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } })}
-              types={['(cities)']}
+              types={['(regions)']}
               componentRestrictions={{ country: "in" }}
               placeholder="Select from dropdown"
               required
@@ -456,6 +457,10 @@ class Login extends Component {
   render() {
     return (
       !this.state.authorizedfromstart ? (<div>
+        <Helmet>
+          <meta name="description" content="Login to Blood4Needy to donate and request blood!"></meta>
+          <title>Login • Blood4Needy</title>
+        </Helmet>
         <div className="blur">
           <LoginBG />
         </div>

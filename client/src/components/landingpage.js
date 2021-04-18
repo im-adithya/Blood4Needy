@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import axios from 'axios';
 import Autocomplete from 'react-google-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -115,6 +116,10 @@ class LandingPage extends Component {
     render() {
         return (
             <div className="lp">
+                <Helmet>
+                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
+                    <title>Signup • Blood4Needy</title>
+                </Helmet>
                 <div style={{ backgroundImage: `url(https://californiaivf.eggdonorconnect.com/ClinicFiles/Clinic59/bg-egg-donor.jpg)` }} className="lp-cover">
                     <div className="lp-admin">Become a Blood Donor with Blood4Needy</div>
                 </div>
@@ -129,7 +134,9 @@ class LandingPage extends Component {
                             <p style={{ fontSize: '18px' }}>1 - 1½ minutes</p>
                         </div>
                     </div>
-                    <p style={{ fontSize: '15px' }}>Please complete the form below to begin your blood donation journey with Blood4Needy</p>
+                    <p style={{ fontSize: '15px', marginBottom: '30px' }}>Please complete the form below to begin your blood donation journey with Blood4Needy</p>
+                    <label htmlFor="name">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Your Name" onChange={this.onChangeName} required /><br />
                     <label htmlFor="phone">10-Digit Mobile Number</label>
                     <input type="tel" value='+91' style={{ width: '20%', textAlign: 'center' }} disabled />
                     <input
@@ -142,8 +149,6 @@ class LandingPage extends Component {
                         onInput={this.handleInput}
                         onChange={this.onChangePhone}
                         required />
-                    <label htmlFor="name">Name</label>
-                    <input type="text" name="name" id="name" placeholder="Your Name" onChange={this.onChangeName} required /><br />
                     <label htmlFor="email">Email</label>
                     <input type="email" name="email" id="email" placeholder="example@domain.com" onChange={this.onChangeEmail} required /><br />
                     <label htmlFor="age">Age</label>

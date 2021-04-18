@@ -1,6 +1,7 @@
 .feed{
     background-color: #F42929;
     padding: 20vh 5vw 20px;
+    min-height: 100vh;
 }
 
 .feed h1{
@@ -162,7 +163,7 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     padding: 10px 20px;
-    margin: 10px -20px -20px;
+    margin: 10px -20px -30px;
 }
 
 .donrcount>h2{
@@ -317,8 +318,9 @@
 }
 
 .notifwrapper>div{
-    width: 45%;
-    max-width: 45%;
+    width: 80%;
+    max-width: 80%;
+    margin: 10px auto 20px;
 }
 
 .orgupdates{
@@ -327,10 +329,10 @@
 }
 
 .recentmembers{
-    margin-left: 5%;
+    margin-left: 0;
     margin-bottom: 0;
-    height: 70vh;
-    max-height: 70vh;
+    height: 90vh;
+    max-height: 90vh;
 }
 
 .pages{

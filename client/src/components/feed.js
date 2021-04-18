@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from "react-helmet";
 import axios from 'axios';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
@@ -262,7 +263,7 @@ class Notifications extends Component {
                                         <div>{this.stringGenerator(info.createdAt)}</div>
                                         <button className="readbtn" onClick={this.handleRead.bind(this)} value={index}>Read Post</button>
                                     </div>
-                                    {this.state.openedupdate === index && <div style={{ marginTop: '10px' }}>
+                                    {this.state.openedupdate === index && <div style={{ marginTop: '10px', maxHeight: '150px', overflow: 'auto', textAlign: 'justify', paddingRight: '10px' }}>
                                         {info.content}
                                     </div>}
                                 </div>)
@@ -307,7 +308,7 @@ class Notifications extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
@@ -337,6 +338,10 @@ class Feed extends Component {
         return (
             this.props.auth ?
                 (<div className="feed">
+                    <Helmet>
+                        <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
+                        <title>Feed • Blood4Needy</title>
+                    </Helmet>
                     <h1>Live Activity Log &nbsp;<FontAwesomeIcon icon='heart' className="heart" /></h1>
                     <div className="togglenotifs">
                         <div onClick={this.toggleView} className={this.state.view === 'Blood Requests' ? 'activenotif' : ''}>Blood Requests</div>

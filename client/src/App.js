@@ -82,6 +82,11 @@ class App extends Component {
       exact: true,
       strict: false
     });
+    const donorsmatched = matchPath(window.location.pathname, {
+      path: "/donors",
+      exact: true,
+      strict: false
+    });
     return (
       <Router>
         <div className="container">
@@ -121,7 +126,7 @@ class App extends Component {
           <ScrollToTop>
             <Route path="/lp/s/1" component={LandingPage} />
           </ScrollToTop>
-          <Route render={() => (!(adminmatched || landingmatched) ? <Footer /> : null)} />
+          <Route render={() => (!(adminmatched || landingmatched || donorsmatched) ? <Footer /> : null)} />
         </div>
       </Router>
     )
