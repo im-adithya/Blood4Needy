@@ -676,7 +676,8 @@ a{
         background-position: -70vw -15vh;
         background-size: 800px;
         background-repeat: no-repeat;
-        height: 65vh
+        height: 65vh;
+        background-color: white;
     }
     .pg3>h2{
         width: 80vw;
