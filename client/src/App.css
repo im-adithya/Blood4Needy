@@ -81,6 +81,11 @@ button:focus{
     display: none;
 }
 
+.home,.requestwrapper,.profile,.volunteer,.feed,.donors,.aboutus{
+    position: relative;
+    z-index: 1;
+}
+
 @media(max-width: 500px){
     .main-wrapper{
         height: 80% !important;

@@ -2,9 +2,9 @@
     padding: 5vh 10vw 50px;
     border-top: 2px solid #F42929;
     position: sticky;
-  bottom: 0;
-  left: 0;
-  z-index: -10;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
 }
 
 .footer-1{

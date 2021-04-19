@@ -356,7 +356,7 @@ class Request extends Component {
         }
 
         return (
-            this.props.auth ? (<div>
+            this.props.auth ? (<div className="requestwrapper">
                 <Helmet>
                     <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
                     <title>Request • Blood4Needy</title>
