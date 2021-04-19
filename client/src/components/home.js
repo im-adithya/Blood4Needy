@@ -27,7 +27,7 @@ const PageOne = () => {
                 <Carousel.Item>
                     <div
                         className="w-100 fullheight pg1"
-                        style={{ backgroundImage: `url(${home1})` }}
+                        style={{ backgroundImage: `url(${home1})`, backgroundColor: 'white' }}
                     >
                         <h1>Welcome to<br /> Blood4Needy</h1><br />
                         <p>Connecting Blood donors <br />had never been much easier!</p><br />
