@@ -13,6 +13,8 @@ const userSchema = new Schema({
     pos: { type: Object, required: true },
     feedback: { type: String },
     volunteer: { type: Boolean },
+    covid: { type: Boolean },
+    type: { type: String }
 }, {
     timestamps: true,
 });

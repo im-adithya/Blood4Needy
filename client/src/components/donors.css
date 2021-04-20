@@ -59,6 +59,11 @@
     text-align-last: center;
 }
 
+.donorwrapper .bloodplasma{
+    justify-content: center;
+    margin: 30px 0 10px;
+}
+
 .searchbutton,.connectbutton{
     border: none;
     outline:none;

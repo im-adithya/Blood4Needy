@@ -34,22 +34,18 @@ function paramsFinder(bg) {
     }
 }
 
-router.route('/').get((req, res) => {
-    BloodPack.find()
-        .then(bloodpacks => res.json(bloodpacks))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/total/:bloodgroup').get((req, res) => {
+router.route('/total/:type&:bloodgroup').get((req, res) => {
     BloodPack.countDocuments({
-        bloodgroup: paramsFinder(req.params.bloodgroup)
+        bloodgroup: paramsFinder(req.params.bloodgroup),
+        "user.type": req.params.type
     })
         .then(count => res.json(count))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/all/:bloodgroup&:userid&:gender').get((req, res) => {
+router.route('/all/:type&:bloodgroup&:userid&:gender').get((req, res) => {
     BloodPack.find({
+        "user.type": req.params.type,
         "user.gender": genderParams(req.params.gender),
         bloodgroup: paramsFinder(req.params.bloodgroup),
     })
@@ -57,8 +53,9 @@ router.route('/all/:bloodgroup&:userid&:gender').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:bloodgroup&:userid&:lat&:lng&:gender').get((req, res) => {
+router.route('/:type&:bloodgroup&:userid&:lat&:lng&:gender').get((req, res) => {
     BloodPack.find({
+        "user.type": req.params.type,
         "user.gender": genderParams(req.params.gender),
         bloodgroup: paramsFinder(req.params.bloodgroup),
         location: { $near: { $maxDistance: 30000, $geometry: { type: "Point", coordinates: [parseFloat(req.params.lng), parseFloat(req.params.lat)] } } }

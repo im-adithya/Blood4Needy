@@ -55,8 +55,11 @@ class NavBar extends Component {
             <Link to="/request" className={'navlinks dtnav' + ((this.props.location.pathname === '/request') ? ' activelink' : '')}>
               Request Blood
             </Link>
-            <Link to="/donors" className={'navlinks' + ((this.props.location.pathname === '/donors') ? ' activelink' : '')}>
+            <Link to="/blood" className={'navlinks' + ((this.props.location.pathname === '/blood') ? ' activelink' : '')}>
               Blood Donors
+            </Link>
+            <Link to="/plasma" className={'navlinks' + ((this.props.location.pathname === '/plasma') ? ' activelink' : '')}>
+              Plasma Donors
             </Link>
             <Link to="/feed" className={'navlinks' + ((this.props.location.pathname === '/feed') ? ' activelink' : '')}>
               Live Feed

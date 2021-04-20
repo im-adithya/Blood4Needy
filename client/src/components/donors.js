@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
+//import Switch from "react-switch";
 import axios from 'axios';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
@@ -90,6 +91,7 @@ class DonorsFunction extends Component {
         this.state = {
             address: 'Gwalior',
             bloodgroup: this.props.location.data ? this.props.location.data.bloodgroup : 'all',
+            type: this.props.location.data ? this.props.location.data.type : (this.props.location.pathname === "/plasma"),
             data: this.props.location.data ? this.props.location.data.data : [],
             warning: '',
             pos: this.props.location.data ? this.props.location.data.pos : { lat: 26.2183, lng: 78.1828 },
@@ -109,12 +111,12 @@ class DonorsFunction extends Component {
         }
     }
 
-    fetchData(bg) { /*TODO: ADD LOCATION DEPENDING ON WHERE HE COMES FROM LITERALLY */
+    fetchData(bg, type) { /*TODO: ADD LOCATION DEPENDING ON WHERE HE COMES FROM LITERALLY */
         if (this.state.alldonors) {
-            axios.get('/api/blood/all/' + bg + '&' + this.props.user._id + '&' + this.props.user.gender)
+            axios.get('/api/blood/all/' + (type ? 'plasma' : 'blood') + '&' + bg + '&' + this.props.user._id + '&' + this.props.user.gender)
                 .then(res => {
                     this.setState({ warning: '', donorsview: true, data: res.data })      //TO BE CHANGED!!!!!!!!
-                    axios.get('/api/blood/total/' + bg)
+                    axios.get('/api/blood/total/' + (type ? 'plasma' : 'blood') + '&' + bg)
                         .then(res => {
                             this.setState({ totaldonors: res.data })
                         })
@@ -129,10 +131,10 @@ class DonorsFunction extends Component {
                 });
 
         } else {
-            axios.get('/api/blood/' + bg + '&' + this.props.user._id + '&' + this.state.pos.lat + '&' + this.state.pos.lng + '&' + this.props.user.gender)
+            axios.get('/api/blood/' + (type ? 'plasma' : 'blood') + '&' + bg + '&' + this.props.user._id + '&' + this.state.pos.lat + '&' + this.state.pos.lng + '&' + this.props.user.gender)
                 .then(res => {
                     this.setState({ warning: '', donorsview: true, data: res.data })
-                    axios.get('/api/blood/total/' + bg)
+                    axios.get('/api/blood/total/' + (type ? 'plasma' : 'blood') + '&' + bg)
                         .then(res => {
                             this.setState({ totaldonors: res.data })
                         })
@@ -149,7 +151,7 @@ class DonorsFunction extends Component {
     }
 
     componentDidMount() {
-        this.fetchData(this.state.bloodgroup)
+        this.fetchData(this.state.bloodgroup, this.state.type)
         AOS.init({
             duration: 1000
         });
@@ -184,6 +186,12 @@ class DonorsFunction extends Component {
         this.setState({ bloodgroup: e.target.value })
     }
 
+    onChangeType = () => {
+        this.setState(({ type }) => {
+            return { type: !type }
+        })
+    }
+
     onDonorSearch(e) {
         e.preventDefault();
 
@@ -194,7 +202,7 @@ class DonorsFunction extends Component {
             return;
         }
 
-        this.fetchData(this.state.bloodgroup)
+        this.fetchData(this.state.bloodgroup, this.state.type)
 
     }
 
@@ -207,6 +215,7 @@ class DonorsFunction extends Component {
     }
 
     render() {
+        console.log(this.props.location)
         return (
             <div className="donors">
                 <Helmet>
@@ -214,7 +223,7 @@ class DonorsFunction extends Component {
                     <title>Donors • Blood4Needy</title>
                 </Helmet>
                 {!this.state.redirectedview && <div className="searchpanel">
-                    <h1>Connect With Blood Donors in your location</h1>
+                    <h1>Connect With {this.state.type ? 'Plasma' : 'Blood'} Donors in your location</h1>
                     <form onSubmit={this.onDonorSearch} autoComplete="off">
                         <div className="donorwrapper">
                             <div className="selectionwrapper">
@@ -253,6 +262,12 @@ class DonorsFunction extends Component {
                                     </select>
                                 </div>
                             </div>
+
+                            {/*<div className="bloodplasma">
+                                <span className="bptoggle">Blood</span>
+                                <Switch onChange={this.onChangeType} checked={this.state.type} uncheckedIcon={false} onColor='#F42929' offColor='#bcbcbc' handleDiameter={22} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #F42929' width={40} height={20} checkedIcon={false} />
+                                <span className="bptoggle">Plasma</span>
+                            </div>*/}
                             <div className="warnsearch">
                                 <div className="colorize">{this.state.warning}</div>
                                 <button type="submit" className="searchbutton">Search</button>
@@ -271,7 +286,7 @@ class DonorsFunction extends Component {
                     <h2>We have recieved your request!</h2>
                     <div className="numdonors">
                         <h1 style={{ textAlign: 'center' }}>Searching...</h1>
-                        <p className="bold">Blood donors in your area</p>
+                        <p className="bold">{this.state.data.type ? 'Plasma' : 'Blood'} donors in your area</p>
                         {this.state.data.length > 0 &&
                             <div className="sendingpanel">
                                 <div className='listitem samplelistitem' >
@@ -301,7 +316,7 @@ class DonorsFunction extends Component {
                         </div>}
                     </div>
                     {this.state.data.length > 0 && <div>
-                        <h1>Connect with {this.state.data.length} Blood Donor{this.state.data.length > 1 ? 's' : ''}</h1>
+                        <h1>Connect with {this.state.data.length} {this.state.data.type ? 'Plasma' : 'Blood'} Donor{this.state.data.length > 1 ? 's' : ''}</h1>
                     </div>}
                 </div>}
 

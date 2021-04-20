@@ -16,6 +16,7 @@ const requestSchema = new Schema({
     /*contactname: { type: String, required: true },
     contactphone: { type: String, required: true },
     contactemail: { type: String },*/
+    type: { type: String, required: true },
     message: { type: String },
     show: { type: Boolean, required: true }
 }, {

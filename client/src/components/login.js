@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
-//import Switch from "react-switch";
+import Switch from "react-switch";
 import Autocomplete from 'react-google-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
@@ -52,6 +52,8 @@ class LoginBox extends Component {
       age: '',
       gender: '',
       bloodgroup: '',
+      type: 'blood',
+      covid: false,
       address: '',
       pos: '',
       backupPos: '',
@@ -105,6 +107,13 @@ class LoginBox extends Component {
   onChangeAddress(e) {
     this.setState({
       address: e.target.value
+    })
+  }
+
+  onChangeType = (e) => {
+    this.setState({
+      covid: true,
+      type: 'plasma'
     })
   }
 
@@ -255,6 +264,8 @@ class LoginBox extends Component {
       bloodgroup: this.state.bloodgroup,
       address: this.state.address,
       pos: this.state.pos,
+      type: this.state.type,
+      covid: this.state.covid
     }
 
     if (typeof (this.state.pos) !== 'object') {
@@ -402,6 +413,10 @@ class LoginBox extends Component {
             <input type="radio" id="other" name="gender" value="other" onChange={this.onChangeGender} required />
             <label htmlFor="other">Other</label>
           </div>
+          <div className="currloc" title="Urgent! Plasma Donors Required!!">
+            <label htmlFor="address">I've Recovered from Covid<br /> and can Donate Plasma <span className="colorize blink">•</span></label>
+            <Switch onChange={this.onChangeType} checked={this.state.type === 'plasma'} uncheckedIcon={false} onColor='#F42929' offColor='#bcbcbc' handleDiameter={16} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #F42929' width={30} height={15} checkedIcon={false} />
+          </div>
           <div className="selection">
             <label htmlFor="bloodgroup">Blood Group</label>
             <select name="bloodgroup" id="bloodgroup" onChange={this.onChangeBG} required>
@@ -461,9 +476,7 @@ class Login extends Component {
           <meta name="description" content="Login to Blood4Needy to donate and request blood!"></meta>
           <title>Login • Blood4Needy</title>
         </Helmet>
-        <div className="blur">
-          <LoginBG />
-        </div>
+        <LoginBG blur={true} />
         <div className="logincontainer">
           <TextBox />
           <LoginBox addUser={this.props.addUser} auth={this.props.auth} details={this.props.user} />

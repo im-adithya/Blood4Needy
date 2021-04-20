@@ -128,7 +128,7 @@ class BloodRequests extends Component {
                             return (<div className='bloodrequest' key={'bloodrequest' + (index + 1).toString()}>
                                 <div>
                                     <h2>{info.patientname}<span className="colorize" style={{ fontSize: '20px' }}>{this.props.user._id !== info.user._id ? '' : ' (You Requested)'}</span></h2>
-                                    <p className="looking for">looking for <span className="bold">{info.bloodgroup}</span> in <span className="bold">{info.hospital}</span></p>
+                                    <p className="looking for">looking for <span className="bold">{info.bloodgroup + " (" + info.type.charAt(0).toUpperCase() + info.type.slice(1) + ")"}</span> in <span className="bold">{info.hospital}</span></p>
                                 </div>
                                 <div>{this.stringGenerator(info.createdAt)}</div>
                                 <div className="reqmsg">
@@ -152,7 +152,7 @@ class BloodRequests extends Component {
                                     <button className="share" onClick={this.toggleShare} title={index}>Share &nbsp;<FontAwesomeIcon icon={['fas', 'share-alt']} /></button>
                                 </div>
 
-                                {this.state.share === index && <PopUp cross={this.toggleShare} type={'share'} info={info} message={info.user.name + ' is looking for ' + info.bloodgroup + 'blood in ' + info.hospital + '. Please help him if you can! Contact: ' + info.contactphone} />}
+                                {this.state.share === index && <PopUp cross={this.toggleShare} type={'share'} info={info} message={info.user.name + ' is looking for ' + info.bloodgroup + (info.type ? '(Plasma)' : '(Blood)') + 'in ' + info.hospital + '. Please help him if you can! Contact: ' + info.contactphone} />}
                             </div>)
                         } else {
                             return null;

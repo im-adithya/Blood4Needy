@@ -82,8 +82,8 @@ class App extends Component {
       exact: true,
       strict: false
     });
-    const donorsmatched = matchPath(window.location.pathname, {
-      path: "/donors",
+    const bloodmatched = matchPath(window.location.pathname, {
+      path: "/blood",
       exact: true,
       strict: false
     });
@@ -109,7 +109,10 @@ class App extends Component {
             <Route path="/request" component={Request} />
           </ScrollToTop>
           <ScrollToTop>
-            <Route path="/donors" component={Donors} />
+            <Route path="/blood" component={Donors} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/plasma" component={Donors} />
           </ScrollToTop>
           <ScrollToTop>
             <Route path="/about" component={AboutUs} />
@@ -126,7 +129,7 @@ class App extends Component {
           <ScrollToTop>
             <Route path="/lp/s/1" component={LandingPage} />
           </ScrollToTop>
-          <Route render={() => (!(adminmatched || landingmatched || donorsmatched) ? <Footer /> : null)} />
+          <Route render={() => (!(adminmatched || landingmatched || bloodmatched) ? <Footer /> : null)} />
         </div>
       </Router>
     )

@@ -55,7 +55,7 @@ class AutoComplete extends Component {
         return (
             <Wrapper>
 
-                <label htmlFor="hospital" style={{ textAlign: 'left' }} autoComplete="chrome-off">Hospital (अस्पताल)&nbsp;</label>
+                <label htmlFor="hospital" style={{ textAlign: 'left' }} autoComplete="chrome-off">Hospital <span className="hindi">(अस्पताल)</span>&nbsp;</label>
                 <input
                     className="search-input"
                     ref={(ref) => {

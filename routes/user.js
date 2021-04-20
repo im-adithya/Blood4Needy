@@ -26,6 +26,8 @@ router.route('/add').post((req, res) => {
   const age = req.body.age;
   const gender = req.body.gender;
   const bloodgroup = req.body.bloodgroup;
+  const type = req.body.type;
+  const covid = req.body.covid;
   const address = req.body.address;
   const pos = req.body.pos;
   const feedback = "";
@@ -37,6 +39,8 @@ router.route('/add').post((req, res) => {
     age,
     gender,
     bloodgroup,
+    type,
+    covid,
     address,
     pos,
     feedback
@@ -81,6 +85,8 @@ router.route('/update/:id').post((req, res) => {
       user.age = req.body.age;
       user.gender = req.body.gender;
       user.bloodgroup = req.body.bloodgroup;
+      user.type = req.body.type;
+      user.covid = req.body.covid;
       user.address = req.body.address;
       user.pos = req.body.pos;
       user.feedback = req.body.feedback;
