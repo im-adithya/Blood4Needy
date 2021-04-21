@@ -235,7 +235,7 @@ class RequestForm extends Component {
     render() {
         return (
             <div className="request">
-                <h3>Request Blood to Connect with Donors Near You</h3>
+                <h3>Request Blood/Plasma to Connect with Donors Near You</h3>
                 <form className="requestform" onSubmit={this.onSubmitFinal} >
                     <div className="requestheader">Kindly fill below details accurately so we can help you better!</div>
                     <div className="formwrapper">
@@ -368,7 +368,7 @@ class Request extends Component {
         if (redirect) {
             return <Redirect
                 to={{
-                    pathname: "/donors",
+                    pathname: this.state.type ? '/plasma' : '/blood',
                     data: { pos: this.state.pos, bloodgroup: this.state.bloodgroup, data: this.state.data, type: this.state.type }
                 }}
             />
@@ -381,7 +381,7 @@ class Request extends Component {
                     <title>Request • Blood4Needy</title>
                 </Helmet>
                 <div className="requestpageheader">
-                    <h1>Request Blood Near You</h1>
+                    <h1>Request Blood/Plasma Near You</h1>
                 </div>
                 <div className="requestpage">
                     <RequestFAQs />

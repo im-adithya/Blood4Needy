@@ -455,7 +455,7 @@ class LoginBox extends Component {
             <h3>{this.state.existinguser ? 'Login successful!' : 'Congratulations!'}</h3>
             <p style={{ fontSize: '15px' }}>{this.state.existinguser ? '' : 'Your account has been created.'}</p><br />
             <div className="btnbox">
-              <button type="button" id="actlog" className="loginbutton"><Link to="/request" style={{ fontSize: '12px', color: 'white' }}>Request Blood</Link></button>
+              <button type="button" id="actlog" className="loginbutton"><Link to="/request" style={{ fontSize: '12px', color: 'white' }}>Request Blood/Plasma</Link></button>
               <button type="button" id="reqblood" className="loginbutton"
                 style={{ backgroundColor: 'white', color: 'black', border: '1px solid black' }}><Link to="/feed" style={{ fontSize: '12px', color: 'black' }}>Live Feed</Link></button>
             </div><br />
@@ -481,7 +481,7 @@ class Login extends Component {
     return (
       !this.state.authorizedfromstart ? (<div>
         <Helmet>
-          <meta name="description" content="Login to Blood4Needy to donate and request blood!"></meta>
+          <meta name="description" content="Login to Blood4Needy to donate and request blood/plasma!"></meta>
           <title>Login • Blood4Needy</title>
         </Helmet>
         <LoginBG blur={true} />

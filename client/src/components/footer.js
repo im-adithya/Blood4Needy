@@ -25,7 +25,7 @@ export default class Footer extends Component {
                     <div className="footer-1-3 sidefooter">
                         <h6>Navigation</h6>
                         <div><Link to="/">Home</Link></div>
-                        <div><Link to="/donors">Blood Donors</Link></div>
+                        <div><Link to="/blood">Blood Donors</Link></div>
                         <div><Link to="/volunteer">Volunteer</Link></div>
                         <div><a href="https://blog.blood4needy.com/">Blog</a></div>
                     </div>

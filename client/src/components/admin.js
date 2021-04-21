@@ -106,6 +106,12 @@ class AdminPanel extends Component {
             newusermode: true,
             reqeditmode: false,
 
+            currentrow: '',
+            currentcolumn: '',
+            editingrow: 0,
+            editingcolumn: 0,
+            cellSelected: false,
+
             active: 'users'
         }
     }
@@ -277,21 +283,7 @@ class AdminPanel extends Component {
             })
     }
 
-    editUser = () => {
-        this.setState(({ openeduser, users }) => {
-            return {
-                username: users[openeduser].name,
-                userphone: users[openeduser].phone,
-                useraddress: users[openeduser].address,
-                userpos: users[openeduser].pos,
-                useremail: users[openeduser].email,
-                userage: users[openeduser].age,
-                usergender: users[openeduser].gender,
-                userbg: users[openeduser].bloodgroup,
-                newusermode: false
-            }
-        })
-    }
+
 
     hideRequest = () => {
         axios.post('/api/request/show/' + this.state.requests[this.state.openedrequest]._id, { show: !this.state.requests[this.state.openedrequest].show })
@@ -591,23 +583,73 @@ class AdminPanel extends Component {
             { value: info.type },
             { value: info.covid },
             { value: info.address },
-            { value: info.feedback }]
+            { value: info.feedback },
+            { value: new Date(info.createdAt).toDateString() }]
             arr.push(arrtemp)
             return 0
         })
         return arr
     }
 
+    cellEditor = (now) => {
+        let row = parseInt(this.state.editingrow)
+        let column = parseInt(this.state.editingcolumn)
+        if (this.state.cellSelected) {
+            this.setState(({ usersgrid }) => {
+                usersgrid[row][column].value = now.value
+                return {
+                    usersgrid: usersgrid
+                }
+            })
+            const user = {
+                name: (column === 0) ? now.value : this.state.users[row].name,
+                phone: (column === 1) ? now.value : this.state.users[row].phone,
+                email: (column === 2) ? now.value : this.state.users[row].email,
+                age: (column === 3) ? now.value : this.state.users[row].age,
+                gender: (column === 4) ? now.value : this.state.users[row].gender,
+                bloodgroup: (column === 5) ? now.value : this.state.users[row].bloodgroup,
+                type: (column === 6) ? now.value : this.state.users[row].type,
+                covid: (column === 7) ? (now.value === 'true' || now.value === 'TRUE') : this.state.users[row].covid,
+                pos: this.state.users[row].pos,
+                address: this.state.users[row].address,
+                feedback: (column === 9) ? now : this.state.users[row].feedback,
+            }
+
+            axios.post('/api/user/update/' + this.state.users[row]._id, user)
+                .then(res => {
+                    console.log(res.data)
+                })
+        }
+
+    }
+
+    editUser = () => {
+        this.setState(({ openeduser, users }) => {
+            return {
+                username: users[openeduser].name,
+                userphone: users[openeduser].phone,
+                useraddress: users[openeduser].address,
+                userpos: users[openeduser].pos,
+                useremail: users[openeduser].email,
+                userage: users[openeduser].age,
+                usergender: users[openeduser].gender,
+                userbg: users[openeduser].bloodgroup,
+                newusermode: false
+            }
+        })
+    }
+
     render() {
+        console.log(this.state.sheetmode, this.state.currentrow, this.state.currentcolumn, this.state.cellSelected, this.state.editingrow, this.state.editingcolumn)
         if (this.props.display) {
             return (
                 <div>
                     <div className="sidenav">
                         <a href="/"><img src={logo} alt="logo" width={100} style={{ marginBottom: '30px', paddingLeft: '10px' }} /></a>
-                        <p style={{ color: ((this.state.active === 'users') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'users' })}>Users</p>
-                        <p style={{ color: ((this.state.active === 'requests') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'requests' })}>Requests</p>
-                        <p style={{ color: ((this.state.active === 'updates') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'updates' })}>Updates</p>
-                        <p style={{ color: ((this.state.active === 'volunteers') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'volunteers' })}>Volunteers</p>
+                        <p style={{ color: ((this.state.active === 'users') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'users', cellSelected: false })}>Users</p>
+                        <p style={{ color: ((this.state.active === 'requests') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'requests', cellSelected: false })}>Requests</p>
+                        <p style={{ color: ((this.state.active === 'updates') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'updates', cellSelected: false })}>Updates</p>
+                        <p style={{ color: ((this.state.active === 'volunteers') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'volunteers', cellSelected: false })}>Volunteers</p>
                     </div>
                     <div className="admin">
                         <div className="admin-header">
@@ -617,7 +659,15 @@ class AdminPanel extends Component {
                         {this.state.active === 'users' && <div>
                             <div>
                                 <h3>All Users</h3>
-                                {this.state.ready ? <Spreadsheet data={this.state.usersgrid} columnLabels={["Name", "Phone", "Email", "Age", "Gender", "BloodGroup", "Type", "Recovered from Covid", "Address", "Feedback"]} /> : <div></div>}
+                                {this.state.ready ?
+                                    <Spreadsheet
+                                        onActivate={(a) => { this.setState({ currentrow: a.row, currentcolumn: a.column, cellSelected: true }) }}
+                                        onModeChange={(a) => { if (a === 'edit') { this.setState(({ currentrow, currentcolumn }) => { return { editingrow: currentrow, editingcolumn: currentcolumn } }) } }}
+                                        onCellCommit={(prev, now, next) => this.cellEditor(now)}
+                                        data={this.state.usersgrid}
+                                        columnLabels={["Name", "Phone", "Email", "Age", "Gender", "BloodGroup", "Type", "Recovered from Covid", "Address", "Feedback", "Joined"]}
+                                    /> :
+                                    <div></div>}
 
                             </div>
                             <div className="orgupdates" style={{ display: 'block' }}>

@@ -127,7 +127,7 @@ class BloodRequests extends Component {
                         if ((index < this.state.pageCount * 9) && (index >= (this.state.pageCount - 1) * 9)) {
                             return (<div className='bloodrequest' key={'bloodrequest' + (index + 1).toString()}>
                                 <div>
-                                    <h2>{info.patientname}<span className="colorize" style={{ fontSize: '20px' }}>{this.props.user._id !== info.user._id ? '' : ' (You Requested)'}</span></h2>
+                                    <h2>{info.patientname}<div className="colorize" style={{ fontSize: '20px' }}>{this.props.user._id !== info.user._id ? '' : ' (You Requested)'}</div></h2>
                                     <p className="looking for">looking for <span className="bold">{info.bloodgroup + " (" + info.type.charAt(0).toUpperCase() + info.type.slice(1) + ")"}</span> in <span className="bold">{info.hospital}</span></p>
                                 </div>
                                 <div>{this.stringGenerator(info.createdAt)}</div>

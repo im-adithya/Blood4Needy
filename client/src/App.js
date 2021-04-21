@@ -87,6 +87,11 @@ class App extends Component {
       exact: true,
       strict: false
     });
+    const plasmamatched = matchPath(window.location.pathname, {
+      path: "/plasma",
+      exact: true,
+      strict: false
+    });
     return (
       <Router>
         <div className="container">
@@ -129,7 +134,7 @@ class App extends Component {
           <ScrollToTop>
             <Route path="/lp/s/1" component={LandingPage} />
           </ScrollToTop>
-          <Route render={() => (!(adminmatched || landingmatched || bloodmatched) ? <Footer /> : null)} />
+          <Route render={() => (!(adminmatched || landingmatched || bloodmatched || plasmamatched) ? <Footer /> : null)} />
         </div>
       </Router>
     )
