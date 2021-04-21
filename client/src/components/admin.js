@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
+import Spreadsheet from "react-spreadsheet";
 import Autocomplete from 'react-google-autocomplete';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
@@ -26,7 +27,6 @@ class AdminLogin extends Component {
 
     adminLogin = (e) => {
         e.preventDefault()
-        console.log(this.state)
         if (window.innerWidth < 600) {
             this.setState({ warning: 'Login from Laptop/PC' })
         } else {
@@ -100,6 +100,7 @@ class AdminPanel extends Component {
             requestbloodgroup: '',
             requestrequireddate: '',
             reqshow: '',
+            ready: false,
 
             newupdatemode: true,
             newusermode: true,
@@ -115,7 +116,7 @@ class AdminPanel extends Component {
                 this.setState({ updates: res.data })
                 axios.get('/api/user/')
                     .then(res => {
-                        this.setState({ users: res.data })
+                        this.setState({ users: res.data, usersgrid: this.userSpreadSheetGenerator(res.data), ready: true })
                         axios.get('/api/volunteer/')
                             .then(res => {
                                 this.setState({ volunteers: res.data })
@@ -577,11 +578,31 @@ class AdminPanel extends Component {
         })
     }
 
+    userSpreadSheetGenerator = (obj) => {
+        //[{name: 'Adithya',age:18},{name: 'Harsha', age:19}]
+        let arr = []
+        obj.map((info, index) => {
+            let arrtemp = [{ value: info.name },
+            { value: info.phone },
+            { value: info.email },
+            { value: info.age },
+            { value: info.gender },
+            { value: info.bloodgroup },
+            { value: info.type },
+            { value: info.covid },
+            { value: info.address },
+            { value: info.feedback }]
+            arr.push(arrtemp)
+            return 0
+        })
+        return arr
+    }
+
     render() {
         if (this.props.display) {
             return (
                 <div>
-                    <div class="sidenav">
+                    <div className="sidenav">
                         <a href="/"><img src={logo} alt="logo" width={100} style={{ marginBottom: '30px', paddingLeft: '10px' }} /></a>
                         <p style={{ color: ((this.state.active === 'users') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'users' })}>Users</p>
                         <p style={{ color: ((this.state.active === 'requests') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'requests' })}>Requests</p>
@@ -593,52 +614,11 @@ class AdminPanel extends Component {
                             <h2>Admin Panel</h2>
                             <button className="admin-so" onClick={() => this.props.toggle()}>Sign Out</button>
                         </div>
-                        {this.state.active === 'users' && <div className="notifwrapper">
-                            <div className="orgupdates">
-                                <div style={{ height: '95%' }}>
-                                    <h3>All Users</h3>
-                                    {this.state.users.map((info, index) => {
-                                        if ((index < this.state.userspageCount * 5) && (index >= (this.state.userspageCount - 1) * 5)) {
-                                            return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
-                                                <h2 className="orgupdate-1">
-                                                    {info.name}
-                                                </h2>
-                                                <div className="orgupdate-2">
-                                                    <div className="userbg">{info.bloodgroup}</div>
-                                                    <button className="readbtn" style={{ width: '80px' }} onClick={() => this.handleReadUser(index)}>{this.state.openeduser === index ? 'Hide ' : 'View '} Details</button>
-                                                </div>
-                                                {this.state.openeduser === index && <div style={{ marginTop: '10px' }} className="voldata">
-                                                    <span className="bold">Phone: </span>{info.phone}<br />
-                                                    <span className="bold">Email: </span>{info.email}<br />
-                                                    <span className="bold">Age: </span>{info.age}<br />
-                                                    <span className="bold">Gender: </span>{info.gender}<br />
-                                                    <span className="bold">Address: </span>{info.address}<br />
-                                                    <span className="bold">Joined: </span>{info.createdAt}<br />
-                                                    <span className="bold">Pos: </span>{info.pos.lat + '-' + info.pos.lng}<br />
-                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editUser}>Edit User</button>&nbsp;&nbsp;&nbsp;
-                                            <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeUser}>Delete User</button>
-                                                </div>}
-                                            </div>)
-                                        } else {
-                                            return null;
-                                        }
-                                    })}
-                                </div>
-                                <div className="pages">
-                                    <ReactPaginate
-                                        previousLabel={'<'}
-                                        nextLabel={'>'}
-                                        breakLabel={'...'}
-                                        breakClassName={'break-me'}
-                                        pageCount={Math.ceil(this.state.users.length / 5)}
-                                        marginPagesDisplayed={2}
-                                        pageRangeDisplayed={3}
-                                        onPageChange={this.handleusersPageClick}
-                                        containerClassName={'pagination'}
-                                        subContainerClassName={'pages pagination'}
-                                        activeClassName={'active'}
-                                    />
-                                </div>
+                        {this.state.active === 'users' && <div>
+                            <div>
+                                <h3>All Users</h3>
+                                {this.state.ready ? <Spreadsheet data={this.state.usersgrid} columnLabels={["Name", "Phone", "Email", "Age", "Gender", "BloodGroup", "Type", "Recovered from Covid", "Address", "Feedback"]} /> : <div></div>}
+
                             </div>
                             <div className="orgupdates" style={{ display: 'block' }}>
                                 <div>
