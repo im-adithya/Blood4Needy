@@ -10,6 +10,7 @@ import { LoginBG } from "./home"
 import axios from 'axios';
 import './login.css';
 import logo from '../logowhite.svg';
+import warning from '../assets/warning.png'
 
 const TextBox = () => {
   return (
@@ -111,10 +112,17 @@ class LoginBox extends Component {
   }
 
   onChangeType = (e) => {
-    this.setState({
-      covid: true,
-      type: 'plasma'
-    })
+    if (!this.state.covid) {
+      this.setState({
+        covid: true,
+        type: 'plasma'
+      })
+    } else {
+      this.setState({
+        covid: false,
+        type: 'blood'
+      })
+    }
   }
 
   /*setCurrentLocation() {
@@ -414,7 +422,7 @@ class LoginBox extends Component {
             <label htmlFor="other">Other</label>
           </div>
           <div className="currloc" title="Urgent! Plasma Donors Required!!">
-            <label htmlFor="address">I've Recovered from Covid<br /> and can Donate Plasma <span className="colorize blink">•</span></label>
+            <label htmlFor="address"><img src={warning} alt="warning" className="blink" width={15} /> I've Recovered from Covid<br /> and can Donate Plasma</label>
             <Switch onChange={this.onChangeType} checked={this.state.type === 'plasma'} uncheckedIcon={false} onColor='#F42929' offColor='#bcbcbc' handleDiameter={16} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #F42929' width={30} height={15} checkedIcon={false} />
           </div>
           <div className="selection">
