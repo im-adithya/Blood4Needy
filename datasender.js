@@ -1,6 +1,83 @@
-const mongoose = require('mongoose');
+const router = require('express').Router();
+let User = require('./models/userModel');
+let BloodPack = require('./models/bloodPackModel');
 
-let arr = [
+router.route('/').post((req, res) => {
+    let arr = JSON.parse(req.body.data);
+    for (let i = 0; i < arr.length; i++) {
+        let user = {};
+        try {
+            user.name = arr[i].name
+            user.age = arr[i].age
+            user.feedback = arr[i].feedback
+            if (arr[i].bloodgroup === "") {
+                throw "err no BG"
+            }
+            user.bloodgroup = arr[i].bloodgroup
+            user.email = arr[i].email
+            user.phone = arr[i].phone
+            user.gender = arr[i].gender.toLowerCase() === 'male' ? 'male' : (arr[i].gender.toLowerCase() === 'female' ? 'female' : 'other')
+            user.pos = { lat: 26.2183, lng: 78.1828 }
+            user.address = "Gwalior, Madhya Pradesh, India"
+            user.covid = (arr[i].covid.toLowerCase() === 'true') ? true : false
+            user.type = arr[i].type.toLowerCase()
+        } catch (error) {
+            console.log('skipped')
+            continue;
+        }
+
+        User.create(user)
+            .then(res => {
+                console.log(i + "th user inserted!")
+                const user = res;
+                const name = res.name;
+                const bloodgroup = res.bloodgroup;
+                const location = {
+                    type: "Point",
+                    coordinates: [res.pos.lng, res.pos.lat]
+                }
+
+                const newBloodPack = new BloodPack({
+                    user,
+                    name,
+                    bloodgroup,
+                    location
+                });
+
+                newBloodPack.save()
+                    .then(() => {
+                        console.log(i + 'th bloodpack saved')
+                        if (i == arr.length - 1) {
+                            console.log("That's it!")
+                        }
+                    })
+                    .catch(err => {
+                        console.log('F', err)
+                        process.exit()
+                    })
+
+            })
+            .catch(err => {
+                console.log('F', err)
+                process.exit()
+            })
+
+    }
+});
+
+module.exports = router;
+
+/*
+---------- WARNING!!! UNCOMMENT ONLY WHEN REQUIRED-----------------
+--------THIS WILL DELETE ALL RECORDS IN THE DATABASE---------------
+
+User.deleteMany({})
+    .then(res => console.log(res, 'All are deleted'))
+BloodPack.deleteMany({})
+    .then(res => console.log(res, 'All are deleted'))
+*/
+
+/*let arr = [
     { "address": "Gwalior, Madhya Pradesh, India", "age": "40", "feedback": "", "type": "blood", "covid": false, "gender": "male", "name": "Tarun", "bloodgroup": "B+", "email": "tarungoyal95@gmail.com", "phone": "8889058888", "pos": { lat: 26.2183, lng: 78.1828 } },
     { "address": "Gwalior, Madhya Pradesh, India", "age": "39", "feedback": "", "type": "blood", "covid": false, "gender": "female", "name": "Neha Goyal", "bloodgroup": "O+", "email": "nehagoyal1281@gmail.com", "phone": "9826478111", "pos": { lat: 26.2183, lng: 78.1828 } },
     { "address": "Bengaluru, Karnataka, India", "age": "53", "feedback": "", "type": "blood", "covid": false, "gender": "male", "name": "Neeraj Khanna", "bloodgroup": "B+", "email": "neerajkhanna123@gmail.com", "phone": "9845056359", "pos": { lat: 12.97159, lng: 77.5945627 } },
@@ -611,64 +688,4 @@ let arr = [
     { "address": "Gwalior, Madhya Pradesh, India", "age": "18", "feedback": "", "type": "blood", "covid": false, "gender": "male", "name": "Hariom garg", "bloodgroup": "B-", "email": "hariomgarg002@gmail.com", "phone": "8839027593", "pos": { lat: 26.2183, lng: 78.1828 } },
     { "address": "Gwalior, Madhya Pradesh, India", "age": "18", "feedback": "", "type": "blood", "covid": false, "gender": "male", "name": "Rajendara  chaurashiya", "bloodgroup": "AB+", "email": "rajendarachuarashiya35786@gmail.com", "phone": "9752190130", "pos": { lat: 26.2183, lng: 78.1828 } },
     { "address": "Gwalior, Madhya Pradesh, India", "age": "18", "feedback": "", "type": "blood", "covid": false, "gender": "male", "name": "Dinesh gupta", "bloodgroup": "A-", "email": "dineshgupta694617@gmail.com", "phone": "9630294617", "pos": { lat: 26.2183, lng: 78.1828 } }]
-
-const uri = 'mongodb+srv://The_Hyperboy:mongodbat98@cluster0.v8oho.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
-})
-
-let User = require('./models/userModel');
-let BloodPack = require('./models/bloodPackModel');
-
-for (let i = 1; i < arr.length; i++) {
-    User.create(arr[i])
-        .then(res => {
-            console.log(i + "th user inserted!")
-            const user = res;
-            const name = res.name;
-            const bloodgroup = res.bloodgroup;
-            const location = {
-                type: "Point",
-                coordinates: [res.pos.lng, res.pos.lat]
-            }
-
-            const newBloodPack = new BloodPack({
-                user,
-                name,
-                bloodgroup,
-                location
-            });
-
-            newBloodPack.save()
-                .then(() => {
-                    console.log(i + 'th bloodpack saved')
-                    if (i == arr.length - 1) {
-                        console.log("That's it!")
-                    }
-                })
-                .catch(err => {
-                    console.log('F', err)
-                    process.exit()
-                })
-
-        })
-        .catch(err => {
-            console.log('F', err)
-            process.exit()
-        })
-
-}
-
-
-/*
----------- WARNING!!! UNCOMMENT ONLY WHEN REQUIRED-----------------
---------THIS WILL DELETE ALL RECORDS IN THE DATABASE---------------
-
-User.deleteMany({})
-    .then(res => console.log(res, 'All are deleted'))
-BloodPack.deleteMany({})
-    .then(res => console.log(res, 'All are deleted'))
 */

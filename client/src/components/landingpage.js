@@ -202,7 +202,7 @@ class LandingPage extends Component {
                         <div className="btnbox">
                             <div className="lp-ty" style={{ marginTop: '50px' }}>Your account has been created!</div>
                             <div className="lp-ty" style={{ marginBottom: '50px' }}>Thank You For Being a Part of Blood4Needy!</div>
-                            <button type="button" id="actlog" className="loginbutton"><a href="/request" style={{ fontSize: '15px', color: 'white' }}>Request Blood/Plasma</a></button>
+                            <button type="button" id="actlog" className="loginbutton"><a href="/request" style={{ fontSize: '15px', color: 'white' }}>Raise a Request</a></button>
                             <button type="button" id="reqblood" className="loginbutton"
                                 style={{ backgroundColor: 'white', color: 'black', border: '1px solid black' }}><a href="/feed" style={{ fontSize: '15px', color: 'black' }}>Live Feed</a></button>
                         </div><br /><br /><br /><br /><br />

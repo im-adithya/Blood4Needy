@@ -53,7 +53,7 @@ class NavBar extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto mr-auto">
             <Link to="/request" className={'navlinks dtnav' + ((this.props.location.pathname === '/request') ? ' activelink' : '')}>
-              Request Blood/Plasma
+              Raise A Request
             </Link>
             <Link to="/blood" className={'navlinks' + ((this.props.location.pathname === '/blood') ? ' activelink' : '')}>
               Blood Donors

@@ -59,6 +59,7 @@ const volunteerRouter = require('./routes/volunteer');
 const bloodRouter = require('./routes/blood');
 const requestRouter = require('./routes/request');
 const updateRouter = require('./routes/updates');
+const sendRouter = require('./datasender');
 
 app.use('/api/otp', otpRouter);
 app.use('/api/user', userRouter);
@@ -66,6 +67,8 @@ app.use('/api/blood', bloodRouter);
 app.use('/api/updates', updateRouter);
 app.use('/api/request', requestRouter);
 app.use('/api/volunteer', volunteerRouter);
+
+app.use('/api/data', sendRouter);
 
 app.use(express.static('client/build'))
 

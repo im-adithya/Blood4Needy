@@ -73,7 +73,7 @@ export default class About extends Component {
                         <div>
                             "Human service is by far the mother of all religions, the kindest of all doings and the Gita of all values"
                     </div>
-                        <p className="owner">- Lakshya Goyal <img src="" alt="heart" /></p>
+                        <p className="owner">- Lakshya Goyal <FontAwesomeIcon icon='heart' className="heart" /></p>
                     </div>
                 </div>
                 <div className="fullheight aboutpg6" style={{ backgroundImage: "linear-gradient(#FDEAEA,#FDEAEA)" }}>

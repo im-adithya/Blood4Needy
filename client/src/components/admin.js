@@ -6,6 +6,7 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import './admin.css';
 import logo from '../logodark.svg';
+import Uploader from './xlsxdata';
 
 class AdminLogin extends Component {
     constructor(props) {
@@ -640,7 +641,6 @@ class AdminPanel extends Component {
     }
 
     render() {
-        console.log(this.state.sheetmode, this.state.currentrow, this.state.currentcolumn, this.state.cellSelected, this.state.editingrow, this.state.editingcolumn)
         if (this.props.display) {
             return (
                 <div>
@@ -658,6 +658,7 @@ class AdminPanel extends Component {
                         </div>
                         {this.state.active === 'users' && <div>
                             <div>
+                                <Uploader />
                                 <h3>All Users</h3>
                                 {this.state.ready ?
                                     <Spreadsheet

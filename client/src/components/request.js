@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Switch from "react-switch";
+//import Switch from "react-switch";
 import { Helmet } from "react-helmet";
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
@@ -157,10 +157,8 @@ class RequestForm extends Component {
     }
 
     onChangeType = (e) => {
-        this.setState(({ type }) => {
-            return ({
-                type: !type
-            })
+        this.setState({
+            type: e.target.value
         })
     }
 
@@ -205,7 +203,7 @@ class RequestForm extends Component {
             reason: this.state.reason,
             hospital: this.state.hospital,
             pos: this.state.pos,
-            type: this.state.type ? 'plasma' : 'blood',
+            type: this.state.type,
             /*contactname: this.state.contactname,
             contactphone: this.state.contactphone,
             contactemail: this.state.contactemail,*/
@@ -235,15 +233,21 @@ class RequestForm extends Component {
     render() {
         return (
             <div className="request">
-                <h3>Request Blood/Plasma to Connect with Donors Near You</h3>
+                <h3>Raise A Request to Connect with Donors Near You</h3>
                 <form className="requestform" onSubmit={this.onSubmitFinal} >
                     <div className="requestheader">Kindly fill below details accurately so we can help you better!</div>
                     <div className="formwrapper">
                         <label>Requirement <span className="hindi">(आवश्यकता)</span>&nbsp;</label>
-                        <div className="bloodplasma">
+                        {/*<div className="bloodplasma">
                             <span className="bptoggle">Blood</span>
                             <Switch onChange={this.onChangeType} checked={this.state.type} uncheckedIcon={false} onColor='#F42929' offColor='#bcbcbc' handleDiameter={22} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #F42929' width={40} height={20} checkedIcon={false} />
                             <span className="bptoggle">Plasma</span>
+                        </div>*/}
+                        <div className="radiobtnbp">
+                            <input type="radio" id="blood" name="bp" value="blood" onChange={this.onChangeType} required />
+                            <label htmlFor="blood">Blood</label><br />
+                            <input type="radio" id="plasma" name="bp" value="plasma" onChange={this.onChangeType} required />
+                            <label htmlFor="plasma">Plasma</label><br />
                         </div>
                         <label>Blood Group <span className="hindi">(रक्त वर्ग)</span>&nbsp;</label>
                         <select name="bloodgroup" id="bloodgroup" onChange={this.onChangeBG} required>
@@ -352,7 +356,7 @@ class Request extends Component {
     }
 
     toggleRedirect() {
-        axios.get('/api/blood/' + (this.state.type ? 'plasma' : 'blood') + '&' + this.state.bloodgroup + '&' + this.props.user._id + '&' + this.state.pos.lat + '&' + this.state.pos.lng + '&' + this.props.user.gender)
+        axios.get('/api/blood/' + this.state.type + '&' + this.state.bloodgroup + '&' + this.props.user._id + '&' + this.state.pos.lat + '&' + this.state.pos.lng + '&' + this.props.user.gender)
             .then(res => {
                 this.setState({ data: res.data, redirect: true })
             })
@@ -368,8 +372,8 @@ class Request extends Component {
         if (redirect) {
             return <Redirect
                 to={{
-                    pathname: this.state.type ? '/plasma' : '/blood',
-                    data: { pos: this.state.pos, bloodgroup: this.state.bloodgroup, data: this.state.data, type: this.state.type }
+                    pathname: '/' + this.state.type,
+                    data: { pos: this.state.pos, bloodgroup: this.state.bloodgroup, data: this.state.data, type: (this.state.type === 'plasma') }
                 }}
             />
         }

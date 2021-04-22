@@ -455,7 +455,7 @@ class LoginBox extends Component {
             <h3>{this.state.existinguser ? 'Login successful!' : 'Congratulations!'}</h3>
             <p style={{ fontSize: '15px' }}>{this.state.existinguser ? '' : 'Your account has been created.'}</p><br />
             <div className="btnbox">
-              <button type="button" id="actlog" className="loginbutton"><Link to="/request" style={{ fontSize: '12px', color: 'white' }}>Request Blood/Plasma</Link></button>
+              <button type="button" id="actlog" className="loginbutton"><Link to="/request" style={{ fontSize: '12px', color: 'white' }}>Raise A Request</Link></button>
               <button type="button" id="reqblood" className="loginbutton"
                 style={{ backgroundColor: 'white', color: 'black', border: '1px solid black' }}><Link to="/feed" style={{ fontSize: '12px', color: 'black' }}>Live Feed</Link></button>
             </div><br />
