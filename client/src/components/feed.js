@@ -35,22 +35,22 @@ export const PopUp = class PopUp extends Component {
                     <p>Needs Your Help</p>
                     <p>Share with your contacts</p>
                     <div>
-                        <EmailShareButton url='https://www.blood4needy.com/donate' subject={"Someone needs your help"} body={this.props.message} openShareDialogOnClick={true} title>
+                        <EmailShareButton url='https://www.blood4needy.com/feed' subject={"Someone needs your help"} body={this.props.message} openShareDialogOnClick={true} title>
                             <EmailIcon size={32} round />
                         </EmailShareButton >
-                        <WhatsappShareButton url='https://www.blood4needy.com/donate' title={this.props.message}>
+                        <WhatsappShareButton url='https://www.blood4needy.com/feed' title={this.props.message}>
                             <WhatsappIcon size={32} round />
                         </WhatsappShareButton>
-                        <FacebookShareButton url='https://www.blood4needy.com/donate' quote={this.props.message}>
+                        <FacebookShareButton url='https://www.blood4needy.com/feed' quote={this.props.message}>
                             <FacebookIcon size={32} round />
                         </FacebookShareButton>
-                        <FacebookMessengerShareButton url='https://www.blood4needy.com/donate' quote={this.props.message}>
+                        <FacebookMessengerShareButton url='https://www.blood4needy.com/feed' quote={this.props.message}>
                             <FacebookMessengerIcon size={32} round />
                         </FacebookMessengerShareButton>
-                        <TelegramShareButton url='https://www.blood4needy.com/donate' title={this.props.message}>
+                        <TelegramShareButton url='https://www.blood4needy.com/feed' title={this.props.message}>
                             <TelegramIcon size={32} round />
                         </TelegramShareButton>
-                        <TwitterShareButton url='https://www.blood4needy.com/donate' title={this.props.message}>
+                        <TwitterShareButton url='https://www.blood4needy.com/feed' title={this.props.message}>
                             <TwitterIcon size={32} round />
                         </TwitterShareButton>
                     </div>

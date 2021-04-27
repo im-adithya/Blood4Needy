@@ -1,16 +1,16 @@
-.feed{
+.feed {
     background-color: #F42929;
     padding: 20vh 5vw 20px;
     min-height: 100vh;
 }
 
-.feed h1{
+.feed h1 {
     color: white;
     text-align: center;
     margin: 5vh 0 5vh;
 }
 
-.togglenotifs{
+.togglenotifs {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -23,7 +23,7 @@
     cursor: pointer;
 }
 
-.togglenotifs div{
+.togglenotifs div {
     font-size: 20px;
     display: flex;
     flex-direction: row;
@@ -33,14 +33,14 @@
     width: 50%;
 }
 
-.activenotif{
+.activenotif {
     background-color: white;
     height: 39px;
     width: 50%;
     border-radius: 10px;
 }
 
-.bloodrequest,.orgupdates, .recentmembers{
+.bloodrequest, .orgupdates, .recentmembers {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -50,29 +50,29 @@
     margin: 20px 0px
 }
 
-.lookingfor{
+.lookingfor {
     font-size: 13px !important
 }
 
-.bold{
+.bold {
     font-weight: bold;
     font-size: 13px;
 }
 
-.reqmsg{
+.reqmsg {
     padding: 5px 0;
     font-size: 16px;
 }
 
-.minimap >div>div{
+.minimap>div>div {
     height: 200px !important
 }
 
-.minimap button, .minimap .gmnoprint, .minimap .gm-spvc{
+.minimap button, .minimap .gmnoprint, .minimap .gm-spvc {
     display: none !important
 }
 
-.helperbtns{
+.helperbtns {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -80,7 +80,7 @@
     margin-top: 10px;
 }
 
-.helperbtns>button{
+.helperbtns>button {
     width: 48%;
     color: white;
     height: 40px;
@@ -90,11 +90,11 @@
     border: none;
 }
 
-.helperbtns>button:hover{
+.helperbtns>button:hover {
     background-color: #1dad52;
 }
 
-.contactpatient>a{
+.contactpatient>a {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -105,11 +105,11 @@
     border-radius: 5px;
 }
 
-.contactpatient-1{
+.contactpatient-1 {
     font-size: 13px !important;
 }
 
-.share{
+.share {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -117,11 +117,11 @@
     background-color: #6dc370;
 }
 
-.recentmembers>h3{
+.recentmembers>h3 {
     width: 80%
 }
 
-.newuser{
+.newuser {
     background-color: #ffcdcd;
     border-radius: 5px;
     padding: 10px;
@@ -133,24 +133,24 @@
     height: 75px;
 }
 
-.userdetails h2{
+.userdetails h2 {
     font-size: 16px !important;
     margin: 0;
 }
 
-.userdetails p{
+.userdetails p {
     font-size: 14px !important;
     margin: 0;
 }
 
-.userbg{
+.userbg {
     background-color: #F42929;
     color: white;
     font-weight: bold;
     padding: 5px 10px
 }
 
-.donorcount, .orgupdate-2{
+.donorcount, .orgupdate-2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -158,7 +158,7 @@
     padding-top: 10px;
 }
 
-.donorcount{
+.donorcount {
     background-color: #ddd;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -166,30 +166,30 @@
     margin: 10px -20px -30px;
 }
 
-.donrcount>h2{
+.donrcount>h2 {
     margin-right: 10px;
 }
 
-.donorcount>h3{
+.donorcount>h3 {
     font-size: 20px !important;
     width: 75%
 }
 
-.orgupdate{
+.orgupdate {
     background-color: #e2e2e2;
     padding: 10px;
     margin-top: 20px;
     border-radius: 5px;
 }
 
-.orgupdate-1{
+.orgupdate-1 {
     font-size: 16px !important;
 }
 
-.readbtn{
+.readbtn {
     font-size: 10px !important;
     border: none;
-    outline:none;
+    outline: none;
     width: 60px;
     border-radius: 5px;
     height: 25px;
@@ -197,33 +197,33 @@
     background-color: #F42929;
 }
 
-.requests{
+.requests {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
-.requestswrapper{
+.requestswrapper {
     display: flex;
     flex-wrap: wrap;
 }
 
-.bloodrequest{
+.bloodrequest {
     position: relative;
     max-width: 30%;
     flex: 25%;
     margin: 0 20px 20px;
 }
 
-.bloodrequest p{
+.bloodrequest p {
     font-size: 16px;
 }
 
-.bloodrequest .bold{
+.bloodrequest .bold {
     font-size: 16px
 }
 
-.sharepopup{
+.sharepopup {
     position: absolute;
     top: 20%;
     background-color: #ffffff91;
@@ -240,8 +240,8 @@
     border-radius: 10px;
 }
 
-.sharepopup-2{
-    height:200px;
+.sharepopup-2 {
+    height: 200px;
     width: 250px;
     display: flex;
     flex-direction: column;
@@ -249,18 +249,18 @@
     align-items: center;
 }
 
-.sharepopup-2>div{
-    width:100%;
+.sharepopup-2>div {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.sharepopup-2>h1{
+.sharepopup-2>h1 {
     font-size: 22px !important;
 }
 
-.callbtn, .wabtn{
+.callbtn, .wabtn {
     width: 150px;
     height: 35px;
     outline: none;
@@ -270,22 +270,22 @@
     color: white;
 }
 
-.callbtn{
+.callbtn {
     background-color: #F42929;
     margin-right: 10px;
     font-size: 16px;
 }
 
-.callbtn>a{
+.callbtn>a {
     font-size: 15px;
 }
 
-.wabtn{
+.wabtn {
     background-color: #25D366;
     margin-left: 5px;
 }
 
-.cross{
+.cross {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
@@ -294,103 +294,98 @@
     cursor: pointer;
 }
 
-.cross > svg{
+.cross>svg {
     font-size: 15px;
 }
 
-.pagination{
+.pagination {
     margin: 10px auto 0;
 }
 
-.pagination>li{
+.pagination>li {
     padding: 0 10px;
     color: #363636;
 }
 
-.active > a{
+.active>a {
     color: #F42929 !important;
     outline: none
 }
 
-.notifwrapper{
+.notifwrapper {
     display: flex;
     flex-wrap: wrap;
 }
 
-.notifwrapper>div{
+.notifwrapper>div {
     width: 80%;
     max-width: 80%;
     margin: 10px auto 20px;
 }
 
-.orgupdates{
+.orgupdates {
     margin-right: 5%;
     background-color: white;
 }
 
-.recentmembers{
+.recentmembers {
     margin-left: 0;
     margin-bottom: 0;
-    height: 90vh;
-    max-height: 90vh;
+    height: auto;
 }
 
-.pages{
+.pages {
     margin: 0 auto;
 }
 
-.requests .active > a{
+.requests .active>a {
     color: white !important;
 }
 
-@media(max-width: 500px){
-    .feed{
-        padding-top: 19vh
+@media(max-width: 500px) {
+    .feed {
+        padding-top: 19vh;
+        padding-bottom: 70px;
     }
-    .requests{
+    .requests {
         display: flex;
         flex-direction: column;
     }
-    
-    .bloodrequest{
+    .bloodrequest {
         position: relative;
         max-width: 100%;
         flex: 100%;
         margin: 0 0 20px;
     }
-    .notifwrapper{
+    .notifwrapper {
         display: unset;
         flex-wrap: unset;
     }
-    
-    .notifwrapper>div{
+    .notifwrapper>div {
         width: 100%;
         max-width: 100%;
     }
-    
-    .orgupdates{
+    .orgupdates {
         margin-right: 0;
     }
-    
-    .recentmembers{
+    .recentmembers {
         margin-left: 0;
         height: auto;
-        max-height: 80vh
     }
-    .feed h1{
+    .feed h1 {
         font-size: 25px !important;
         text-align: left !important;
         margin: 0 0 20px !important;
     }
-    .togglenotifs{
+    .togglenotifs {
         height: 40px;
         width: unset;
         margin: 20px 0px;
     }
-    .donors .togglenotifs{
+    .donors .togglenotifs {
         margin: 20px 10px;
     }
-    .togglenotifs>div{
+    .togglenotifs>div {
         font-size: 18px;
         height: 39px;
     }

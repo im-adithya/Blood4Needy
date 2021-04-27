@@ -1,45 +1,45 @@
-.home *{
+.home * {
     transition: all 1s;
 }
 
-h1{
+h1 {
     font-size: 50px;
     font-weight: bold;
 }
 
-h2{
+h2 {
     font-size: 40px;
     font-weight: bold;
 }
 
-h3{
+h3 {
     font-size: 30px;
     font-weight: bold;
 }
 
-h4{
+h4 {
     font-size: 15px;
     font-weight: bold;
     text-align: center;
     padding: 20px 0;
 }
 
-p{
+p {
     font-size: 30px;
     font-weight: 300;
 }
 
-a{
+a {
     font-size: 20px;
     font-weight: bold;
 }
 
-.emphasize{
+.emphasize {
     font-size: 50px;
     color: #F42929;
 }
 
-.button1{
+.button1 {
     width: 170px;
     height: 50px;
     background-color: #F42929;
@@ -47,43 +47,43 @@ a{
     border-radius: 5px;
 }
 
-.button1 a{
+.button1 a {
     color: #FFF;
     font-size: 18px;
 }
 
-.pg1{
+.pg1 {
     text-align: left;
     padding: 25vh 0 0 10vw;
 }
 
-.pg3{
+.pg3 {
     text-align: left;
     padding: 20vh 0 0 7vw;
 }
 
-.pg2{
+.pg2 {
     text-align: center;
     padding: 16vh 0 0;
     min-height: 550px;
 }
 
-.pg2>h1,.pg2>p{
+.pg2>h1, .pg2>p {
     margin: 0 auto;
     width: 80vw
 }
 
-.pg3>p{
-    width:45vw;
+.pg3>p {
+    width: 45vw;
     font-size: 25px;
 }
 
-.pg3{
+.pg3 {
     background-image: url('../assets/home-2-dark.png');
     min-height: 600px;
 }
 
-.pg4, .pg4 div, .reason-num, .pg9wrapper{
+.pg4, .pg4 div, .reason-num, .pg9wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,29 +94,29 @@ a{
     background: linear-gradient(#FFF 50%, #F42929 50%);
 }
 
-.pg4 div{
+.pg4 div {
     flex-direction: column;
     background-color: #ffdfe9;
 }
 
-.pg4>div{
+.pg4>div {
     margin: 0 30px;
 }
 
-.pg4img{
+.pg4img {
     overflow: hidden
 }
 
-.pg4img,.pg4img>img{
+.pg4img, .pg4img>img {
     width: 420px;
     height: 320px;
 }
 
-.pg4text{
+.pg4text {
     padding: 30px 10px 20px;
 }
 
-.pg5{
+.pg5 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -124,38 +124,38 @@ a{
     background-color: #F42929;
 }
 
-.pg5-2wrapper{
+.pg5-2wrapper {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-.pg5-1wrapper{
+.pg5-1wrapper {
     text-align: center;
 }
 
-.pg6>h1,.pg7>h1{
+.pg6>h1, .pg7>h1 {
     padding: 10vh 0 0 10vh
 }
 
-.pg10>h1{
+.pg10>h1 {
     padding: 5vh 0 0
 }
 
-.pg6, .pg6wrapper{
+.pg6, .pg6wrapper {
     display: flex;
     flex-direction: column;
 }
 
-.pg6{
+.pg6 {
     justify-content: space-around;
     overflow-y: hidden;
     background-color: white;
     height: 100vh;
 }
 
-.pg6wrapper{
+.pg6wrapper {
     height: 100vh;
     width: 80vw;
     flex-wrap: wrap;
@@ -163,7 +163,7 @@ a{
     margin: 0 auto;
 }
 
-.reason{
+.reason {
     background-color: #F42929;
     border-radius: 10px;
     width: 38vw;
@@ -177,7 +177,7 @@ a{
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.384);
 }
 
-.reason-num{
+.reason-num {
     min-width: 50px;
     width: 50px;
     height: 50px;
@@ -186,48 +186,46 @@ a{
     background-color: #fff;
 }
 
-.reason-title{
-    color:#FFF;
+.reason-title {
+    color: #FFF;
     font-size: 25px;
     margin-left: 10px;
 }
 
-.pg7wrapper .carousel-control-prev-icon,
-.pg7wrapper .carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  outline: black;
-  background-size: 100%, 100%;
-  border-radius: 50%;
-  background-image: none;
+.pg7wrapper .carousel-control-prev-icon, .pg7wrapper .carousel-control-next-icon {
+    height: 100px;
+    width: 100px;
+    outline: black;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    background-image: none;
 }
 
-.pg7wrapper .carousel-control-prev{
+.pg7wrapper .carousel-control-prev {
     top: 68vh;
-    left:40%;    
+    left: 40%;
 }
 
-.pg7wrapper .carousel-control-next{
+.pg7wrapper .carousel-control-next {
     top: 68vh;
-    right:40%;
+    right: 40%;
 }
 
-.pg7wrapper .carousel-control-next-icon:after
-{
-  content: '>';
-  font-size: 40px;
-  font-weight: bold;
-  color: red;
+.pg7wrapper .carousel-control-next-icon:after {
+    content: '>';
+    font-size: 40px;
+    font-weight: bold;
+    color: red;
 }
 
 .pg7wrapper .carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 40px;
-  font-weight: bold;
-  color: red;
+    content: '<';
+    font-size: 40px;
+    font-weight: bold;
+    color: red;
 }
 
-.testimonial{
+.testimonial {
     display: flex !important;
     flex-direction: column;
     width: 60vw !important;
@@ -238,7 +236,7 @@ a{
     box-shadow: 20px 20px 0 rgba(255, 255, 255);
 }
 
-.testimonial-name{
+.testimonial-name {
     color: #FFF;
     font-size: 40px;
     font-weight: bold;
@@ -246,43 +244,43 @@ a{
     padding: 40px 0 0 40px
 }
 
-.testimonial-feedback{
+.testimonial-feedback {
     color: #FFF;
     font-size: 25px;
     width: 40vw;
     padding: 40px 0 0 40px
 }
 
-.pg8>h1{
+.pg8>h1 {
     text-align: center;
     width: 60vw;
 }
 
-.pg9{
+.pg9 {
     background-color: white;
     height: 110vh;
 }
 
-.pg9>h1{
+.pg9>h1 {
     padding-top: 5vh;
     text-align: center;
 }
 
-.pg9>p{
+.pg9>p {
     text-align: center;
 }
 
-.pg9wrapper p{
+.pg9wrapper p {
     font-size: 16px;
 }
 
-.pg9wrapper{
+.pg9wrapper {
     height: 80vh;
     flex-direction: row;
     overflow: hidden;
 }
 
-.pg9-1,.pg9-2{
+.pg9-1, .pg9-2 {
     width: 440px;
     height: 440px;
     display: flex;
@@ -291,40 +289,40 @@ a{
     margin: 0 20px
 }
 
-.pg9-1-1{
+.pg9-1-1 {
     width: 440px;
     height: 220px;
     padding: 20px;
 }
 
-.pg9-1-2{
+.pg9-1-2 {
     width: 220px;
     height: 220px;
     padding: 20px;
 }
 
-.pg12, .pg8{
+.pg12, .pg8 {
     display: flex !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.pg10wrapper>a:hover{
-    color:black
+.pg10wrapper>a:hover {
+    color: black
 }
 
-.pg11{
+.pg11 {
     background-color: white;
     height: fit-content;
 }
 
-.pg11>h1{
+.pg11>h1 {
     text-align: center;
     padding: 10vh 0
 }
 
-.pg1,.pg2,.pg3,.pg8,.pg9-1-1,.pg9-1-2,.pg12{
+.pg1, .pg2, .pg3, .pg8, .pg9-1-1, .pg9-1-2, .pg12 {
     background-position: center;
     background-size: cover;
 }
@@ -334,13 +332,13 @@ a{
     width: 50%;
 }
 
-.faqhidden p{
+.faqhidden p {
     font-size: 15px;
 }
 
 .faqbox {
     background-color: white;
-    color:#444;
+    color: #444;
     cursor: pointer;
     width: 60%;
     height: 80px;
@@ -356,28 +354,28 @@ a{
     border-bottom: 2px solid rgb(131, 131, 131);
 }
 
-.faqbox p{
+.faqbox p {
     font-size: 20px;
 }
 
 .faqbox:hover {
-    background-color: #ffd7d7; 
+    background-color: #ffd7d7;
 }
 
-.hiddenfaq{
+.hiddenfaq {
     display: none;
 }
 
-.activefaq{
+.activefaq {
     display: block;
 }
 
-.carousel-control-next, .carousel-control-prev{
+.carousel-control-next, .carousel-control-prev {
     width: 5%;
     opacity: 1;
 }
 
-.button2{
+.button2 {
     border-radius: 10px;
     width: 230px;
     height: 50px;
@@ -416,7 +414,7 @@ a{
     justify-content: space-between;
 }
 
-.stepbox span{
+.stepbox span {
     font-size: 20px;
 }
 
@@ -433,7 +431,7 @@ a{
     height: 650px;
 }
 
-.pg10wrapper{
+.pg10wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -441,7 +439,7 @@ a{
     width: 100%;
 }
 
-.button3{
+.button3 {
     background-color: #FFF;
     border-radius: 10px;
     width: 165px;
@@ -451,16 +449,16 @@ a{
     margin: 5vh 0;
 }
 
-.button3>a{
+.button3>a {
     font-size: 16px;
 }
 
-.button3:hover{
+.button3:hover {
     background-color: #efefef;
     color: #f42929;
 }
 
-.blog{
+.blog {
     width: 280px;
     height: 350px;
     margin: 50px 30px 0;
@@ -470,27 +468,26 @@ a{
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.404);
 }
 
-.lift{
+.lift {
     position: relative;
     top: 0;
     transition: top ease 1s;
 }
 
-.lift:hover{
+.lift:hover {
     top: -10px;
 }
 
-.blog-title{
+.blog-title {
     font-size: 25px;
     font-weight: bold;
 }
 
-.blog-content{
+.blog-content {
     font-size: 20px;
 }
 
-
-.pg11wrapper{
+.pg11wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -505,16 +502,15 @@ a{
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: #1f1f1f;
     transition: all 10s;
 }
 
-.pg12bgparent:hover .pg12bg,
-.pg12bgparent:focus .pg12bg {
-  transform: scale(1.1);
+.pg12bgparent:hover .pg12bg, .pg12bgparent:focus .pg12bg {
+    transform: scale(1.1);
 }
 
-.pg12wrapper{
+.pg12wrapper {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -532,66 +528,66 @@ a{
     width: 200px;
 }
 
-.heartwrap a{
+.heartwrap a {
     font-size: 20px;
 }
 
 .heart {
     animation: .8s infinite beatHeart;
 }
-  
+
 @keyframes beatHeart {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
     25% {
-      transform: scale(1.1);
+        transform: scale(1.1);
     }
     40% {
-      transform: scale(1);
+        transform: scale(1);
     }
     60% {
-      transform: scale(1.1);
+        transform: scale(1.1);
     }
     100% {
-      transform: scale(1);
+        transform: scale(1);
     }
 }
 
 @media (max-width: 500px) {
-    h1{
+    h1 {
         font-size: 33px !important;
     }
-    h2{
+    h2 {
         font-size: 28px !important;
     }
-    h3{
+    h3 {
         font-size: 25px !important;
     }
-    h4{
+    h4 {
         font-size: 12px !important;
-        padding:10px;
+        padding: 10px;
     }
-    .pg3>p{
+    .pg3>p {
         width: 80vw;
     }
-    .pg9>p{
+    .pg9>p {
         font-size: 20px !important;
     }
-    p{
+    p {
         font-size: 15px !important;
     }
-    .emphasize{
+    .emphasize {
         font-size: 30px !important;
     }
-    a{
+    a {
         font-size: 15px !important;
     }
-    .pg6>h1,.pg7>h1,.pg10>h1{
+    .pg6>h1, .pg7>h1, .pg10>h1 {
         padding: 5vh 0 0 0;
         text-align: center;
     }
-    .faqbox, .faqhidden{
+    .faqbox, .faqhidden {
         width: 90%;
     }
     .chevron {
@@ -604,17 +600,13 @@ a{
         transform: scale3d(0.5, 0.5, 0.5);
         animation: move 3s ease-out infinite;
     }
-      
     .chevron:first-child {
         animation: move 3s ease-out 1s infinite;
     }
-      
     .chevron:nth-child(2) {
         animation: move 3s ease-out 2s infinite;
     }
-      
-    .chevron:before,
-    .chevron:after {
+    .chevron:before, .chevron:after {
         content: ' ';
         position: absolute;
         top: 0;
@@ -622,55 +614,51 @@ a{
         width: 50%;
         background: #F42929;
     }
-      
     .chevron:before {
         left: 0;
         transform: skew(0deg, 30deg);
     }
-      
     .chevron:after {
         right: 0;
         width: 50%;
         transform: skew(0deg, -30deg);
     }
-      
     @keyframes move {
         25% {
-          opacity: 1;
-      
+            opacity: 1;
         }
         33% {
-          opacity: 1;
-          transform: translateY(30px);
+            opacity: 1;
+            transform: translateY(30px);
         }
         67% {
-          opacity: 1;
-          transform: translateY(40px);
+            opacity: 1;
+            transform: translateY(40px);
         }
         100% {
-          opacity: 0;
-          transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+            opacity: 0;
+            transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
         }
     }
-      
     @keyframes pulse {
         to {
-          opacity: 1;
-      }
+            opacity: 1;
+        }
     }
-    .pg1>p{
+    .pg1>p {
         width: 300px;
         margin: 25px 0;
     }
-    .pg1,.pg3{ /*TODO: INCLUDE ALL BGSIZE:COVER IN ONE BLOCK*/
+    .pg1, .pg3 {
+        /*TODO: INCLUDE ALL BGSIZE:COVER IN ONE BLOCK*/
         background-size: cover;
     }
-    .pg1{
+    .pg1 {
         padding-top: 28vh;
         height: 85vh !important;
         background-position: 82%
     }
-    .pg3{
+    .pg3 {
         padding-top: 15vh;
         background-image: url('../assets/home-2-white.png');
         background-position: -70vw -15vh;
@@ -679,161 +667,160 @@ a{
         height: 65vh;
         background-color: white;
     }
-    .pg3>h2{
+    .pg3>h2 {
         width: 80vw;
     }
-    .pg3>p{
+    .pg3>p {
         width: 65vw;
     }
-    .pg2{
+    .pg2 {
         height: 70vh;
         justify-content: center;
         padding-top: 10vh;
     }
-    .pg2>h1{
+    .pg2>h1 {
         width: 80vw;
     }
-    .pg2>p{
+    .pg2>p {
         text-align: center;
         margin: 25px auto;
         width: 70vw;
     }
-    .pg5-1wrapper{
+    .pg5-1wrapper {
         display: contents;
     }
-    .pg4text{
+    .pg4text {
         padding: 15px 0px 15px;
     }
-    .pg4text>h2{
+    .pg4text>h2 {
         font-size: 25px !important;
     }
-    .pg9wrapper{
+    .pg9wrapper {
         flex-direction: column;
         height: 130vh;
     }
-    .pg4{
+    .pg4 {
         background: linear-gradient(#FFF 50%, #FFF 50%);
         flex-direction: column;
         height: 120vh;
     }
-    .pg4>div{
+    .pg4>div {
         margin: 10px;
         height: 50vh;
     }
-    .pg5{
+    .pg5 {
         justify-content: center;
         height: 115vh;
     }
-    .button2{
+    .button2 {
         border: 0.5px solid white;
     }
-    .pg5>h1{
+    .pg5>h1 {
         margin-top: 0 !important;
     }
-    .pg6wrapper{
+    .pg6wrapper {
         flex-wrap: nowrap;
-        height: 85vh
+        height: auto
     }
-    .reason{
+    .reason {
         width: 300px;
         height: 80px;
         padding: 15px;
         margin: 15px;
     }
-    .reason-title{
+    .reason-title {
         font-size: 16px
     }
-    .reason-num{
-        min-width:30px;
-        min-height:30px;
-        max-width:30px;
-        max-height:30px;
+    .reason-num {
+        min-width: 30px;
+        min-height: 30px;
+        max-width: 30px;
+        max-height: 30px;
         font-size: 20px;
     }
-    .pg5-2wrapper{
+    .pg5-2wrapper {
         display: contents;
         flex-direction: column;
     }
-    .stepbox{
+    .stepbox {
         width: 80vw;
         height: 20vh;
         margin: 3vh;
     }
-    .pg7{
+    .pg7 {
         height: 82vh;
     }
-    .pg10{
+    .pg10 {
         height: 123vh;
     }
-    .testimonial{
+    .testimonial {
         width: 300px !important;
         background-color: #F42929;
         margin-top: 5vh;
     }
-    .testimonial-name{
+    .testimonial-name {
         margin: 0;
         padding: 25px;
     }
-    .testimonial-feedback{
+    .testimonial-feedback {
         width: 300px;
         padding: 25px;
         font-size: 20px !important;
     }
-    .testimonials .carousel-control-prev,
-    .testimonials .carousel-control-next{
-        top: 63vh; 
+    .testimonials .carousel-control-prev, .testimonials .carousel-control-next {
+        top: 63vh;
     }
-    .pg4img{
+    .pg4img {
         width: 320px;
         height: 50vh;
         overflow: hidden
     }
-    .pg4img>img{
+    .pg4img>img {
         width: 320px;
         height: 50vh;
     }
-    .pg8{
+    .pg8 {
         background-position: 10%;
         justify-content: flex-start;
     }
-    .pg8>h1{
+    .pg8>h1 {
         width: 80vw;
         margin-top: 20vh;
     }
-    .pg9{
-        height:150vh
+    .pg9 {
+        height: 150vh
     }
-    .pg9-1,.pg9-2{
+    .pg9-1, .pg9-2 {
         width: 42vh;
         height: 42vh;
         margin: 10px;
         overflow: unset;
     }
-    .pg9-2{
+    .pg9-2 {
         height: 84vh;
     }
-    .pg9-1-1,.pg9-1-2{
+    .pg9-1-1, .pg9-1-2 {
         width: 42vh;
         height: 21vh;
         padding: 10px;
     }
-    .pg9-1 p,.pg9-2 p{
+    .pg9-1 p, .pg9-2 p {
         font-size: 14px !important;
         width: 35vh;
     }
-    .pg9-1-img{
+    .pg9-1-img {
         margin-bottom: 20px;
     }
-    .pg9-1 a,.pg9-2 a{
+    .pg9-1 a, .pg9-2 a {
         font-size: 14px !important;
     }
-    .pg10wrapper{
-        display:flex;
+    .pg10wrapper {
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    .blog{
+    .blog {
         width: 300px;
         height: 28vh !important;
         border-radius: 20px;
@@ -841,93 +828,92 @@ a{
         height: 185px;
         margin: 2vh 0px
     }
-    .pg11initial{
-        height:80vh
+    .pg11initial {
+        height: 80vh
     }
-    .pg11extend{
-        height:100vh;
+    .pg11extend {
+        height: 100vh;
         transition: none;
     }
-    .pg11>h1{
+    .pg11>h1 {
         font-size: 30px !important;
         padding-bottom: 30px;
         padding: 5vh 15vw;
     }
-    .faqbox{
+    .faqbox {
         height: 10vh;
         font-size: 16px;
     }
-    .faqhidden{
+    .faqhidden {
         max-height: 25vh;
     }
-    .faqhidden>p{
+    .faqhidden>p {
         font-size: 14px !important;
     }
-    .pg12bgparent{
+    .pg12bgparent {
         height: 65vh;
     }
-    .pg12wrapper{
-        height:70vh
+    .pg12wrapper {
+        height: 70vh
     }
-    .pg12wrapper>h1{
-        width:70vw
+    .pg12wrapper>h1 {
+        width: 70vw
     }
-    .heartwrap{
+    .heartwrap {
         width: 170px
     }
-    .pg7wrapper .carousel-control-prev{
-        top: 66vh;    
+    .pg7wrapper .carousel-control-prev {
+        top: 66vh;
     }
-    
-    .pg7wrapper .carousel-control-next{
+    .pg7wrapper .carousel-control-next {
         top: 66vh;
     }
 }
 
-@media (max-height: 700px){
-    .pg6{
+@media (max-height: 700px) {
+    .pg6 {
         height: 110vh;
     }
 }
 
-@media (max-height: 500px){
-    h3{
+@media (max-height: 500px) {
+    h3 {
         font-size: 25px !important;
     }
-    .pg3>p{
-        font-size:15px !important
+    .pg3>p {
+        font-size: 15px !important
     }
-    .pg2{
+    .pg2 {
         height: 80vh
     }
-    .pg3{
-        height:70vh;
+    .pg3 {
+        height: 70vh;
         background-position: -95vw -20vh;
     }
-    .pg5{
-        height:120vh
+    .pg5 {
+        height: 120vh
     }
-    .pg6{
+    .pg6 {
         justify-content: unset;
         height: 115vh;
     }
-    .pg6>h1{
+    .pg6>h1 {
         margin-bottom: 5vh;
     }
-    .pg9-1 p,.pg9-2 p{
+    .pg9-1 p, .pg9-2 p {
         font-size: 12px !important;
     }
-    .pg10{
+    .pg10 {
         height: 130vh;
     }
-    .blog{
+    .blog {
         height: 30vh !important;
     }
-    .button1{
+    .button1 {
         width: 150px;
         height: 40px
     }
-    .button2{
+    .button2 {
         width: 225px;
         font-size: 16px;
     }

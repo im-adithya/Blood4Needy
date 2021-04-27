@@ -31,7 +31,7 @@ const PageOne = () => {
                     >
                         <h1>Welcome to<br /> Blood4Needy</h1><br />
                         <p>Connecting Blood donors <br />had never been much easier!</p><br />
-                        <button className="button1"><Link to='/donors'>Find Blood</Link></button>
+                        <button className="button1"><Link to='/request'>Find Blood</Link></button>
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -41,7 +41,7 @@ const PageOne = () => {
                     >
                         <h1>Welcome to<br /> Blood4Needy</h1><br />
                         <p>Connecting Blood donors <br />had never been much easier!</p><br />
-                        <button className="button1"><Link to='/donors'>Find Blood</Link></button>
+                        <button className="button1"><Link to='/request'>Find Blood</Link></button>
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -51,7 +51,7 @@ const PageOne = () => {
                     >
                         <h1>Welcome to<br /> Blood4Needy</h1><br />
                         <p>Connecting Blood donors <br />had never been much easier!</p><br />
-                        <button className="button1"><Link to='/donors'>Find Blood</Link></button>
+                        <button className="button1"><Link to='/request'>Find Blood</Link></button>
                     </div>
                 </Carousel.Item>
             </Carousel >
@@ -71,7 +71,7 @@ const PageTwo = () => {
             <h3>According to WHO</h3><br />
             <h1>"India runs short of <span className="emphasize">2,000,000<br /></span> units of blood every year."</h1><br />
             <p>Every two seconds someone needs blood.<br />More than 38,000 blood donations are needed every day.</p><br />
-            <button className="button1"><Link to='/donate'>Donate Blood</Link></button>
+            <button className="button1"><Link to='/feed'>Donate Blood</Link></button>
         </div>
     )
 }
@@ -409,9 +409,10 @@ const PageTwelve = () => {
         <div className="w-100 pg12bgparent fullheight">
             <div className="pg12wrapper">
                 <h1 style={{ textAlign: 'center', fontSize: '66px', fontWeight: 'bold', color: 'white', marginBottom: '50px' }}>There is NO alternative<br /> to human blood.</h1>
-                <button className="button1 heartwrap"><Link to='/donate'>Donate Now &nbsp; <FontAwesomeIcon icon='heart' className="heart" /></Link></button>
+                <button className="button1 heartwrap"><Link to='/feed'>Donate Now &nbsp; <FontAwesomeIcon icon='heart' className="heart" /></Link></button>
             </div>
-            <div className="pg12 pg12bg" style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(${home11})` }}></div>
+            {/*style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(${home11})` }} */}
+            <div className="pg12 pg12bg"></div>
         </div>
     )
 }

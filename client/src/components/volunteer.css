@@ -1,4 +1,4 @@
-.volpg1{
+.volpg1 {
     height: 100vh;
     background-color: #F42929;
     color: white;
@@ -6,12 +6,12 @@
     padding: 25vh 0 0 10vw;
 }
 
-.volpg1 p{
+.volpg1 p {
     font-size: 35px;
     width: 70%
 }
 
-.volpg1 button{
+.volpg1 button {
     font-size: 20px;
     border: none;
     outline: none;
@@ -20,11 +20,11 @@
     height: 40px;
 }
 
-.volpg1 button:hover{
+.volpg1 button:hover {
     background-color: #cbcbcb;
 }
 
-.volpg2{
+.volpg2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,13 +33,13 @@
     background-color: white;
 }
 
-.volpg2>h1{
+.volpg2>h1 {
     margin: 0 auto;
     font-size: 65px;
     width: 65vw
 }
 
-.volpg2 button{
+.volpg2 button {
     display: block;
     color: white;
     background-color: #F42929;
@@ -53,25 +53,24 @@
     font-size: 20px;
 }
 
-.volpg2 button:hover{
+.volpg2 button:hover {
     background-color: #df2b2b;
 }
 
-
-.volpg3 h1{
+.volpg3 h1 {
     padding: 10vh 0 0 10vw;
 }
 
-.volpg3 p{
+.volpg3 p {
     padding-left: 10vw;
     font-size: 30px
 }
 
-.volpg5>h1{
+.volpg5>h1 {
     padding: 10vh 0 0 10vh
 }
 
-.form-page{
+.form-page {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -109,18 +108,18 @@
     z-index: 1;
 }
 
-.volformwrap{
+.volformwrap {
     background-color: #ececec;
     padding-bottom: 5vh;
 }
 
-.volformwrap>h1{
+.volformwrap>h1 {
     margin: 0;
     padding: 5vh 0;
     text-align: center;
 }
 
-.volform{
+.volform {
     margin: 5vh auto 0;
     padding: 20px 40px;
     border-radius: 5px;
@@ -131,37 +130,37 @@
     overflow: auto;
 }
 
-.volform *{
+.volform * {
     font-size: 16px;
 }
 
-.volform input,.volform textarea, .volform select{
+.volform input, .volform textarea, .volform select {
     border: none;
     border-bottom: 1px solid #555555;
     outline: none;
 }
 
-.volwrapbw>div>input,.volwrapbw>div>select{
+.volwrapbw>div>input, .volwrapbw>div>select {
     width: 100%;
     height: 35px
 }
 
-.volform>form>input{
+.volform>form>input {
     height: 35px;
     width: 100%;
     padding: 8px
 }
 
-.volform textarea{
+.volform textarea {
     width: 100%;
     background-color: #f5f5f5;
 }
 
-.volform select{
+.volform select {
     width: 60%;
 }
 
-.volbtn, .backbtn{
+.volbtn, .backbtn {
     display: block;
     color: white;
     border: none;
@@ -172,26 +171,26 @@
     margin: 30px auto 10px;
 }
 
-.volbtn{
+.volbtn {
     background-color: #F42929;
 }
 
-.backbtn{
+.backbtn {
     background-color: transparent;
     color: black
 }
 
-.backbtn:hover{
+.backbtn:hover {
     background-color: rgb(219, 219, 219);
 }
-.volbtn:hover{
+
+.volbtn:hover {
     background-color: #df2b2b
 }
 
-.backnext{
+.backnext {
     display: flex;
     flex-direction: row;
-
 }
 
 .volform>form>label, .volwrapbw>div>label {
@@ -200,23 +199,39 @@
     margin: 25px 0 10px
 }
 
-.manyboxes>div{
+.volform select, .volform textarea {
+    color: #444444 !important;
+    border: 1px solid #e8ebed !important;
+    background-color: #FDFEFF;
+    box-shadow: inset 0 1px 4px 0 rgb(0 0 0 / 8%);
+}
+
+.volform select {
+    height: 30px;
+}
+
+.volform textarea {
+    height: 100px;
+    padding: 8px;
+}
+
+.manyboxes>div {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 10px;
 }
 
-.manyboxes label{
+.manyboxes label {
     margin: 0;
 }
 
-.warning{
+.warning {
     color: #F42929;
     text-align: center;
 }
 
-.volconfirm{
+.volconfirm {
     display: flex !important;
     flex-direction: column;
     justify-content: center;
@@ -224,65 +239,63 @@
     height: 100%;
 }
 
-.volconfirm>h1{
+.volconfirm>h1 {
     color: #F42929;
     font-size: 35px;
 }
 
-.volheart{
+.volheart {
     font-size: 60px;
     color: #F42929;
     animation: 1.5s infinite beatHeart;
 }
 
-@media(max-width: 500px){
-    .volpg1{
+@media(max-width: 500px) {
+    .volunteer {
+        padding-bottom: 70px;
+    }
+    .volpg1 {
         padding: 25vh 5vw 0;
         height: 80vh !important;
     }
-    .volpg2{
+    .volpg2 {
         height: 70vh;
     }
-    .volpg2>h1{
+    .volpg2>h1 {
         width: 80vw;
     }
-    .volpg2 button{
+    .volpg2 button {
         width: 200px;
         height: 45px;
         font-size: 16px;
     }
-    .volpg3{
-        height: 120vh
+    .volpg3 {
+        height: auto
     }
-    .volpg3 h1{
+    .volpg3 h1 {
         padding: 50px 0 10px;
         text-align: center;
     }
-    .volpg3 p{
+    .volpg3 p {
         padding: 20px 10px;
         text-align: center;
     }
-    .volpg5{
+    .volpg5 {
         height: 90vh;
     }
-    .volpg5>h1{
+    .volpg5>h1 {
         padding: 5vh 0 0 0;
         text-align: center;
     }
-    .volform{
+    .volform {
         width: 90%;
         padding: 10px 15px;
         height: 620px;
     }
-    .volform *{
+    .volform * {
         font-size: 13px;
     }
-    .volheart{
+    .volheart {
         font-size: 50px;
-    }
-}
-@media(max-width: 375px){
-    .volpg3{
-        height: 135vh
     }
 }
