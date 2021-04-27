@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/feed').get((req, res) => {
-  User.find().sort({ $natural: -1 }).limit(5)
+  User.find().sort({ $natural: -1 }).limit(20)
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err));
 });
