@@ -1,0 +1,19 @@
+.termsncond {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.termsncond>li {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+@media(max-width: 500px) {
+    .termsncond {
+        padding: 15px;
+    }
+    .termsncond>li {
+        font-size: 13px;
+    }
+}

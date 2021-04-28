@@ -481,8 +481,8 @@ class Login extends Component {
     return (
       !this.state.authorizedfromstart ? (<div>
         <Helmet>
-          <meta name="description" content="Login to Blood4Needy to donate and request blood/plasma!"></meta>
-          <title>Login • Blood4Needy</title>
+          <meta name="description" content="Login to Blood4Needy to donate and request blood or plasma!"></meta>
+          <title>Login</title>
         </Helmet>
         <LoginBG blur={true} />
         <div className="logincontainer">

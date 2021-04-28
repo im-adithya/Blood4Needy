@@ -117,8 +117,8 @@ class LandingPage extends Component {
         return (
             <div className="lp">
                 <Helmet>
-                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
-                    <title>Signup • Blood4Needy</title>
+                    <meta name="description" content="Signup to donate blood or plasma to people in need!"></meta>
+                    <title>Signup</title>
                 </Helmet>
                 <div style={{ backgroundImage: `url(https://californiaivf.eggdonorconnect.com/ClinicFiles/Clinic59/bg-egg-donor.jpg)` }} className="lp-cover">
                     <div className="lp-admin">Become a Blood Donor with Blood4Needy</div>
@@ -158,7 +158,7 @@ class LandingPage extends Component {
                         id="address" name="address" onChange={this.onChangeAddress}
                         apiKey={'AIzaSyANuhJR4VpJDXayqxOSKwx8GjaSoaLu7Us'}
                         onPlaceSelected={(place) => this.setState({ address: place.formatted_address, pos: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() } })}
-                        types={['(cities)']}
+                        types={['(regions)']}
                         componentRestrictions={{ country: "in" }}
                         placeholder="Select from dropdown"
                         required

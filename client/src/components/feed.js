@@ -296,6 +296,7 @@ class Notifications extends Component {
                                 <div className='userdetails'>
                                     <h2>{info.name}</h2>
                                     <p>{info.address}</p>
+                                    <p><span style={{ fontWeight: 'bold' }}>Joined:</span> {new Date(info.createdAt).toDateString()}</p>
                                 </div>
                                 <div className="userbg">
                                     {info.bloodgroup}
@@ -339,8 +340,8 @@ class Feed extends Component {
             this.props.auth ?
                 (<div className="feed">
                     <Helmet>
-                        <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
-                        <title>Feed • Blood4Needy</title>
+                        <meta name="description" content="Help us donate blood and plasma in these difficult times. Please register yourself as a donor and start donating right now!"></meta>
+                        <title>Live Feed</title>
                     </Helmet>
                     <h1>Live Activity Log &nbsp;<FontAwesomeIcon icon='heart' className="heart" /></h1>
                     <div className="togglenotifs">

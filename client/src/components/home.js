@@ -83,10 +83,8 @@ const PageThree = () => {
         >
             <h2>What Does <span className="emphasize">Blood4Needy</span> Do?</h2>
             <br />
-            <p>We Connect Blood Donors with the people who are
-                    in need of blood anytime, anywhere in the world.<br />
-                    We Connect Blood Donors with the people who are
-                    in need of blood anytime, anywhere in the world.<br />
+            <p>We Connect Blood Donors with the people who are in need of blood anytime, anywhere in the world.<br />
+                Our vision is to bridge the gap between Needy and Donor through technology and increase social responsibility in citizens by providing them a transparent platform to donate blood.<br />
             </p>
             <br />
             <Link to="/about"><span style={{ fontSize: '20px', color: '#F42929' }}>Click here</span> to know more about us</Link>
@@ -298,7 +296,7 @@ const PageNine = () => {
                     >
                         <h3>Support us financialy</h3>
                         <p>Other ways you can help us is by sponsoring us.</p>
-                        <Link to='/donate' style={{ fontWeight: 'bold' }}>Learn More</Link>
+                        <Link to='/request' style={{ fontWeight: 'bold' }}>Learn More</Link>
                     </div>
                 </div>
             </div>
@@ -428,8 +426,8 @@ export const LoginBG = class HomeWrapper extends Component {
         return (
             <div className={"home container" + (this.props.blur ? " blur" : "")}>
                 <Helmet>
-                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
-                    <title>Home • Blood4Needy</title>
+                    <meta name="description" content="Blood4Needy is an online NGO, we connect blood donors with the blood receivers through an integrated online platform. With increasing requests for blood donation and plasma donation, we have taken a step forward to bridge the gap between Needy and Donor through technology and increase social responsibility in citizens by providing them a transparent platform to donate blood. Our motto is that no one dies due to blood shortage."></meta>
+                    <title>Blood4Needy</title>
                 </Helmet>
                 <PageOne />
                 <PageTwo />
