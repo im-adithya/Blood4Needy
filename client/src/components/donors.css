@@ -234,6 +234,15 @@
     width: 120px;
 }
 
+.mapitem-2-1 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    min-width: 170px;
+    margin: 10px 0;
+}
+
 .ty {
     padding: 10px;
     color: white;

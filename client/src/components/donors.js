@@ -340,7 +340,7 @@ class DonorsFunction extends Component {
                         {this.state.view === 'List' &&
                             <ListView
                                 user={this.props.user}
-                                data={this.state.data}
+                                data={this.state.data.slice(0, 60)}
                                 pos={this.state.pos}
                                 requested={this.props.requested}
                                 alldonors={this.state.alldonors}

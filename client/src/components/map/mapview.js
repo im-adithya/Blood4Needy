@@ -20,7 +20,7 @@ import marker5 from '../../assets/marker-05.png';
 import marker6 from '../../assets/marker-06.png';
 import marker7 from '../../assets/marker-07.png';
 import marker8 from '../../assets/marker-08.png';
-import { WhatsappIcon } from "react-share";
+//import { WhatsappIcon } from "react-share";
 
 const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
     return (
@@ -94,11 +94,11 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                                         </div>
                                     </div>
                                     {(marker.user._id !== props.user._id) && <div className="mapitem-2">
-                                        <h1 style={{ color: 'black' }}>{marker.bloodgroup}</h1>
-                                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                                        <h6 className="mapitem-2-1">Blood Group: <span style={{ color: '#f42929', fontSize: '25px' }}>{marker.bloodgroup}</span></h6>
+                                        {/*<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                                             <button className="callbtn" style={{ width: '100px' }}><a href={props.requested ? 'tel:+91' + marker.user.phone : '/request'} style={{ color: 'white' }}>Contact</a></button>
                                             <a href={props.requested ? 'https://wa.me/91' + marker.user.phone : 'request'} style={{ color: 'white' }}><WhatsappIcon size={35} round /></a>
-                                        </div>
+                                        </div>*/}
                                     </div>}
                                 </div>
                             </InfoWindow>}
