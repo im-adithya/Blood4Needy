@@ -5,6 +5,7 @@ import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faMinus, faHeart, faMapMarkerAlt, faShareAlt, faTimes, faTimesCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
+import ReactPixel from 'react-facebook-pixel';
 
 import Admin from "./components/admin";
 import Navigationbar from "./components/navbar";
@@ -23,7 +24,6 @@ import LandingPage from "./components/landingpage";
 
 library.add(faMinus, faPlus, faHeart, faShareAlt, faFacebookF, faLinkedinIn, faTwitter, faInstagram, faMapMarkerAlt, faTimes, faTimesCircle, faCheckCircle)
 
-/*TODO: Add user authentication*/
 
 class App extends Component {
   constructor(props) {
@@ -42,6 +42,18 @@ class App extends Component {
   componentDidMount() {
     // When this component mounts, begin listening for scroll changes
     window.addEventListener('scroll', this.handleScroll);
+
+    /* Start of Facebook Pixel */
+
+    const options = {
+      autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+      debug: true, // enable logs
+    };
+    ReactPixel.init('510771116970667', options);
+    console.log('hey')
+    ReactPixel.pageView(); // For tracking page view
+
+    /* End of Facebook Pixel */
   }
 
   componentWillUnmount() {
