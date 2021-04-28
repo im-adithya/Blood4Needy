@@ -21,6 +21,7 @@ import Donors from "./components/donors";
 import Footer from "./components/footer";
 import ScrollToTop from "./components/scrollToTop";
 import LandingPage from "./components/landingpage";
+import TermsandConditions from "./components/tnc";
 
 library.add(faMinus, faPlus, faHeart, faShareAlt, faFacebookF, faLinkedinIn, faTwitter, faInstagram, faMapMarkerAlt, faTimes, faTimesCircle, faCheckCircle)
 
@@ -150,6 +151,9 @@ class App extends Component {
           </ScrollToTop>
           <ScrollToTop>
             <Route path="/lp/s/1" component={LandingPage} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/terms-and-conditions" component={TermsandConditions} />
           </ScrollToTop>
           <Route render={() => (homematched ? <Footer /> : null)} />
         </div>

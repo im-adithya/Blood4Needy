@@ -137,8 +137,8 @@ class Profile extends Component {
         return (
             this.props.auth ? <div className="profile">
                 <Helmet>
-                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
-                    <title>Profile • Blood4Needy</title>
+                    <meta name="description" content="See your blood donation stats and give us your valuable feedback here."></meta>
+                    <title>Profile</title>
                 </Helmet>
                 <h1>Profile</h1>
                 <div className="userprof">

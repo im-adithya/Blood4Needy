@@ -294,7 +294,7 @@ class Volunteer extends Component {
         return (
             this.props.auth ? (<div className="volunteer">
                 <Helmet>
-                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
+                    <meta name="description" content="We depend on volunteers! Volunteers make up 96% of our total workforce and carry on our humanitarian work. Please join us and help us in providing blood and plasma to the needy."></meta>
                     <title>Volunteer • Blood4Needy</title>
                 </Helmet>
                 <div className="volpg1">

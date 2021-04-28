@@ -218,8 +218,8 @@ class DonorsFunction extends Component {
         return (
             <div className="donors">
                 <Helmet>
-                    <meta name="description" content="Blood4Needy is an online NGO, We connect blood donors with the blood receivers through an integrated online platform. We bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
-                    <title>Donors • Blood4Needy</title>
+                    <meta name="description" content="View and connect with our superheroes who can save your life by donating blood and plasma to the needy"></meta>
+                    <title>{this.state.type ? 'Plasma' : 'Blood'} Donors</title>
                 </Helmet>
                 {!this.state.redirectedview && <div className="searchpanel">
                     <h1>Connect With {this.state.type ? 'Plasma' : 'Blood'} Donors in your location</h1>

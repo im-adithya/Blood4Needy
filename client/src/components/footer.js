@@ -35,16 +35,16 @@ export default class Footer extends Component {
                 <div className="footer-2">
                     <div className="footer-2-1">
                         Blood4Needy NGO<br />
-                        #51, 3rd Floor, Le Parc Richmonde,<br />
-                        Richmond Road, Shanthala Nagar,<br />
-                        Richmond Town, Bangalore - 560025
+                        Lend2Mend Foundation<br />
+                        Dal Bazaar, Gwalior<br />
+                        Madhya Pradesh - 474001
                     </div>
 
                     <div className="footer-2-2">
                         <div>Contact us on bloodrequests@blood4needy.com</div>
                         <div style={{ marginTop: '25px' }}>Find us on:</div>
                         <div className="socialicons">
-                            <a href="http://www.facebook.com"><FontAwesomeIcon icon={['fab', 'facebook-f']} /></a>
+                            <a href="https://b-m.facebook.com/Blood4Needy/"><FontAwesomeIcon icon={['fab', 'facebook-f']} /></a>
                             <a href="http://www.instagram.com"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
                             <a href="http://www.twitter.com"><FontAwesomeIcon icon={['fab', 'twitter']} /></a>
                             <a href="http://www.linkedin.com"><FontAwesomeIcon icon={['fab', 'linkedin-in']} /></a>

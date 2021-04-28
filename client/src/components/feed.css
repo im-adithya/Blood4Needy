@@ -125,12 +125,12 @@
     background-color: #ffcdcd;
     border-radius: 5px;
     padding: 10px;
-    margin: 5px 0px;
+    margin: 8px 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 75px;
+    height: auto;
 }
 
 .userdetails h2 {
