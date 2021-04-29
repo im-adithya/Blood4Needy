@@ -94,10 +94,10 @@
 
 .bgpaper {
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 120% 100%;
     width: 100%;
     height: auto;
-    padding: 30vh 7vw 0;
+    padding: 30vh 5vw 0;
 }
 
 .bgpaper>h1 {
@@ -116,10 +116,10 @@
 }
 
 .owner {
-    margin-top: 25px;
+    margin: 25px 0 0;
     font-family: 'DM Sans' !important;
     text-align: right;
-    padding-bottom: 100px;
+    padding-bottom: 250px;
 }
 
 .aboutpg6 {
@@ -145,7 +145,7 @@
 
 .supportimg {
     border-radius: 10px;
-    background-color: rgb(253, 234, 234);
+    background-size: cover;
     width: 500px;
     height: 300px;
 }
@@ -167,6 +167,10 @@
     background-color: #fff !important;
     border: none;
     font-weight: bold;
+}
+
+.sliderimg {
+    background-size: cover;
 }
 
 @media(max-width: 500px) {
@@ -215,21 +219,22 @@
         padding: 2vh 2vw;
     }
     .bgpaper {
-        padding: 18vh 5vw 0 5vw;
+        padding: 12vh 5vw 0 5vw;
+        background-size: 150% 100%;
     }
     .bgpaper>h1 {
         margin: 0;
         font-size: 25px !important;
     }
     .bgpaper>p {
-        font-size: 11px !important;
+        font-size: 12px !important;
     }
     .bgpaper>div {
         font-size: 13px
     }
     .owner {
         margin-top: 5px;
-        padding-bottom: 100px;
+        padding-bottom: 125px;
     }
     .aboutpg6>h1 {
         padding: 5vh 0 0 0;

@@ -96,7 +96,7 @@ class DonorsFunction extends Component {
             warning: '',
             pos: this.props.location.data ? this.props.location.data.pos : { lat: 26.2183, lng: 78.1828 },
 
-            view: 'Map',
+            view: 'List',
             donorsview: this.props.location.data ? true : false,
 
             redirectedview: this.props.location.data ? true : false,
@@ -322,8 +322,8 @@ class DonorsFunction extends Component {
                 {/* MAIN FUNCTIONALITY */}
                 {this.state.donorsview && <div className="donorsview">
                     <div className="togglenotifs">
+                        <div className={(this.state.view === 'List' ? 'activenotif' : '')} onClick={this.onToggleView}>List of Donors</div>
                         <div className={(this.state.view === 'Map' ? 'activenotif' : '')} onClick={this.onToggleView}>Map View</div>
-                        <div className={(this.state.view === 'List' ? 'activenotif' : '')} onClick={this.onToggleView}>List View</div>
                     </div>
 
                     <div className="therealview">

@@ -6,6 +6,13 @@ import { connect } from 'react-redux';
 import { Carousel } from 'react-bootstrap';
 import './volunteer.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import volunteer1 from '../assets/volunteer-1.JPG'
+import volunteer2 from '../assets/volunteer-2.JPG'
+import volunteer3 from '../assets/volunteer-3.JPG'
+import volunteer4 from '../assets/volunteer-4.JPG'
+import volunteer5 from '../assets/volunteer-5.JPG'
+import volunteer6 from '../assets/volunteer-6.JPG'
+import volunteer7 from '../assets/volunteer-7.JPG'
 
 class Form extends Component {
     constructor(props) {
@@ -231,7 +238,6 @@ class Form extends Component {
                 </div>
                 <div className="volform" style={{ display: this.state.currpage === 3 ? 'block' : 'none' }}>
                     <form onSubmit={this.onSubmitVolpg3}>
-
                         <label htmlFor="reached">How did you get to know about Blood4Needy?</label>
                         <select name="reached" id="reached" onChange={this.onChangeReached} required>
                             <option value="" defaultValue hidden>Select Here</option>
@@ -295,7 +301,7 @@ class Volunteer extends Component {
             this.props.auth ? (<div className="volunteer">
                 <Helmet>
                     <meta name="description" content="We depend on volunteers! Volunteers make up 96% of our total workforce and carry on our humanitarian work. Please join us and help us in providing blood and plasma to the needy."></meta>
-                    <title>Volunteer • Blood4Needy</title>
+                    <title>Volunteer</title>
                 </Helmet>
                 <div className="volpg1">
                     <h1>Volunteer with Us</h1>
@@ -319,13 +325,25 @@ class Volunteer extends Component {
                     <h1>Our work is only possible <span className="colorize" style={{ fontSize: 'inherit' }}>because of people like you</span></h1>
                     <Carousel className="pg7wrapper" indicators={false}>
                         <Carousel.Item interval={1200}>
-                            <div className="testimonial"></div>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${volunteer1})` }}></div>
                         </Carousel.Item>
                         <Carousel.Item interval={1200}>
-                            <div className="testimonial"></div>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${volunteer2})` }}></div>
                         </Carousel.Item>
                         <Carousel.Item interval={1200}>
-                            <div className="testimonial"></div>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${volunteer3})` }}></div>
+                        </Carousel.Item>
+                        <Carousel.Item interval={1200}>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${volunteer4})` }}></div>
+                        </Carousel.Item>
+                        <Carousel.Item interval={1200}>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${volunteer5})` }}></div>
+                        </Carousel.Item>
+                        <Carousel.Item interval={1200}>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${volunteer6})` }}></div>
+                        </Carousel.Item>
+                        <Carousel.Item interval={1200}>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${volunteer7})` }}></div>
                         </Carousel.Item>
                     </Carousel>
                 </div>

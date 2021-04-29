@@ -8,6 +8,13 @@ import './aboutus.css'
 import paper from '../assets/paper.png'
 import about1 from '../assets/about-1.png'
 import about2 from '../assets/about-2.png'
+import about3 from '../assets/about-3.jpg'
+import about4 from '../assets/about-4.JPG'
+import about5 from '../assets/about-5.JPG'
+import about6 from '../assets/about-6.JPG'
+import about7 from '../assets/about-7.JPG'
+import about8 from '../assets/about-8.JPG'
+import about9 from '../assets/about-9.JPG'
 
 
 export default class About extends Component {
@@ -18,8 +25,8 @@ export default class About extends Component {
         return (
             <div className="aboutus">
                 <Helmet>
-                    <meta name="description" content="Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
-                    <title>About • Blood4Needy</title>
+                    <meta name="description" content="Blood4Needy’s mission is to eradicate the problem of blood shortage in India by establishing the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage."></meta>
+                    <title>About</title>
                 </Helmet>
                 <div className="aboutpg1">
                     <h1>About Us</h1><br /><br />
@@ -57,7 +64,7 @@ export default class About extends Component {
                     <div className="aboutpg3-2" style={{ backgroundImage: `url(${about2})` }}></div>
                     <div className="aboutpg3-1">
                         <h1 style={{ color: '#b21e2e' }}>Mission:</h1><br />
-                        <p>Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage.</p>
+                        <p>Blood4Needy’s mission is to eradicate the problem of blood shortage in India by establishing the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage.</p>
                     </div>
                 </div>
                 <div className="aboutpg4">
@@ -82,13 +89,22 @@ export default class About extends Component {
                     <h1 style={{ color: 'black' }}>Join Us as a <span className="colorize" style={{ fontSize: 'inherit' }}>Volunteer</span></h1>
                     <Carousel indicators={false}>
                         <Carousel.Item interval={1200}>
-                            <div className="testimonial"></div>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${about4})` }}></div>
                         </Carousel.Item>
                         <Carousel.Item interval={1200}>
-                            <div className="testimonial"></div>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${about5})` }}></div>
                         </Carousel.Item>
                         <Carousel.Item interval={1200}>
-                            <div className="testimonial"></div>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${about6})` }}></div>
+                        </Carousel.Item>
+                        <Carousel.Item interval={1200}>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${about7})` }}></div>
+                        </Carousel.Item>
+                        <Carousel.Item interval={1200}>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${about8})` }}></div>
+                        </Carousel.Item>
+                        <Carousel.Item interval={1200}>
+                            <div className="testimonial sliderimg" style={{ backgroundImage: `url(${about9})` }}></div>
                         </Carousel.Item>
                     </Carousel>
                     <Link to="/volunteer"><button className="signout aboutvol">I'm Ready to Volunteer</button></Link>
@@ -96,7 +112,7 @@ export default class About extends Component {
                 <div className="aboutpg6">
                     <h1>Support Us</h1>
                     <div className="supportus">
-                        <div className="supportimg"></div>
+                        <div className="supportimg" style={{ backgroundImage: `url(${about3})` }}></div>
                         <p className="supportcnt">You can help us build a country where people can get blood whenever they require and that too FREE. Make your donation today and support Blood4Needy's conservation solutions.</p>
                     </div>
                     <Link to="/feed"><button className="supportbtn" >Donate Now <FontAwesomeIcon icon='heart' className="colorize heart" /></button></Link>

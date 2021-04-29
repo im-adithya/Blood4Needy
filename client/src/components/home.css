@@ -42,9 +42,9 @@ a {
 .button1 {
     width: 170px;
     height: 50px;
-    background-color: #F42929;
     border: none;
     border-radius: 5px;
+    background-color: #F42929;
 }
 
 .button1 a {
@@ -54,7 +54,36 @@ a {
 
 .pg1 {
     text-align: left;
-    padding: 25vh 0 0 10vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #f1171e !important;
+    background-position-x: center;
+    background-position-y: 5vh;
+}
+
+.pg1 h1 {
+    color: #fff;
+}
+
+.pg1-1 {
+    padding-top: 10vh;
+}
+
+.pg1-1, .pg1-2 {
+    padding: 40vh 0 0 10vw;
+}
+
+.pg1-1 h1 {
+    width: 600px;
+}
+
+.pg1-2 h1 {
+    width: 400px;
+}
+
+.pg1-3 {
+    padding-top: 15vh;
+    text-align: center;
 }
 
 .pg3 {
@@ -322,7 +351,7 @@ a {
     padding: 10vh 0
 }
 
-.pg1, .pg2, .pg3, .pg8, .pg9-1-1, .pg9-1-2, .pg12 {
+.pg2, .pg3, .pg8, .pg9-1-1, .pg9-1-2, .pg12 {
     background-position: center;
     background-size: cover;
 }
@@ -654,9 +683,30 @@ a {
         background-size: cover;
     }
     .pg1 {
-        padding-top: 28vh;
         height: 85vh !important;
-        background-position: 82%
+    }
+    .pg1 h1 {
+        font-size: 28px !important;
+    }
+    .pg1-1 h1 {
+        width: 60%;
+    }
+    .pg1-1 {
+        padding: 35vh 0 0 20px;
+        background-position: 65% 15vh;
+    }
+    .pg1-2 {
+        padding: 20vh 0 0 0;
+        background-position: 75% 25vh;
+        text-align: center;
+    }
+    .pg1-2 h1 {
+        width: unset;
+    }
+    .pg1-3 {
+        padding: 25vh 0 0 0;
+        background-position: 50% 28vh;
+        text-align: center;
     }
     .pg3 {
         padding-top: 15vh;

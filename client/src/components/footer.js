@@ -11,7 +11,7 @@ export default class Footer extends Component {
                 <div className="footer-1">
                     <div className="footer-1-1">
                         <img src={logo} className="footlogo" alt="Blood4Needy" width='100' /><br />
-                        <div>Blood4Needy is an NGO that aims to tackle the problem of blood shortage through an online platform that aims to connect the blood donors with blood receivers.</div>
+                        <div>Blood4Needy is an NGO that aims to tackle the problem of blood shortage through an online platform that aims to connect the donors witH receivers. Blood4Needy’s mission is to eradicate the problem of blood shortage in India by establishing the largest network of blood donors across the country.</div>
                         {/*<form>
                             <input type="email" placeholder="Email Address" />
                             <button type="submit">Subscribe</button>

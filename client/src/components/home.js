@@ -11,14 +11,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './home.css';
 import arrow from '../arrow.png'
-import home1 from '../assets/home-1.png'
+import homei1 from '../assets/home-1-1.png'
+import homei2 from '../assets/home-1-2.png'
+import homei3 from '../assets/home-1-3.png'
 import home3 from '../assets/home-3.png'
 import home4 from '../assets/home-4.png'
 import home5 from '../assets/home-5.png'
 import home6 from '../assets/home-6.png'
 import home7 from '../assets/home-7.png'
 import home8 from '../assets/home-8.png'
-import home11 from '../assets/home-11.png'
+//import home11 from '../assets/home-11.png'
 
 const PageOne = () => {
     return (
@@ -26,32 +28,26 @@ const PageOne = () => {
             <Carousel>
                 <Carousel.Item>
                     <div
-                        className="w-100 fullheight pg1"
-                        style={{ backgroundImage: `url(${home1})`, backgroundColor: 'white' }}
+                        className="w-100 fullheight pg1 pg1-1"
+                        style={{ backgroundImage: `url(${homei1})`, backgroundColor: 'white' }}
                     >
-                        <h1>Welcome to<br /> Blood4Needy</h1><br />
-                        <p>Connecting Blood donors <br />had never been much easier!</p><br />
-                        <button className="button1"><Link to='/request'>Find Blood</Link></button>
+                        <h1>Connect with Donors in your location with just one click</h1>
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div
-                        className="w-100 fullheight pg1"
-                        style={{ backgroundImage: `url(${home1})` }}
+                        className="w-100 fullheight pg1 pg1-2"
+                        style={{ backgroundImage: `url(${homei2})` }}
                     >
-                        <h1>Welcome to<br /> Blood4Needy</h1><br />
-                        <p>Connecting Blood donors <br />had never been much easier!</p><br />
-                        <button className="button1"><Link to='/request'>Find Blood</Link></button>
+                        <h1>Call or Whatsapp Donors without any hassle</h1>
                     </div>
                 </Carousel.Item>
                 <Carousel.Item>
                     <div
-                        className="w-100 fullheight pg1"
-                        style={{ backgroundImage: `url(${home1})` }}
+                        className="w-100 fullheight pg1 pg1-3"
+                        style={{ backgroundImage: `url(${homei3})` }}
                     >
-                        <h1>Welcome to<br /> Blood4Needy</h1><br />
-                        <p>Connecting Blood donors <br />had never been much easier!</p><br />
-                        <button className="button1"><Link to='/request'>Find Blood</Link></button>
+                        <h1>Become a Life-Saving Superhero!</h1>
                     </div>
                 </Carousel.Item>
             </Carousel >
@@ -307,22 +303,21 @@ const PageNine = () => {
 class PageTen extends Component {
     constructor(props) {
         super(props);
-        this.getBlogs = this.getBlogs.bind(this)
 
         this.state = {
-            blogs: [{ title: '10 Things to remember before donating blood.', content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor.", link: 'https://www.google.com' },
-            { title: 'Upcoming Blood donation camps in Gwalior.', content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor.", link: 'https://www.facebook.com' },
-            { title: 'Tips to increase blood in human body.', content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor.", link: 'https://www.ebay.com' }],
+            blogs: [{ title: 'After Donating Blood – First Time', content: "First Time? It’s okay to be a bit nervous! simply relax. Tell the health historiographer if this is often your 1st time and raise as several queries you would like", link: 'https://blog.blood4needy.com/?p=61' },
+            { title: 'Blood Donation Vs Plasma Donation: Difference and Cons', content: "Blood donation is a prosperous act of work. If you ask me, it’s the greatest of representing humanity in the world.  What is a blood donation? Blood or entire blood", link: 'https://blog.blood4needy.com/?p=59' },
+            { title: 'Is Donating Blood Healthy?', content: "Every day blood transfusions ensue that saves lives of the many individuals everywhere the globe. Concerning five million Americans would need blood transfusion. Donating blood is nice for the health", link: 'https://blog.blood4needy.com/?p=57' }],
         }
     }
 
-    getBlogs() { //TODO: USE COMPONENT DID MOUNT
+    /*getBlogs = () => { //TODO: USE COMPONENT DID MOUNT
         axios.get('/api/user/blogs') //TODO: LIMIT BLOGS TO THREE
             .then(res => {
                 this.setState({ blogs: res })
             })
             .catch(err => { console.log(err) });
-    }
+    }*/
 
     render() {
         return (
@@ -333,7 +328,7 @@ class PageTen extends Component {
                         <a href={blog.link} key={'pg10-' + index}>
                             <div className='blog lift' key={'blog' + (index + 1).toString()}>
                                 <p className="blog-title">{blog.title}</p>
-                                <p className="blog-content">{blog.content.substring(0, 100)}...</p>
+                                <p className="blog-content">{blog.content.substring(0, 110)}...</p>
                                 <div style={{ fontWeight: 'bold', fontSize: '15px' }}>Read More</div>
                             </div>
                         </a>
