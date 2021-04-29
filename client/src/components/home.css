@@ -747,7 +747,7 @@ a {
     }
     .pg9wrapper {
         flex-direction: column;
-        height: 130vh;
+        height: auto;
     }
     .pg4 {
         background: linear-gradient(#FFF 50%, #FFF 50%);
@@ -838,20 +838,21 @@ a {
         margin-top: 20vh;
     }
     .pg9 {
-        height: 150vh
+        height: auto;
+        padding-bottom: 5vh;
     }
     .pg9-1, .pg9-2 {
-        width: 42vh;
-        height: 42vh;
+        width: 90vw;
+        height: 90vw;
         margin: 10px;
         overflow: unset;
     }
     .pg9-2 {
-        height: 84vh;
+        height: 180vw;
     }
     .pg9-1-1, .pg9-1-2 {
-        width: 42vh;
-        height: 21vh;
+        width: 90vw;
+        height: 45vw;
         padding: 10px;
     }
     .pg9-1 p, .pg9-2 p {
@@ -922,7 +923,7 @@ a {
 
 @media (max-height: 700px) {
     .pg6 {
-        height: 110vh;
+        height: auto;
     }
 }
 

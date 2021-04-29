@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 import axios from 'axios';
+import Switch from "react-switch";
 import Autocomplete from 'react-google-autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
@@ -8,6 +9,7 @@ import './landingpage.css';
 
 import logo from '../logodark.svg';
 import clock from '../assets/clock-icon.webp';
+import warning from '../assets/warning.png'
 
 class LandingPage extends Component {
     constructor(props) {
@@ -17,6 +19,8 @@ class LandingPage extends Component {
             name: '',
             email: '',
             age: '',
+            type: 'blood',
+            covid: false,
             gender: '',
             bloodgroup: '',
             address: '',
@@ -68,7 +72,19 @@ class LandingPage extends Component {
         })
     }
 
-
+    onChangeType = (e) => {
+        if (!this.state.covid) {
+            this.setState({
+                covid: true,
+                type: 'plasma'
+            })
+        } else {
+            this.setState({
+                covid: false,
+                type: 'blood'
+            })
+        }
+    }
 
     submitform = (e) => {
         e.preventDefault()
@@ -81,6 +97,8 @@ class LandingPage extends Component {
             pos: this.state.pos,
             age: this.state.age,
             bloodgroup: this.state.bloodgroup,
+            type: this.state.type,
+            covid: this.state.covid
         }
 
         if (typeof (data.pos) === 'object') {
@@ -191,6 +209,10 @@ class LandingPage extends Component {
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div className="currloc" title="Urgent! Plasma Donors Required!!">
+                        <label htmlFor="address" style={{ width: '80%' }}><img src={warning} alt="warning" className="blink" width={25} style={{ marginRight: '10px' }} /> I've Recovered from Covid and can Donate Plasma</label>
+                        <Switch onChange={this.onChangeType} checked={this.state.type === 'plasma'} uncheckedIcon={false} onColor='#F42929' offColor='#bcbcbc' handleDiameter={16} boxShadow='0 0 2px 1px #a7a7a7' activeBoxShadow='0 0 2px 1px #F42929' width={30} height={15} checkedIcon={false} />
                     </div>
                     <div className="bold colorize lp-warning">{this.state.warning}</div>
                     <div className="btnbox">

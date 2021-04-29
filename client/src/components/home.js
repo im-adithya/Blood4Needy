@@ -51,9 +51,9 @@ const PageOne = () => {
                     </div>
                 </Carousel.Item>
             </Carousel >
+            {/*<div className="chevron"></div>
             <div className="chevron"></div>
-            <div className="chevron"></div>
-            <div className="chevron"></div>
+            <div className="chevron"></div>*/}
         </div>
     )
 }

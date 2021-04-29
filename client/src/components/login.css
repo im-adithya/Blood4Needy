@@ -1,12 +1,12 @@
-.blur{
-    -webkit-filter: blur(3px); 
-	-moz-filter: blur(3px); 
-	-o-filter: blur(3px); 
-	-ms-filter: blur(3px); 
-	filter: blur(3px);
+.blur {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
 }
 
-.clickable{
+.clickable {
     cursor: pointer;
 }
 
@@ -15,7 +15,7 @@
     font-size: 15px;
 }
 
-.logincontainer{
+.logincontainer {
     position: fixed;
     width: 1000px;
     height: 600px;
@@ -28,21 +28,20 @@
     background: #F42929;
     border-radius: 10px;
     z-index: 999;
-    box-shadow: 2px 2px 20px #00000066;
+    box-shadow: 0px 0px 20px #000000aa;
 }
 
-.logincontainer p{
+.logincontainer p {
     font-size: 12px !important;
 }
 
-.logincontainer label{
+.logincontainer label {
     width: 100%;
     margin-top: 2px;
     margin-bottom: 0 !important;
 }
 
-
-.textbox{
+.textbox {
     padding: 100px 0px 100px 70px;
     font-family: 'Open Sans';
     color: #fff;
@@ -50,7 +49,7 @@
     border-radius: 10px;
 }
 
-.textbox h1{
+.textbox h1 {
     font-size: 40px;
     letter-spacing: 2px;
 }
@@ -59,7 +58,7 @@
     margin-top: 20px;
 }
 
-.loginbox input{
+.loginbox input {
     width: 200px;
     height: 10px;
     padding: 8px;
@@ -70,25 +69,25 @@
     box-shadow: inset 0 1px 4px 0 rgb(0 0 0 / 8%);
 }
 
-.loginbox select{
+.loginbox select {
     color: #444444 !important;
     border: 1px solid #d8d8d8 !important;
     background-color: #FDFEFF;
     box-shadow: inset 0 1px 4px 0 rgb(0 0 0 / 8%);
 }
 
-.loginbox label{
+.loginbox label {
     font-size: 13px;
     display: block;
     font-weight: bold;
 }
 
-.loginbox select{
+.loginbox select {
     display: inline;
     width: 140px;
 }
 
-.loginbox{
+.loginbox {
     width: 320px;
     height: 540px;
     margin: 30px 100px;
@@ -101,12 +100,12 @@
     box-shadow: 2px 2px 20px #00000066;
 }
 
-.loginbox h3{
+.loginbox h3 {
     font-size: 25px !important;
     width: 100%
 }
 
-.subtitle{
+.subtitle {
     font-size: 25px;
 }
 
@@ -115,7 +114,7 @@
     font-size: 15px;
 }
 
-.formbox{
+.formbox {
     padding: 20px 40px;
     display: flex;
     flex-direction: column;
@@ -124,12 +123,12 @@
     transition: 0.5s;
 }
 
-.btnbox{
+.btnbox {
     display: flex;
     justify-content: center;
 }
 
-.loginbutton{
+.loginbutton {
     color: #fff;
     background-color: #F42929;
     outline: none;
@@ -140,7 +139,7 @@
     height: 36px;
 }
 
-.loginbutton:active{
+.loginbutton:active {
     background-color: #bb2020;
 }
 
@@ -161,18 +160,18 @@
     min-width: 220px;
     outline: none;
 }
-  
-#divInner{
+
+#divInner {
     left: 0;
     position: sticky;
 }
-  
-#divOuter{
-    width: 190px; 
+
+#divOuter {
+    width: 190px;
     overflow: hidden;
 }
 
-.radiobtn{
+.radiobtn {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -180,18 +179,18 @@
     width: 100%;
 }
 
-.radiobtn input{
+.radiobtn input {
     padding: 0;
     margin: 0;
     width: auto;
     height: auto;
 }
 
-.radiobtn label, .checkboxes label{
+.radiobtn label, .checkboxes label {
     margin: 0 5px;
 }
 
-.checkboxes{
+.checkboxes {
     margin: 10px 0;
     display: flex;
     flex-direction: row;
@@ -199,26 +198,25 @@
     align-items: center;
 }
 
-.checkboxes input{
+.checkboxes input {
     padding: 0;
     margin: 0;
     width: auto;
     height: auto;
 }
 
-.checkboxes label{
+.checkboxes label {
     display: inline;
 }
 
-.selection{
+.selection {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-
-.progstep{
+.progstep {
     width: 320px;
     height: 5px;
     background-color: #d7d7d7;
@@ -238,14 +236,14 @@
     display: inline-block;
     padding: 4px;
 }
-  
+
 .left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
     cursor: pointer;
 }
 
-#back{
+#back {
     position: fixed;
     width: 275px;
     margin-top: 20px;
@@ -267,37 +265,37 @@
     left: -290px;
 }
 
-.nodisp{
+.nodisp {
     display: none;
 }
 
-.success{
+.success {
     display: flex;
 }
 
-.btnbox{
+.btnbox {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.btnbox button{
+.btnbox button {
     width: 200px;
     height: 36px;
     margin: 5px
 }
 
-.msgs{
+.msgs {
     font-size: 12px !important;
     color: #F42929;
     text-align: center;
 }
 
-.tnc{
-    font-size:11px !important
+.tnc {
+    font-size: 11px !important
 }
 
-.currloc{
+.currloc {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -305,18 +303,17 @@
     width: 100%;
 }
 
-.currloc .colorize{
+.currloc .colorize {
     font-size: 10px;
 }
 
-
-.skipcross{
+.skipcross {
     position: absolute;
     right: 15px;
     top: 15px;
 }
 
-.skipcross>svg{
+.skipcross>svg {
     font-size: 25px;
     color: #F42929;
 }
@@ -327,26 +324,26 @@
 
 @keyframes blinker {
     50% {
-      opacity: 0;
+        opacity: 0;
     }
 }
 
 @media(max-width: 500px) {
-    .textbox{
+    .textbox {
         display: none;
     }
-    .logincontainer{
+    .logincontainer {
         justify-content: center;
         background-color: #ffffff00;
         box-shadow: none;
         height: 100vh;
     }
-    .loginbox{
+    .loginbox {
         width: 85vw;
         height: 550px;
         margin: auto 7.5vw;
     }
-    .progstep{
+    .progstep {
         width: 85vw !important;
     }
 }

@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-.lp-cover{
+.lp-cover {
     width: 100%;
     height: 50vh;
     background-size: cover;
@@ -13,7 +13,7 @@
     background-position-y: -110px;
 }
 
-.lp-admin{
+.lp-admin {
     width: 100%;
     bottom: 0;
     position: absolute;
@@ -25,49 +25,49 @@
     font-weight: bold;
 }
 
-.lp-logo{
+.lp-logo {
     display: block;
     margin: 15px auto;
 }
 
-.lp-tag-1{
+.lp-tag-1 {
     text-align: center;
     font-size: 13px;
     margin: 10px auto 20px;
     width: 60%;
 }
 
-.lp-tag-2{
+.lp-tag-2 {
     text-align: left;
     font-size: 15px;
     margin: 25px 20px 20px 0;
 }
 
-.lp-time{
+.lp-time {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 30px 0;
 }
 
-.lp-time-tags>p{
+.lp-time-tags>p {
     font-size: 13px;
     font-weight: bold;
     margin: 0 0 0 10px;
 }
 
-.lp-form{
+.lp-form {
     padding: 0 40px 20px;
 }
 
-.lp-form label{
+.lp-form label {
     font-weight: bold;
     display: block;
     margin: 25px 0 10px;
     font-size: 15px;
 }
 
-.lp-form > input{
+.lp-form>input {
     width: 100%;
     height: 40px;
     color: #444444 !important;
@@ -78,7 +78,7 @@
     font-size: 15px;
 }
 
-.lp-form select, .lp-form .radiobtn input{
+.lp-form select, .lp-form .radiobtn input {
     color: #444444 !important;
     border: 1px solid #e8ebed !important;
     background-color: #FDFEFF;
@@ -86,81 +86,85 @@
     font-size: 15px;
 }
 
-.lp-form>input:focus,.lp-form select:focus, .lp-form .radiobtn input:focus{
+.lp-form>input:focus, .lp-form select:focus, .lp-form .radiobtn input:focus {
     outline: 1px solid #f42929;
 }
 
-.lp-form select{
-    font-size: 15px;  
+.lp-form select {
+    font-size: 15px;
     width: 50%;
     height: 40px;
 }
 
-.lp-form .radiobtn label{
+.lp-form .radiobtn label {
     font-size: 15px;
     margin: 0 20px;
 }
 
-.lp-form>.selection{
+.lp-form>.selection {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 20px auto;
 }
 
-.lp-form>.selection>select{
+.lp-form>.selection>select {
     height: 40px;
     width: 100px;
 }
 
-.lp .heart{
+.lp .heart {
     color: red
 }
 
-.lp-surround{
+.lp-surround {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.lp-bg{
+.lp-bg {
     width: 40%;
 }
 
-.lp-bg .selection{
+.lp-bg .selection {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.lp-bg select{
+.lp-bg select {
     width: 40%;
 }
 
-.lp-form .btnbox{
+.lp-form .btnbox {
     margin-top: 30px;
 }
 
-.lp-form button{
+.lp-form button {
     font-size: 15px;
     border-radius: 5px;
     width: 150px;
 }
 
-.lp-warning{
+.lp-warning {
     text-align: center;
     margin-top: 20px;
 }
 
-.lp-typage{
+.lp-typage {
     height: 45vh;
 }
 
-.lp-ty{
+.lp-ty {
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+}
+
+.lp-form .currloc {
+    justify-content: space-between;
 }
 
 @media (max-width: 500px) {
@@ -169,23 +173,23 @@
         max-width: 100%;
         margin: 0
     }
-    .lp-tag{
+    .lp-tag {
         width: 100%;
     }
-    .lp-surround{
+    .lp-surround {
         flex-direction: column;
     }
-    .lp-bg{
+    .lp-bg {
         width: 60%;
     }
-    .lp-cover{
+    .lp-cover {
         background-position-y: 0;
         height: 30vh;
     }
-    .lp-admin{
+    .lp-admin {
         font-size: 17px;
     }
-    .lp-typage{
+    .lp-typage {
         height: 70vh;
     }
 }
