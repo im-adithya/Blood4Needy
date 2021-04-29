@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CountUp from 'react-countup';
 import './aboutus.css'
 import paper from '../assets/paper.png'
+import about1 from '../assets/about-1.png'
+import about2 from '../assets/about-2.png'
 
 
 export default class About extends Component {
@@ -49,10 +51,10 @@ export default class About extends Component {
                         <h1 style={{ color: '#b21e2e' }}>Vision:</h1><br />
                         <p>Bridge the gap between Needy and Donor through technology and Increase social responsibility in citizens by providing them a transparent platform to donate blood.</p>
                     </div>
-                    <div className="aboutpg3-2"></div>
+                    <div className="aboutpg3-2 hehe" style={{ backgroundImage: `url(${about1})` }}></div>
                 </div>
                 <div className="aboutpg3 aboutpg3mob">
-                    <div className="aboutpg3-2"></div>
+                    <div className="aboutpg3-2" style={{ backgroundImage: `url(${about2})` }}></div>
                     <div className="aboutpg3-1">
                         <h1 style={{ color: '#b21e2e' }}>Mission:</h1><br />
                         <p>Blood4Needy’s mission is to eradicate the problem of blood shortage in India by becoming the largest network of blood donors across the country. Our motto is that no one dies due to blood shortage.</p>
@@ -73,7 +75,7 @@ export default class About extends Component {
                         <div>
                             "Human service is by far the mother of all religions, the kindest of all doings and the Gita of all values"
                     </div>
-                        <p className="owner">- Lakshya Goyal <FontAwesomeIcon icon='heart' className="heart" /></p>
+                        <p className="owner">- Lakshya Goyal <FontAwesomeIcon icon='heart' className="heart colorize" /></p>
                     </div>
                 </div>
                 <div className="fullheight aboutpg6" style={{ backgroundImage: "linear-gradient(#FDEAEA,#FDEAEA)" }}>

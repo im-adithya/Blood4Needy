@@ -26,6 +26,9 @@ export default class Footer extends Component {
                         <h6>Navigation</h6>
                         <div><Link to="/">Home</Link></div>
                         <div><Link to="/blood">Blood Donors</Link></div>
+                        <div><Link to="/plasma">Plasma Donors</Link></div>
+                        <div><Link to="/request">Raise A Request</Link></div>
+                        <div><Link to="/feed">Live Feed</Link></div>
                         <div><Link to="/volunteer">Volunteer</Link></div>
                         <div><a href="https://blog.blood4needy.com/">Blog</a></div>
                     </div>
@@ -45,8 +48,8 @@ export default class Footer extends Component {
                         <div style={{ marginTop: '25px' }}>Find us on:</div>
                         <div className="socialicons">
                             <a href="https://b-m.facebook.com/Blood4Needy/"><FontAwesomeIcon icon={['fab', 'facebook-f']} /></a>
-                            <a href="http://www.instagram.com"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
-                            <a href="http://www.twitter.com"><FontAwesomeIcon icon={['fab', 'twitter']} /></a>
+                            <a href="https://www.instagram.com/blood4needy_ngo"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
+                            <a href="https://twitter.com/blood4_needy"><FontAwesomeIcon icon={['fab', 'twitter']} /></a>
                             <a href="http://www.linkedin.com"><FontAwesomeIcon icon={['fab', 'linkedin-in']} /></a>
                         </div>
                     </div>

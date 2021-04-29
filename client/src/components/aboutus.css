@@ -1,159 +1,162 @@
-.aboutpg1, .aboutpg2, .aboutpg3, .aboutpg4, .aboutpg6, .aboutpg7{
+.aboutpg1, .aboutpg2, .aboutpg3, .aboutpg4, .aboutpg6, .aboutpg7 {
     height: 100vh;
 }
 
-.aboutpg1{
+.aboutpg1 {
     background-color: #F42929;
     padding: 25vh 5vw 0;
     color: white;
 }
 
-.aboutpg1>p{
+.aboutpg1>p {
     width: 90%;
     font-size: 40px;
 }
 
-.aboutpg2{
+.aboutpg2 {
     padding: 10vh 10vw;
 }
 
-.aboutpg2>h1{
+.aboutpg2>h1 {
     font-size: 60px;
 }
 
-.aboutpg2,.innumber,.aboutpg4{
+.aboutpg2, .innumber, .aboutpg4 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.innumbers,.aboutpg3,.supportus{
+.innumbers, .aboutpg3, .supportus {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
-.aboutpg3{
+.aboutpg3 {
     padding: 10vh 10vw;
     background-color: white;
 }
 
-.aboutpg3-1{
+.aboutpg3-1 {
     font-size: 30px;
     width: 50%;
 }
 
-.aboutpg3-2{
+.aboutpg3-2 {
     border-radius: 10px;
-    background-color: rgb(253, 234, 234);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     width: 450px;
     height: 450px;
 }
 
-.innumbers{
+.innumbers {
     width: 100%;
     margin-top: 15vh;
 }
 
-.innumber{
+.innumber {
     width: 250px;
 }
 
-.innumber>h1{
+.innumber>h1 {
     font-size: 70px;
     text-align: center;
 }
 
-.innumber span{
+.innumber span {
     font-size: 70px;
     font-weight: bold;
 }
 
-.innumber>p{
+.innumber>p {
     font-size: 20px;
     text-align: center;
 }
 
-.aboutpg4{
+.aboutpg4 {
     background-color: rgb(253, 234, 234);
 }
 
-.aboutpg4>h1{
+.aboutpg4>h1 {
     text-align: center;
 }
 
-.aboutpg5{
+.aboutpg5 {
     background-color: #F42929;
     padding: 5vh 5vw;
-    height: 260vh
+    height: auto
 }
 
-.bgpaper{
+.bgpaper {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 260vh;
+    height: auto;
     padding: 30vh 7vw 0;
 }
 
-.bgpaper>h1{
+.bgpaper>h1 {
     margin-bottom: 50px;
 }
 
-.bgpaper>p{
+.bgpaper>p {
     font-family: 'Coming Soon';
     font-size: 28px;
 }
 
-.bgpaper>div{
+.bgpaper>div {
     font-family: 'Coming Soon';
     font-size: 40px;
     font-weight: bold;
 }
 
-.owner{
+.owner {
     margin-top: 25px;
     font-family: 'DM Sans' !important;
     text-align: right;
+    padding-bottom: 100px;
 }
 
-.aboutpg6{
+.aboutpg6 {
     background-color: #F42929;
     padding: 0 5vw
 }
 
-.aboutpg6>h1{
+.aboutpg6>h1 {
     text-align: center;
     padding: 5vh 0;
     color: white;
 }
 
-.supportus{
+.supportus {
     padding: 5vh 0
 }
 
-.supportcnt{
+.supportcnt {
     font-size: 30px;
     width: 38%;
     color: white
 }
 
-.supportimg{
+.supportimg {
     border-radius: 10px;
     background-color: rgb(253, 234, 234);
     width: 500px;
     height: 300px;
 }
 
-.aboutvol{
+.aboutvol {
     height: 45px;
     width: 200px;
     font-size: 16px;
 }
 
-.supportbtn{
+.supportbtn {
     display: block;
     margin: auto;
     width: 200px;
@@ -166,96 +169,93 @@
     font-weight: bold;
 }
 
-@media(max-width: 500px){
-    .aboutpg1{
+@media(max-width: 500px) {
+    .aboutpg1 {
         height: 80vh;
     }
-    .innumbers{
+    .innumbers {
         flex-direction: column;
         margin-top: 8vh;
     }
-    .innumber{
+    .innumber {
         margin-bottom: 20px;
     }
-    .aboutpg2{
+    .aboutpg2 {
         padding: 0;
     }
-    .aboutpg2>h1{
+    .aboutpg2>h1 {
         text-align: center;
     }
-    .innumber span{
+    .innumber span {
         font-size: 33px;
     }
-    .aboutpg3{
+    .aboutpg3 {
         flex-direction: column;
         height: 75vh;
         padding: 5vh 10vw;
     }
-    .aboutpg3mob{
+    .aboutpg3mob {
         flex-direction: column-reverse;
     }
-    .aboutpg3-1{
+    .aboutpg3-1 {
         width: 100%;
     }
-    .aboutpg3-2{
+    .aboutpg3-2 {
         width: 300px;
         height: 200px;
     }
-    .aboutpg4{
+    .aboutpg4 {
         height: 60vh;
     }
-    .aboutpg4>h1{
+    .aboutpg4>h1 {
         font-size: 24px !important;
     }
-    .aboutpg5{
-        height: 120vh;
+    .aboutpg5 {
+        height: auto;
         padding: 2vh 2vw;
     }
-    .bgpaper{
-        background-size: 100% 115vh;
-        padding: 18vh 10vw 0 5vw;
+    .bgpaper {
+        padding: 18vh 5vw 0 5vw;
     }
-    .bgpaper>h1{
+    .bgpaper>h1 {
         margin: 0;
         font-size: 25px !important;
     }
-    .bgpaper>p{
+    .bgpaper>p {
         font-size: 11px !important;
     }
-    .bgpaper>div{
+    .bgpaper>div {
         font-size: 13px
     }
-    .owner{
+    .owner {
         margin-top: 5px;
+        padding-bottom: 100px;
     }
-    .aboutpg6>h1{
+    .aboutpg6>h1 {
         padding: 5vh 0 0 0;
         text-align: center;
     }
-    .supportus{
+    .supportus {
         flex-direction: column;
     }
-    .supportimg{
+    .supportimg {
         width: 300px;
         height: 200px;
     }
-    .supportcnt{
+    .supportcnt {
         margin-top: 5vh;
         width: 80%;
     }
-    .aboutpg6{
+    .aboutpg6 {
         height: 90vh;
     }
 }
 
 @media(max-width: 370px) {
-    .aboutpg6{
+    .aboutpg6 {
         height: 100vh;
     }
-    .aboutpg5{
-        height: 150vh;
-    }
-    .bgpaper{
-        background-size: 100% 145vh;
+    .aboutpg5 {
+        height: auto;
     }
 }
