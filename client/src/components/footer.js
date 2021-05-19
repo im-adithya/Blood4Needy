@@ -38,9 +38,9 @@ export default class Footer extends Component {
                 <div className="footer-2">
                     <div className="footer-2-1">
                         Blood4Needy NGO<br />
-                        Lend2Mend Foundation<br />
+                        Lend2Mend Foundation{/*<br />
                         Dal Bazaar, Gwalior<br />
-                        Madhya Pradesh - 474001
+                        Madhya Pradesh - 474001*/}
                     </div>
 
                     <div className="footer-2-2">
