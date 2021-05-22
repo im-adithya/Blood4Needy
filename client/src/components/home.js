@@ -434,7 +434,7 @@ export const LoginBG = class HomeWrapper extends Component {
                 <PageEight />
                 <PageNine />
                 <PageTen />
-                <PageEleven />
+                {/*<PageEleven />*/}
                 <PageTwelve />
             </div>
         )
