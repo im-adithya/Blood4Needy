@@ -128,6 +128,12 @@ router.route('/:id').delete((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/donations/:seconds').get((req, res) => {
+    Request.countDocuments({ createdAt: { $gt:new Date(parseInt(req.params.seconds))} })
+        .then(bloodpacks => res.json(bloodpacks))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/update/:id').post((req, res) => {
     Request.findById(req.params.id)
         .then(request => {

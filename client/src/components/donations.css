@@ -1,0 +1,225 @@
+.donations{
+    z-index: 1;
+    position: relative;
+    height: 100vh;
+    background-color: white;
+}
+
+.donations-header{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 0;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.479);
+}
+
+.d-cover{
+    background-image: url('../assets/help.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 45vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.donations-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.d-details, .d-leaderboard{
+    width: 100%;
+    border: 1px solid #f42929aa;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px rgb(0 0 0 / 10%);
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.donations .footer-2{
+    padding: 10px 20px 20px;
+}
+
+.donations-footer{
+    display: none;
+}
+
+.thermometer{
+    width: 100%;
+    height: 12px;
+    border-radius: 6px;
+    background-color: #dbd9db;
+}
+
+.thermofit{
+    height: 100%;
+    width: 0%;
+    transition: width 1.5s ease-in-out;
+    -moz-transition: width 1.5s ease-in-out;
+    -webkit-transition: width 1.5s ease-in-out;
+    background: #f42929;
+    background: -webkit-linear-gradient(to right, #f42929, #ff8f89);
+    background: linear-gradient(to right, #f42929, #ff8f89);
+    border-radius: 6px;
+}
+
+.d-amount, .d-up, .d-down{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.d-amount *{
+    font-size: 18px;
+}
+
+.d-up *, .d-down *{
+    font-size: 15px;
+}
+
+.d-message {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.lb-header{
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.lb-donors{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.lb-donor{
+    background-image: linear-gradient(45deg, #f42929, #ff8f89);
+    color: white;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding-left: 2px;
+}
+
+.lb-donor-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.lb-donor *{
+    font-size: 14px;
+}
+
+.d-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.d-buttons > button{
+    width: 48%;
+    height: 40px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.3);
+    transition: 1s;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-image: linear-gradient(45deg, #f42929, #ff8f89);
+}
+
+.d-buttons>button>div:first-child{
+    width: 20%;
+    font-size: 18px;
+}
+
+.d-buttons>button>div:last-child{
+    width: 70%;
+}
+
+.d-detail-wrapper{
+    width: 50%;
+}
+
+.qr{
+    position: fixed;
+    top: 25%;
+    right: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 300px;
+    height: 370px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr>p{
+    margin: 0;
+}
+
+.qr-cross{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.qr-upi{
+    font-size: 14px !important;
+}
+
+.qr-scan{
+    font-weight: bold;
+    font-size: 14px !important;
+}
+
+.qr-title{
+    font-weight: bold;
+    font-size: 20px !important;
+}
+
+@media (max-width: 500px){
+    .donations-footer{
+        display: block;
+    }
+    .d-cover{
+        height: 200px;
+    }
+    .d-detail-wrapper{
+        width: 90%;
+    }
+    
+}

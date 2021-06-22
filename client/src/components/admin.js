@@ -73,14 +73,17 @@ class AdminPanel extends Component {
             volunteers: [],
             requests: [],
             testimonials: [],
+            donations: [],
             updateswarning: '',
             userswarning: '',
             volunteerswarning: '',
+            donationswarning: '',
             requestswarning: '',
             testimonialswarning: '',
             updatespageCount: 1,
             userspageCount: 1,
             volunteerspageCount: 1,
+            donationspageCount: 1,
             requestspageCount: 1,
             testimonialspageCount: 1,
 
@@ -103,6 +106,8 @@ class AdminPanel extends Component {
             reqshow: '',
             ready: false,
 
+            newdonationmode: true,
+
             newupdatemode: true,
             newusermode: true,
             reqeditmode: false,
@@ -121,43 +126,64 @@ class AdminPanel extends Component {
         axios.get('/api/updates/')
             .then(res => {
                 this.setState({ updates: res.data })
-                axios.get('/api/user/')
-                    .then(res => {
-                        this.setState({ users: res.data, usersgrid: this.userSpreadSheetGenerator(res.data), ready: true })
-                        axios.get('/api/volunteer/')
-                            .then(res => {
-                                this.setState({ volunteers: res.data })
-                                axios.get('/api/request/all')
-                                    .then(res => {
-                                        this.setState({ requests: res.data })
-                                        axios.get('/api/user/testimonials')
-                                            .then(res => {
-                                                this.setState({ testimonials: res.data })
-                                            })
-                                            .catch(err => {
-                                                this.setState({ testimonialswarning: 'ERR: Please Try Again' })
-                                                console.log(err)
-                                            });
-                                    })
-                                    .catch(err => {
-                                        this.setState({ requestswarning: 'ERR: Please Try Again' })
-                                        console.log(err)
-                                    });
-                            })
-                            .catch(err => {
-                                this.setState({ volunteerswarning: 'ERR: Please Try Again' })
-                                console.log(err)
-                            });
-                    })
-                    .catch(err => {
-                        this.setState({ userswarning: 'ERR: Please Try Again' })
-                        console.log(err)
-                    });
             })
             .catch(err => {
                 this.setState({ updateswarning: 'ERR: Please Try Again' })
                 console.log(err)
             });
+
+        axios.get('/api/user/')
+            .then(res => {
+                this.setState({ users: res.data, usersgrid: this.userSpreadSheetGenerator(res.data), ready: true })
+            })
+            .catch(err => {
+                this.setState({ userswarning: 'ERR: Please Try Again' })
+                console.log(err)
+            });
+
+        axios.get('/api/volunteer/')
+            .then(res => {
+                this.setState({ volunteers: res.data })
+            })
+            .catch(err => {
+                this.setState({ volunteerswarning: 'ERR: Please Try Again' })
+                console.log(err)
+            });
+
+        axios.get('/api/request/all')
+            .then(res => {
+                this.setState({ requests: res.data })
+            })
+            .catch(err => {
+                this.setState({ requestswarning: 'ERR: Please Try Again' })
+                console.log(err)
+            });
+
+        axios.get('/api/user/testimonials')
+            .then(res => {
+                this.setState({ testimonials: res.data })
+            })
+            .catch(err => {
+                this.setState({ testimonialswarning: 'ERR: Please Try Again' })
+                console.log(err)
+            });
+
+        axios.get('/api/donations')
+            .then(res => {
+                this.setState({ donations: res.data })
+            })
+            .catch(err => {
+                this.setState({ donationswarning: 'ERR: Please Try Again' })
+                console.log(err)
+            });
+    }
+
+    handleReadDonation = (x) => {
+        if (this.state.openeddonation === x) {
+            this.setState({ openeddonation: '' })
+        } else {
+            this.setState({ openeddonation: x })
+        }
     }
 
     handleReadVolunteer = (x) => {
@@ -207,6 +233,11 @@ class AdminPanel extends Component {
         this.setState({ volunteerspageCount: selected + 1 });
     };
 
+    handledonationsPageClick = (data) => {
+        let selected = data.selected;
+        this.setState({ donationspageCount: selected + 1 });
+    };
+
     handlerequestsPageClick = (data) => {
         let selected = data.selected;
         this.setState({ requestspageCount: selected + 1 });
@@ -218,7 +249,7 @@ class AdminPanel extends Component {
     };
 
     removeVolunteer = () => {
-        console.log(this.state.openedvolunteer, this.state.volunteers[this.state.openedvolunteer])
+        console.log(this.state.openedvolunteer, this.state.volunteers[this.state.openedvolunteer]);
         axios.delete('/api/volunteer/' + this.state.volunteers[this.state.openedvolunteer]._id)
             .then(res => {
                 this.setState(({ openedvolunteer, volunteers }) => {
@@ -243,6 +274,19 @@ class AdminPanel extends Component {
                 updatecontent: updates[openedupdate].content,
                 updatetitle: updates[openedupdate].title,
                 newupdatemode: false
+            }
+        })
+    }
+
+    editDonation = () => {
+        this.setState(({ openeddonation, donations }) => {
+            var date = new Date(parseInt(donations[openeddonation].date));
+            return {
+                donationphone: donations[openeddonation].phone,
+                donationname: donations[openeddonation].name,
+                donationamount: donations[openeddonation].amount,//YYYY-MM-DD
+                donationdate: date.getFullYear() + '-' + (date.getMonth() + 1 < 10 ? '0' : '') + (date.getMonth() + 1) + '-' + date.getDate(),
+                newdonationmode: false
             }
         })
     }
@@ -365,6 +409,25 @@ class AdminPanel extends Component {
 
     }
 
+    removeDonation = () => {
+        axios.delete('/api/donations/' + this.state.donations[this.state.openeddonation]._id)
+            .then(res => {
+                this.setState(({ openeddonation, donations }) => {
+                    let upd = donations
+                    upd.splice(openeddonation, 1)
+                    return {
+                        openeddonation: '',
+                        donations: upd
+                    }
+                })
+            })
+            .catch(err => {
+                this.setState({ donationswarning: 'ERR: Please Try Again' })
+                console.log(err)
+            });
+
+    }
+
     onChangeBG = (e) => {
         this.setState({ userbg: e.target.value })
     }
@@ -415,6 +478,22 @@ class AdminPanel extends Component {
 
     onChangeReqMsg = (e) => {
         this.setState({ requestmessage: e.target.value })
+    }
+
+    onChangeDName = (e) => {
+        this.setState({ donationname: e.target.value })
+    }
+
+    onChangeDAmount = (e) => {
+        this.setState({ donationamount: e.target.value })
+    }
+
+    onChangeDDate = (e) => {
+        this.setState({ donationdate: e.target.value })
+    }
+
+    onChangeDPhone = (e) => {
+        this.setState({ donationphone: e.target.value })
     }
 
     newUser = (e) => {
@@ -497,6 +576,35 @@ class AdminPanel extends Component {
         }
     }
 
+    newDonation = (e) => {
+        e.preventDefault()
+        const donation = {
+            name: this.state.donationname,
+            amount: this.state.donationamount,
+            phone: this.state.donationphone,
+            date: this.state.donationdate
+        }
+        axios.post(this.state.newdonationmode ? '/api/donations/add' : ('/api/donations/update/' + this.state.donations[this.state.openeddonation]._id), donation)
+            .then(res => {
+                if (this.state.newdonationmode) {
+                    var lastlink = "https://blood4needy.com/donations?id=" + res.data._id;
+                }
+                axios.get('/api/donations/')
+                    .then(res => {
+                        this.setState({ donations: res.data, lastlink ,donationname: '', donationamount: '', donationdate: '', donationphone: '', donationswarning: this.state.newdonationmode ? 'Click here to copy the link!' : 'Edited successfully!' })
+                        if (!this.state.newdonationmode) {
+                            setTimeout(function () {
+                                this.setState({ donationswarning: '' });
+                            }.bind(this), 1500);
+                        }
+                    })
+                    .catch(err => {
+                        this.setState({ donationswarning: 'ERR: Please Try Again' })
+                        console.log(err)
+                    });
+            })
+    }
+
     newUpdate = (e) => {
         e.preventDefault()
         const update = {
@@ -507,9 +615,9 @@ class AdminPanel extends Component {
             .then(res => {
                 axios.get('/api/updates/')
                     .then(res => {
-                        this.setState({ updates: res.data, updatecontent: '', updatetitle: '', updatewarning: this.state.newupdatemode ? 'Added successfully!' : 'Edited successfully!' })
+                        this.setState({ updates: res.data, updatecontent: '', updatetitle: '', updateswarning: this.state.newupdatemode ? 'Added successfully!' : 'Edited successfully!' })
                         setTimeout(function () {
-                            this.setState({ updatewarning: '' });
+                            this.setState({ updateswarning: '' });
                         }.bind(this), 1500);
                     })
                     .catch(err => {
@@ -568,6 +676,16 @@ class AdminPanel extends Component {
             updatecontent: '',
             updatetitle: '',
             newupdatemode: true
+        })
+    }
+
+    donationcancel = () => {
+        this.setState({
+            donationphone: '',
+            donationname: '',
+            donationamount: '',
+            donationdate: '',
+            newdonationmode: true
         })
     }
 
@@ -650,6 +768,7 @@ class AdminPanel extends Component {
                         <p style={{ color: ((this.state.active === 'requests') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'requests', cellSelected: false })}>Requests</p>
                         <p style={{ color: ((this.state.active === 'updates') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'updates', cellSelected: false })}>Updates</p>
                         <p style={{ color: ((this.state.active === 'volunteers') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'volunteers', cellSelected: false })}>Volunteers</p>
+                        <p style={{ color: ((this.state.active === 'donations') ? '#F42929' : '') }} onClick={() => this.setState({ active: 'donations', cellSelected: false })}>Donations</p>
                     </div>
                     <div className="admin">
                         <div className="admin-header">
@@ -761,8 +880,8 @@ class AdminPanel extends Component {
                                                     <span className="bold">Message: </span>{info.message}<br />
                                                     <span className="bold colorize">Shown: </span>{info.show.toString()}<br />
                                                     <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editRequest}>Edit Request</button>&nbsp;&nbsp;&nbsp;
-                                            <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.hideRequest}>{info.show ? 'Hide' : 'Show'} Request</button>&nbsp;&nbsp;&nbsp;
-                                            <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeRequest}>Delete Request</button>
+                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.hideRequest}>{info.show ? 'Hide' : 'Show'} Request</button>&nbsp;&nbsp;&nbsp;
+                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeRequest}>Delete Request</button>
                                                 </div>}
                                             </div>)
                                         } else {
@@ -843,7 +962,7 @@ class AdminPanel extends Component {
                                                 {this.state.openedupdate === index && <div style={{ marginTop: '10px', maxHeight: '150px', overflow: 'auto', textAlign: 'justify', paddingRight: '10px' }}>
                                                     {info.content}<br />
                                                     <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editUpdate}>Edit Update</button>&nbsp;&nbsp;&nbsp;
-                                            <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeUpdate}>Delete Update</button>
+                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeUpdate}>Delete Update</button>
                                                 </div>}
                                             </div>)
                                         } else {
@@ -875,7 +994,7 @@ class AdminPanel extends Component {
                                         <input type="text" name="title" id="title" placeholder="Update Title" value={this.state.updatetitle} onChange={this.onChangeTitle} required /><br />
                                         <label htmlFor="update">Update</label>
                                         <textarea type="text" name="update" id="update" placeholder="Update Content" value={this.state.updatecontent} onChange={this.onChangeUC} required /><br />
-                                        <div className="colorize">{this.state.updatewarning}</div>
+                                        <div className="colorize">{this.state.updateswarning}</div>
                                         <button type="submit" style={{ width: '80px', marginTop: '10px' }} className="readbtn">{this.state.newupdatemode ? 'Post ' : 'Edit '} Update</button><br />
                                         {!this.state.newupdatemode && <button onClick={this.updatecancel} style={{ width: '80px', marginTop: '10px' }} className="readbtn">Cancel</button>}
                                     </form>
@@ -927,6 +1046,66 @@ class AdminPanel extends Component {
                                 </div>
                             </div>
                         </div>}
+                        {this.state.active === 'donations' && <div className="notifwrapper">
+                            <div className="orgupdates">
+                                <div style={{ height: '95%' }}>
+                                    <h3>Donations</h3>
+                                    {this.state.donations.map((info, index) => {
+                                        if ((index < this.state.donationspageCount * 4) && (index >= (this.state.donationspageCount - 1) * 4)) {
+                                            return (<div className='orgupdate' key={'orgupdate' + (index + 1).toString()}>
+                                                <h2 className="orgupdate-1">{info.name}</h2>
+                                                <div className="orgupdate-2">
+                                                    <button className="readbtn" style={{ width: '80px' }} onClick={() => this.handleReadDonation(index)}>{this.state.openeddonation === index ? 'Hide ' : 'View '} Details</button>
+                                                </div>
+                                                {this.state.openeddonation === index && <div style={{ marginTop: '10px' }} className="voldata">
+                                                    <span className="bold">Phone: </span>{info.phone}<br />
+                                                    <span className="bold">Amount: </span>{info.amount}<br />
+                                                    <span className="bold">Date: </span>{new Date(parseInt(info.date)).toDateString()}<br />
+                                                    <span className="bold">Link: <a href={"/donations?id=" + info._id} target="_blank" rel="noreferrer" className="bold">Click here!</a></span><br />
+                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.editDonation}>Edit Donation</button>&nbsp;&nbsp;&nbsp;
+                                                    <button className="readbtn" style={{ width: '100px', marginTop: '10px' }} onClick={this.removeDonation}>Delete Donation</button>
+                                                </div>}
+                                            </div>)
+                                        } else {
+                                            return null;
+                                        }
+                                    })}
+                                </div>
+                                <div className="pages">
+                                    <ReactPaginate
+                                        previousLabel={'<'}
+                                        nextLabel={'>'}
+                                        breakLabel={'...'}
+                                        breakClassName={'break-me'}
+                                        pageCount={Math.ceil(this.state.donations.length / 4)}
+                                        marginPagesDisplayed={2}
+                                        pageRangeDisplayed={5}
+                                        onPageChange={this.handledonationsPageClick}
+                                        containerClassName={'pagination'}
+                                        subContainerClassName={'pages pagination'}
+                                        activeClassName={'active'}
+                                    />
+                                </div>
+                            </div>
+                            <div className="orgupdates" style={{ display: 'block' }}>
+                                <div>
+                                    <h3>{this.state.newdonationmode ? 'Add New ' : 'Edit '} Donation</h3>
+                                    <form onSubmit={this.newDonation} className="updatesform">
+                                        <label htmlFor="name">Name</label>
+                                        <input type="text" name="name" id="name" placeholder="Enter Name" value={this.state.donationname} onChange={this.onChangeDName} required /><br />
+                                        <label htmlFor="phone">Phone</label>
+                                        <input type="text" name="phone" id="phone" placeholder="Enter Phone" value={this.state.donationphone} onChange={this.onChangeDPhone} required /><br />
+                                        <label htmlFor="amount">Amount</label>
+                                        <input type="number" name="amount" id="amount" placeholder="Enter Amount" value={this.state.donationamount} onChange={this.onChangeDAmount} required /><br />
+                                        <label htmlFor="date">Date</label>
+                                        <input type="date" name="date" id="date" placeholder="Donated on" value={this.state.donationdate} onChange={this.onChangeDDate} required /><br />
+                                        <div className="colorize clickable" onClick={() => { this.setState({ donationswarning: "Copied to clipboard!" }); navigator.clipboard.writeText(this.state.lastlink) }}>{this.state.donationswarning}</div>
+                                        <button type="submit" style={{ width: '80px', marginTop: '10px' }} className="readbtn">{this.state.newdonationmode ? 'Post ' : 'Edit '} Donation</button><br />
+                                        {!this.state.newdonationmode && <button onClick={this.donationcancel} style={{ width: '80px', marginTop: '10px' }} className="readbtn">Cancel</button>}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>}
                     </div>
                 </div>
             )
@@ -940,7 +1119,7 @@ export default class Admin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            auth: false
+            auth: true
         }
     }
     toggleAuth = () => {

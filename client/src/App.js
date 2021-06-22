@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, matchPath } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlus, faMinus, faHeart, faMapMarkerAlt, faShareAlt, faTimes, faTimesCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faMinus, faHeart, faMapMarkerAlt, faShareAlt, faTimes, faTimesCircle, faCheckCircle, faFileDownload, faDonate } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faLinkedinIn, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import ReactPixel from 'react-facebook-pixel';
 
@@ -22,8 +22,9 @@ import Footer from "./components/footer";
 import ScrollToTop from "./components/scrollToTop";
 import LandingPage from "./components/landingpage";
 import TermsandConditions from "./components/tnc";
+import Donations from './components/donations';
 
-library.add(faMinus, faPlus, faHeart, faShareAlt, faFacebookF, faLinkedinIn, faTwitter, faInstagram, faMapMarkerAlt, faTimes, faTimesCircle, faCheckCircle)
+library.add(faMinus, faPlus, faHeart, faShareAlt, faFileDownload, faDonate, faFacebookF, faLinkedinIn, faTwitter, faInstagram, faMapMarkerAlt, faTimes, faTimesCircle, faCheckCircle)
 
 
 class App extends Component {
@@ -51,7 +52,7 @@ class App extends Component {
       debug: true, // enable logs
     };
     ReactPixel.init('510771116970667', options);
-    console.log('hey')
+
     ReactPixel.pageView(); // For tracking page view
 
     /* End of Facebook Pixel */
@@ -100,6 +101,11 @@ class App extends Component {
       exact: true,
       strict: false
     });
+    const donationsmatched = matchPath(window.location.pathname, {
+      path: "/donations",
+      exact: false,
+      strict: false
+    });
     /*const bloodmatched = matchPath(window.location.pathname, {
       path: "/blood",
       exact: true,
@@ -113,12 +119,12 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <Route render={() => (!(adminmatched || landingmatched) ? <Navigationbar
+          <Route render={() => (!(adminmatched || landingmatched || donationsmatched) ? <Navigationbar
             style={{
               transform: `translate(0, ${this.state.slide})`,
               transition: 'transform 90ms linear',
             }} /> : null)} />
-          <Route render={() => (!(adminmatched || landingmatched) ? <Contactbar /> : null)} />
+          <Route render={() => (!(adminmatched || landingmatched || donationsmatched) ? <Contactbar /> : null)} />
           <ScrollToTop>
             <Route path="/" exact component={Home} />
           </ScrollToTop>
@@ -148,6 +154,9 @@ class App extends Component {
           </ScrollToTop>
           <ScrollToTop>
             <Route path="/admin" component={Admin} />
+          </ScrollToTop>
+          <ScrollToTop>
+            <Route path="/donations/" component={Donations} />
           </ScrollToTop>
           <ScrollToTop>
             <Route path="/lp/s/1" component={LandingPage} />
