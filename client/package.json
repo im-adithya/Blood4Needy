@@ -22,6 +22,7 @@
     "google-map-react": "^2.1.9",
     "google-maps-react": "^2.0.6",
     "jspdf": "^2.3.1",
+    "patch-package": "^6.4.7",
     "pdf-lib": "^1.16.0",
     "ra-data-json-server": "^3.14.2",
     "react": "^17.0.1",
@@ -53,7 +54,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "postinstall": "npx patch-package"
   },
   "eslintConfig": {
     "extends": [

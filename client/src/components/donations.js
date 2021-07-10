@@ -94,7 +94,7 @@ class Donations extends Component {
                     <title>{this.state.invalid ? "Donations" : "Thank you, " + this.state.name}</title>
                 </Helmet>
                 {/*use loading extensively and properly*/}
-                {this.state.loaded && (this.state.up === this.state.down) && <Confetti
+                {this.state.loaded && !!this.state.up && (this.state.up === this.state.down) && <Confetti
                     width={this.state.width}
                     height={this.state.height}
                 />}
