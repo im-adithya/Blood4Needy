@@ -353,7 +353,9 @@ class LoginBox extends Component {
               onInput={this.handleInput}
               onChange={this.onChangePhone}
               required />
-          </div><br />
+          </div>
+          <label>(Type in 9652726340 for testing)</label>
+          <br />
           <p className="msgs">{this.state.warningone}</p>
           <div className="btnbox">
             <button type="submit" id="next1" className="loginbutton">{/*Get OTP*/}Next</button>
